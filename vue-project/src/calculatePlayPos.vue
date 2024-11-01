@@ -1,0 +1,52 @@
+<template>
+
+</template>
+
+
+<script>
+import { watch } from 'vue';
+import { state } from './dataStore';
+import { useMyFunction } from './functionStore';
+
+
+export default {
+    setup() {
+        const { disPlayCard } = useMyFunction()
+        const { closestToTheLeft } = useMyFunction()
+        return {
+            state,
+            disPlayCard,
+            closestToTheLeft,
+        }
+    },
+    data() {
+        return {
+            communityCards: null,
+        }
+    },
+    mounted() {
+        this.communityCards = document.querySelectorAll('.communityCards')
+        watch(() => state.round, (newval, oldval) => {
+            if (state.round === 1) {
+                this.disPlayCard(state.cards[51], this.communityCards[0])
+                state.communityCards[0] = state.cards[51]
+                this.disPlayCard(state.cards[50], this.communityCards[1])
+                state.communityCards[1] = state.cards[50]
+                this.disPlayCard(state.cards[49], this.communityCards[2])
+                state.communityCards[2] = state.cards[49]
+                state.actionPos = this.closestToTheLeft(state.dealer)
+            } else if (state.round === 2) {
+                this.disPlayCard(state.cards[48], this.communityCards[3])
+                state.communityCards[3] = state.cards[48]
+                state.actionPos = this.closestToTheLeft(state.dealer)
+            } else if (state.round === 3) {
+                this.disPlayCard(state.cards[47], this.communityCards[4])
+                state.communityCards[4] = state.cards[47]
+                state.actionPos = this.closestToTheLeft(state.dealer)
+            } else if (state.round === 4) {
+                
+            }
+        })
+    }
+}
+</script>
