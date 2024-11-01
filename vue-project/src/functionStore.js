@@ -179,7 +179,6 @@ export function useMyFunction() {
       state.gameHistory = []
     }
     const mixCards = () => {
-      console.log(import.meta.env.VITE_API_KEY)
       let a, c
       c = []
       while (c.length < 52) {
