@@ -179,6 +179,7 @@ export function useMyFunction() {
       state.gameHistory = []
     }
     const mixCards = () => {
+      console.log('as')
       let a, c
       c = []
       while (c.length < 52) {

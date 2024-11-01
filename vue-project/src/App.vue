@@ -19,7 +19,6 @@ import Test from './test.vue';
     mounted() {
     },
     methods: {
-
     },
     components: {
       BetTable,
