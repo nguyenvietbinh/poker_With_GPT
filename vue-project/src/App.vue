@@ -1,10 +1,8 @@
 <template>
-  <HomePage/>
+  <router-view/>
 </template>
 
 <script>
-import BetTable from './betTable.vue';
-import HomePage from './homePage.vue';
 
   export default {
     setup() {
@@ -17,15 +15,5 @@ import HomePage from './homePage.vue';
     },
     methods: {
     },
-    components: {
-      BetTable,
-      HomePage,
-    }
   }
 </script>
-
-<style>
-.test {
-  background-color: rgb(0, 63, 55);
-}
-</style>
