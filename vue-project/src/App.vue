@@ -4,7 +4,7 @@
 
 <script>
 import BetTable from './betTable.vue';
-import HomePage from './homePage.vue'
+import HomePage from './homePage.vue';
 
   export default {
     setup() {
