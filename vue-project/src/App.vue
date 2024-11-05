@@ -1,13 +1,10 @@
 <template>
-  <div class="h-full w-full bg-blue-500 absolute top-0 left-0">
-    <BetTable/>
-  </div>
+  <HomePage/>
 </template>
 
 <script>
 import BetTable from './betTable.vue';
-import ClaculateCardLevel from './claculateHandLevel.vue';
-import Test from './test.vue';
+import HomePage from './homePage.vue'
 
   export default {
     setup() {
@@ -22,8 +19,13 @@ import Test from './test.vue';
     },
     components: {
       BetTable,
-      ClaculateCardLevel,
-      Test,
+      HomePage,
     }
   }
 </script>
+
+<style>
+.test {
+  background-color: rgb(0, 63, 55);
+}
+</style>
