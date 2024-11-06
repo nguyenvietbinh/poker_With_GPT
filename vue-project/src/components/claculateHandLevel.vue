@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import { compileScript } from 'vue/compiler-sfc';
 import { useMyFunction } from '../store/functionStore';
 import { state } from '../store/dataStore';
 import { watch } from 'vue';

@@ -28,6 +28,7 @@ export default {
         this.playerCards = document.querySelectorAll('.playerCard')
         this.communityCards = document.querySelectorAll('.communityCards')
         this.reSetData()
+        let delayTime = state.numberOfPlayer * 5000
         setTimeout(() => {
             this.reNewGame()
             this.newGame = true
@@ -40,7 +41,7 @@ export default {
                 element.style.backgroundColor = 'rgb(220, 38, 38)'
             });
 
-        }, 10000);
+        }, delayTime);
 
         this.newGame = false
     },
