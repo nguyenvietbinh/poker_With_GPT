@@ -1,6 +1,5 @@
 <template>
     <div class="banner2 h-full w-full bg-blue-600 absolute top-0 left-0">
-        <img @click="router.push('/')" src="../img/logo.png" alt="" class="logo h-[50px] cursor-pointer w-auto absolute left-[25px] top-[25px] opacity-100">
         <div style="top: calc(50% - 250px); left: calc(50% - 250px);" class="h-[500px] w-[500px] absolute select-none">
         <img src="../img/pokerTable.png" alt="" class="h-[500px] w-auto rounded-[20px] absolute top-0 left-0 z-0">
         <div class="communityCards select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 absolute underline text-center text-[20px] top-[230px] left-[160px]"></div>

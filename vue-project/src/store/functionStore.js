@@ -75,13 +75,13 @@ export function useMyFunction() {
 
       - My hand: ${hand}.
       - My player_ID: ${playerPos}.
-      - Number of player on the table: ${state.numberOfPlayer}.
+      - Number of player still on the table: ${state.numberOfPlayer}.
       - Community cards: ${state.communityCards}.
       - big_blind_ID: ${state.blindPos}.
       - small_blind_ID: ${state.smBlind}.
       - dealer_ID: ${state.dealer}.
       - round: ${round}.
-      - ${JSON.stringify(gameKnowedInfor)}.
+      - Game knowed information: ${JSON.stringify(gameKnowedInfor)}.
       - Game history: ${JSON.stringify(state.gameHistory)}.
 
       You ${canFold ? "can" : "cannot"} Fold but ${canCheck ? "can" : "cannot"} Check.
