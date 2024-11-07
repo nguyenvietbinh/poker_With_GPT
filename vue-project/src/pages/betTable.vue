@@ -1,5 +1,10 @@
 <template>
     <div class="banner2 h-full w-full bg-blue-600 absolute top-0 left-0">
+        <RouterLink to="/">
+            <div class="w-[50px] h-[50px] absolute top-[25px] left-[25px]">
+                <img src="../img/logo.png" alt="" class="h-full w-full">
+            </div>
+        </RouterLink>
         <div style="top: calc(50% - 250px); left: calc(50% - 250px);" class="h-[500px] w-[500px] absolute select-none">
         <img src="../img/pokerTable.png" alt="" class="h-[500px] w-auto rounded-[20px] absolute top-0 left-0 z-0">
         <div class="communityCards select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 absolute underline text-center text-[20px] top-[230px] left-[160px]"></div>
@@ -38,7 +43,7 @@
         <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute -rotate-90 top-[330px] right-[30px] hidden"></div>
         <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute -rotate-90 top-[330px] right-[30px] hidden"></div>
         <div class="absolute bottom-[-50px] left-[225px] w-[50px] h-[50px]">
-            <img src="../img/user.png" alt="" class="absolute h-[50px] w-auto bg-white rounded-full">
+            <img src="../img/user.png" alt="" class="playerAvatar absolute h-[50px] w-[50px] bg-white rounded-full">
             <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[0] }}.0$ </div>
             <div class="left-[50%] top-[-95px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[0] }}.0$</div>
             <div @click="this.checkButtonClick" class="right-[-70px] absolute p-2 m-1 hidden bg-red-500 rounded-md border-[1px] border-solid border-black hover:bg-black hover:text-red-500 hover:translate-y-[-2px] transition-all check">Check</div>
@@ -46,28 +51,28 @@
             <div @click="this.callButtonClick" class="right-[-120px] absolute p-2 m-1 hidden bg-yellow-500 rounded-md border-[1px] border-solid border-black hover:bg-black hover:text-yellow-500 hover:translate-y-[-2px] transition-all call">Call</div>
             <input @keyup="this.inputCheck" type="text" class="right-[-180px] w-[55px] absolute hidden p-2 m-1 bg-green-950 text-white rounded-md border-[1px] border-solid border-black hover:bg-black hover:text-green-500 hover:translate-y-[-2px] transition-all raise" placeholder="Raise">
         </div>
-        <div class="playerAvatar absolute bottom-[70px] left-[-50px] h-[50px] w-[50px]">
-            <img src="../img/user.png" alt="" class="h-[50px] w-auto absolute bg-white rounded-[50%]">
+        <div class="absolute bottom-[70px] left-[-50px] h-[50px] w-[50px]">
+            <img src="../img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
             <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[1] }}.0$</div>
             <div class="top-[50%] right-[-100px] rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[1] }}.0$</div>
         </div>
-        <div class="playerAvatar absolute top-[70px] left-[-50px] h-[50px] w-[50px]">
-            <img src="../img/user.png" alt="" class="h-[50px] w-auto absolute bg-white rounded-[50%]">
+        <div class="absolute top-[70px] left-[-50px] h-[50px] w-[50px]">
+            <img src="../img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
             <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[2] }}.0$</div>
             <div class="top-[50%] right-[-100px] rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[2] }}.0$</div>
         </div>
-        <div class="playerAvatar absolute top-[-50px] left-[225px] h-[50px] w-[50px]">
-            <img src="../img/user.png" alt="" class="h-[50px] w-auto absolute bg-white rounded-[50%]">
+        <div class="absolute top-[-50px] left-[225px] h-[50px] w-[50px]">
+            <img src="../img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
             <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[3] }}.0$</div>
             <div class="left-[50%] bottom-[-95px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[3] }}.0$</div>
         </div>
-        <div class="playerAvatar absolute top-[70px] right-[-50px] h-[50px] w-[50px]">
-            <img src="../img/user.png" alt="" class="h-[50px] w-auto absolute bg-white rounded-[50%]">
+        <div class="absolute top-[70px] right-[-50px] h-[50px] w-[50px]">
+            <img src="../img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
             <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[4] }}.0$</div>
             <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[4] }}.0$</div>
         </div>
-        <div class="playerAvatar absolute bottom-[70px] right-[-50px] h-[50px] w-[50px]">
-            <img src="../img/user.png" alt="" class="h-[50px] w-auto absolute bg-white rounded-[50%]">
+        <div class="absolute bottom-[70px] right-[-50px] h-[50px] w-[50px]">
+            <img src="../img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
             <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[5] }}.0$</div>
             <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[5] }}.0$</div>
         </div>
@@ -105,9 +110,11 @@ import { useRouter } from 'vue-router';
                 call: null,
                 raise: null,
                 actionPos: null,
+                playerAvatar: null,
             }
         },
         mounted() {
+            this.playerAvatar = document.querySelectorAll('.playerAvatar')
             this.fold = document.querySelector('.fold')
             this.check = document.querySelector('.check')
             this.call = document.querySelector('.call')
@@ -157,7 +164,7 @@ import { useRouter } from 'vue-router';
                 }
                 this.disAbleButton()
             },
-            foldButtonClick() {
+            foldButtonClick() {               
                 state.playerAct = 'Fold'
                 state.numberOfAction ++
                 if (state.round === 0) {
@@ -174,6 +181,7 @@ import { useRouter } from 'vue-router';
                     state.gameHistory.push(`player: 0, round: river, action: Fold`)
                 }
                 this.disAbleButton()
+                this.playerAvatar[0].style.backgroundColor = 'gray'
             },
             callButtonClick() {
                 state.playerAct = 'Call'
@@ -194,6 +202,7 @@ import { useRouter } from 'vue-router';
                 this.disAbleButton()
             },
             disAbleButton() {
+                this.playerAvatar[0].style.backgroundColor = 'white'
                 this.check.style.display = 'none'
                 this.fold.style.display = 'none'
                 this.call.style.display = 'none'

@@ -38,19 +38,18 @@ import { useMyFunction } from '../store/functionStore';
             watch(() => state.actionPos, (newval, oldval) => {
                 if (state.actionPos !== null) {
                     if (state.actionPos !== 0) {
-                        this.playerAvatar.forEach(element => {
-                            element.style.backgroundColor = 'black'
-                        });
-                        this.playerAvatar[state.actionPos - 1].style.backgroundColor = 'white'
+                        this.playerAvatar[state.actionPos].style.backgroundColor = 'green'
                         this.getResponse().then(response => {
+                            if (response === 'Fold') {
+                                this.playerAvatar[state.actionPos].style.backgroundColor = 'gray'
+                            } else {
+                                this.playerAvatar[state.actionPos].style.backgroundColor = 'white'
+                            }
                             state.playerAct = response
                             state.numberOfAction ++
-                            console.log(response)
                         })
                     } else {
-                        this.playerAvatar.forEach(element => {
-                            element.style.backgroundColor = 'black'
-                        });
+                        this.playerAvatar[state.actionPos].style.backgroundColor = 'green'
                         this.enAbleButton()
                     }
                 }

@@ -22,26 +22,18 @@ export default {
             playerCards: null,
             newGame: false,
             communityCards: null,
+            playerAvatar: null,
         }
     },
     mounted() {
+        this.playerAvatar = document.querySelectorAll('.playerAvatar')
         this.playerCards = document.querySelectorAll('.playerCard')
         this.communityCards = document.querySelectorAll('.communityCards')
         this.reSetData()
-        let delayTime = state.numberOfPlayer * 5000
         setTimeout(() => {
             this.reNewGame()
             this.newGame = true
-            this.communityCards.forEach(element => {
-                element.innerHTML = ''
-                element.style.backgroundColor = 'rgb(220, 38, 38)'
-            });
-            this.playerCards.forEach((element, index) => {
-                element.innerHTML = ''
-                element.style.backgroundColor = 'rgb(220, 38, 38)'
-            });
-
-        }, delayTime);
+        }, 5000);
 
         this.newGame = false
     },
@@ -49,6 +41,17 @@ export default {
         reNewGame() {
             this.playerCards.forEach(element => {
                 element.style.display = 'block'
+            });
+            this.playerAvatar.forEach(element => {
+                element.style.backgroundColor = 'white'
+            });
+            this.communityCards.forEach(element => {
+                element.innerHTML = ''
+                element.style.backgroundColor = 'rgb(220, 38, 38)'
+            });
+            this.playerCards.forEach((element, index) => {
+                element.innerHTML = ''
+                element.style.backgroundColor = 'rgb(220, 38, 38)'
             });
         },
         displayCard(cardNumber, card) {

@@ -32,8 +32,6 @@ export default {
                 if (state.numberOfPlayer > 1) {
                     state.winner = this.searchWinner(this.handRanking(state.lstOfHand))
                     for (let i = 0; i < state.winner.length; i ++) {
-                        console.log(state.winner[i])
-                        console.log(state.pot)
                         state.stackList[state.winner[i]] += Math.floor(state.pot/state.winner.length)
                     }
                 }

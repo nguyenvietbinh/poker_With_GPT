@@ -23,9 +23,11 @@ export default {
     data() {
         return {
             playerCards: null,
+            playerAvatar: null,
         }
     },
     mounted() {
+        this.playerAvatar = document.querySelectorAll('.playerAvatar')
         this.playerCards = document.querySelectorAll('.playerCard')
         this.disPlayCard(state.cards[0], this.playerCards[0])
         this.disPlayCard(state.cards[1], this.playerCards[1])
