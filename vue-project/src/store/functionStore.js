@@ -92,6 +92,7 @@ export function useMyFunction() {
       Look at game history if there are many raise {amount} actions you should call, if there are many check action you should raise {amount} to scared them
       I prefer a simple answer: 'Call,' 'Raise {amount}', 'Fold,' 'Check,' or 'All in,' with no additional information. Play as a tight-agreesive player, folding if my hand is not strong.
       `
+        console.log(JSON.stringify(state.gameHistory))
         return prompt
     }
     const getChatGPTResponse = async (userMessage) => {
@@ -111,19 +112,7 @@ export function useMyFunction() {
                   },
                 }
             )
-            if (state.round === 0) {
-                state.bettingHistory[state.actionPos].preflop.push(result.data.choices[0].message.content)
-                state.gameHistory.push(`player: ${state.actionPos}, round: preflop, action: ${result.data.choices[0].message.content}`)
-            } else if (state.round === 1) {
-                state.bettingHistory[state.actionPos].flop.push(result.data.choices[0].message.content)
-                state.gameHistory.push(`player: ${state.actionPos}. round: floFp, action: ${result.data.choices[0].message.content}`)
-            } else if (state.round === 2) {
-                state.bettingHistory[state.actionPos].turn.push(result.data.choices[0].message.content)
-                state.gameHistory.push(`player: ${state.actionPos}, round: turn, action: ${result.data.choices[0].message.content}`)
-            } else {
-                state.bettingHistory[state.actionPos].river.push(result.data.choices[0].message.content)
-                state.gameHistory.push(`player: ${state.actionPos}, round: river, action: ${result.data.choices[0].message.content}`)
-            }
+            addGameHistory(state.round, convertChatGPTRespone(result.data.choices[0].message.content), state.actionPos)
             return convertChatGPTRespone(result.data.choices[0].message.content)
         } catch (error) {
             console.error(error);
@@ -230,6 +219,17 @@ export function useMyFunction() {
       card.style.backgroundColor = cardColor
       card.style.color = 'white'
     }
+    const addGameHistory = (round, act, pos) => {
+      if (round === 0) {
+          state.gameHistory.push(`player: ${pos}, round: preflop, action: ${act}`)
+      } else if (round === 1) {
+          state.gameHistory.push(`player: ${pos}, round: flop, action: ${act}`)
+      } else if (round === 2) {
+          state.gameHistory.push(`player: ${pos}, round: turn, action: ${act}`)
+      } else {
+          state.gameHistory.push(`player: ${pos}, round: river, action: ${act}`)
+      }
+    } 
     return {
         getChatGPTResponse,
         closestToTheLeft,
@@ -237,6 +237,7 @@ export function useMyFunction() {
         getPrompt,
         reSetData,
         mixCards,
-        disPlayCard
+        disPlayCard,
+        addGameHistory
     };
 }

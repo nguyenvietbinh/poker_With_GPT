@@ -94,12 +94,14 @@ import { useRouter } from 'vue-router';
             const { closestToTheLeft } = useMyFunction()
             const { closestToTheRight } = useMyFunction()
             const { reSetData } = useMyFunction()
+            const { addGameHistory } = useMyFunction()
             const router = useRouter()
             return {
                 state,
                 closestToTheLeft,
                 closestToTheRight,
                 reSetData,
+                addGameHistory,
                 router,
             }
         },
@@ -130,75 +132,27 @@ import { useRouter } from 'vue-router';
                 if (event.key === 'Enter') {
                     state.playerAct = parseInt(event.target.value)
                     state.numberOfAction ++
-                    if (state.round === 0) {
-                        state.bettingHistory[0].preflop.push(`Raise ${parseInt(event.target.value)}.`)
-                        state.gameHistory.push(`player: 0, round: preflop, action: ${parseInt(event.target.value)}`)
-                    } else if (state.round === 1) {
-                        state.bettingHistory[0].flop.push(`Raise ${parseInt(event.target.value)}.`)
-                        state.gameHistory.push(`player: 0, round: flop, action: ${parseInt(event.target.value)}`)
-                    } else if (state.round === 2) {
-                        state.bettingHistory[0].turn.push(`Raise ${parseInt(event.target.value)}.`)
-                        state.gameHistory.push(`player: 0, round: turn, action: ${parseInt(event.target.value)}`)
-                    } else {
-                        state.bettingHistory[0].river.push(`Raise ${parseInt(event.target.value)}.`)
-                        state.gameHistory.push(`player: 0, round: river, action: ${parseInt(event.target.value)}`)
-                    }
+                    this.addGameHistory(state.round, state.playerAct, 0)
                     this.disAbleButton()
                 }
             },
             checkButtonClick() {
                 state.playerAct = 'Check'
                 state.numberOfAction ++
-                if (state.round === 0) {
-                    state.bettingHistory[0].preflop.push(`Check.`)
-                    state.gameHistory.push(`player: 0, round: preflop, action: Check`)
-                } else if (state.round === 1) {
-                    state.bettingHistory[0].flop.push(`Check.`)
-                    state.gameHistory.push(`player: 0, round: flop, action: Check`)
-                } else if (state.round === 2) {
-                    state.bettingHistory[0].turn.push(`Check.`)
-                    state.gameHistory.push(`player: 0, round: turn, action: Check`)
-                } else {
-                    state.bettingHistory[0].river.push(`Check.`)
-                    state.gameHistory.push(`player: 0, round: river, action: Check`)
-                }
+                this.addGameHistory(state.round, state.playerAct, 0)
                 this.disAbleButton()
             },
             foldButtonClick() {               
                 state.playerAct = 'Fold'
                 state.numberOfAction ++
-                if (state.round === 0) {
-                    state.bettingHistory[0].preflop.push(`Fold.`)
-                    state.gameHistory.push(`player: 0, round: preflop, action: Fold`)
-                } else if (state.round === 1) {
-                    state.bettingHistory[0].flop.push(`Fold.`)
-                    state.gameHistory.push(`player: 0, round: flop, action: Fold`)
-                } else if (state.round === 2) {
-                    state.bettingHistory[0].turn.push(`Fold.`)
-                    state.gameHistory.push(`player: 0, round: turn, action: Fold`)
-                } else {
-                    state.bettingHistory[0].river.push(`Fold.`)
-                    state.gameHistory.push(`player: 0, round: river, action: Fold`)
-                }
+                this.addGameHistory(state.round, state.playerAct, 0)
                 this.disAbleButton()
                 this.playerAvatar[0].style.backgroundColor = 'gray'
             },
             callButtonClick() {
                 state.playerAct = 'Call'
                 state.numberOfAction ++
-                if (state.round === 0) {
-                    state.bettingHistory[0].preflop.push(`Call.`)
-                    state.gameHistory.push(`player: 0, round: preflop, action: Call`)
-                } else if (state.round === 1) {
-                    state.bettingHistory[0].flop.push(`Call.`)
-                    state.gameHistory.push(`player: 0, round: flop, action: Call`)
-                } else if (state.round === 2) {
-                    state.bettingHistory[0].turn.push(`Call.`)
-                    state.gameHistory.push(`player: 0, round: turn, action: Call`)
-                } else {
-                    state.bettingHistory[0].river.push(`Call.`)
-                    state.gameHistory.push(`player: 0, round: river, action: Call`)
-                }
+                this.addGameHistory(state.round, state.playerAct, 0)
                 this.disAbleButton()
             },
             disAbleButton() {

@@ -64,6 +64,10 @@ export const state = reactive({
       turn: [],
       river: [],
     }
-  ]
+  ],
+  haveAllinCase: false,
+  allin: [false, false, false, false, false, false],
+  numberOfAllinPlayer: 0,
+  
 })
 
