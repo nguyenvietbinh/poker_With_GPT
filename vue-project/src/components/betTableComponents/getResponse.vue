@@ -6,8 +6,8 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../store/dataStore';
-import { useMyFunction } from '../store/functionStore';
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
     export default {
         setup() {
             const { getChatGPTResponse } = useMyFunction()

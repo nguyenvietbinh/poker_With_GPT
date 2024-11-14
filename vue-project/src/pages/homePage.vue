@@ -9,7 +9,7 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import HeaderComponent from '../components/header.vue'
+import HeaderComponent from '../components/homePageComponents/header.vue'
     export default {
         setup() {
             const router = useRouter()

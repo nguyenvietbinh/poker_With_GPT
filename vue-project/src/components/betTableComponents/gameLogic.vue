@@ -9,8 +9,8 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../store/dataStore';
-import { useMyFunction } from '../store/functionStore';
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
 import GameOverCheck from './gameOverCheck.vue'
 import CalculatePlayPos from './calculatePlayPos.vue';
 import GetResponse from './getResponse.vue'

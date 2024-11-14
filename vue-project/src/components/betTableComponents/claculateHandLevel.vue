@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { useMyFunction } from '../store/functionStore';
-import { state } from '../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
+import { state } from '../../store/dataStore';
 import { watch } from 'vue';
 export default {
     setup() {

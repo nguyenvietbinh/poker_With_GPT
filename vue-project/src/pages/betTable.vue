@@ -86,7 +86,7 @@
 <script>
 import { state } from '../store/dataStore';
 import { useMyFunction } from '../store/functionStore';
-import GameLogic from '../components/gameLogic.vue';
+import GameLogic from '../components/betTableComponents/gameLogic.vue';
 import { useRouter } from 'vue-router';
 
     export default {

@@ -6,9 +6,9 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../store/dataStore';
+import { state } from '../../store/dataStore';
 import CalculatePlayPos from './calculatePlayPos.vue';
-import { useMyFunction } from '../store/functionStore';
+import { useMyFunction } from '../../store/functionStore';
 
 export default {
     setup() {

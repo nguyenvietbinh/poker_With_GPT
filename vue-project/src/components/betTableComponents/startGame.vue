@@ -4,8 +4,8 @@
 
 
 <script>
-import { state } from '../store/dataStore';
-import { useMyFunction } from '../store/functionStore';
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
 
 export default {
     setup() {
