@@ -132,27 +132,23 @@ import { useRouter } from 'vue-router';
                 if (event.key === 'Enter') {
                     state.playerAct = parseInt(event.target.value)
                     state.numberOfAction ++
-                    this.addGameHistory(state.round, state.playerAct, 0)
                     this.disAbleButton()
                 }
             },
             checkButtonClick() {
                 state.playerAct = 'Check'
                 state.numberOfAction ++
-                this.addGameHistory(state.round, state.playerAct, 0)
                 this.disAbleButton()
             },
             foldButtonClick() {               
                 state.playerAct = 'Fold'
                 state.numberOfAction ++
-                this.addGameHistory(state.round, state.playerAct, 0)
                 this.disAbleButton()
                 this.playerAvatar[0].style.backgroundColor = 'gray'
             },
             callButtonClick() {
                 state.playerAct = 'Call'
                 state.numberOfAction ++
-                this.addGameHistory(state.round, state.playerAct, 0)
                 this.disAbleButton()
             },
             disAbleButton() {

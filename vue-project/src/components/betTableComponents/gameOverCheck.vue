@@ -20,10 +20,10 @@ export default {
     },
     mounted() {
         watch(() => [state.numberOfAction, state.round], (newValue, oldValue) => {
-            if (state.numberOfPlayer === 1) {
-                state.isGameOver = true
-            } else if (state.round === 4) {
-                state.isGameOver = true
+            if (!state.haveAllinCase) {
+                if ((state.numberOfPlayer === 1) || (state.round === 4)) {
+                    state.isGameOver = true
+                }
             }
         }, { deep: true });
     },

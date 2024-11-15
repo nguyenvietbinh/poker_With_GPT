@@ -13,11 +13,15 @@ import MoveToNextRound from './moveToNextRound.vue';
 export default {
     setup() {
         const { closestToTheLeft } = useMyFunction()
+        const { isOverBet } = useMyFunction()
         const { disPlayCard } = useMyFunction()
+        const { addGameHistory } = useMyFunction()
         return {
             state,
             closestToTheLeft,
-            disPlayCard
+            disPlayCard,
+            addGameHistory,
+            isOverBet
         }
     },
     data() {
@@ -43,19 +47,23 @@ export default {
     methods: {
         doAction(act, pos) {
             if (act === 'Fold') {
+                this.addGameHistory(state.round, 'Fold', state.actionPos)
                 this.playerCards[state.actionPos * 2].style.display = 'none'
                 this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
                 state.numberOfPlayer -= 1
                 state.playerStatus[pos] = false
             } else if (act === 'Call') {
-                state.stackList[pos] -= (Math.max(...state.betTotalList) - state.betTotalList[pos])
-                state.betTotalList[pos] = Math.max(...state.betTotalList)
+                if (!this.isOverBet('Call', pos)) {
+                    state.stackList[pos] -= (Math.max(...state.betTotalList) - state.betTotalList[pos])
+                    state.betTotalList[pos] = Math.max(...state.betTotalList)
+                }
             } else if (!isNaN(act)) {
-                state.stackList[pos] -= (Math.max(...state.betTotalList) + act - state.betTotalList[pos])
-                state.betTotalList[pos] = Math.max(...state.betTotalList) + act
+                if (!this.isOverBet(act, pos)) {
+                    state.stackList[pos] -= (Math.max(...state.betTotalList) + act - state.betTotalList[pos])
+                    state.betTotalList[pos] = Math.max(...state.betTotalList) + act
+                }
             } else if (act === 'All in') {
-                state.betTotalList[pos] = state.stackList[pos] + state.betTotalList[pos]
-                state.stackList[pos] = 0
+                this.isOverBet('All in', pos)
             }
             state.pot = this.countPot()
         },

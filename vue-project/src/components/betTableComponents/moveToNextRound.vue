@@ -25,19 +25,21 @@ export default {
     },
     mounted() {
         watch(() => state.numberOfAction, (newval, oldval) => {
-            if (state.numberOfAction === 0) {
-                this.numberOfPlayerInCurrentRound = state.numberOfPlayer
-            } else {
-                if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
-                    if (this.betTotalIsEqual()) {
-                        state.actionPos = null
-                        state.numberOfAction = 0
-                        state.round ++
+            if (!state.stopBetting) {
+                if (state.numberOfAction === 0) {
+                    this.numberOfPlayerInCurrentRound = state.numberOfPlayer
+                } else {
+                    if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
+                        if (this.betTotalIsEqual()) {
+                            state.actionPos = null
+                            state.numberOfAction = 0
+                            state.round ++
+                        } else {
+                            state.actionPos = this.closestToTheLeft(state.actionPos)
+                        }
                     } else {
                         state.actionPos = this.closestToTheLeft(state.actionPos)
                     }
-                } else {
-                    state.actionPos = this.closestToTheLeft(state.actionPos)
                 }
             }
         })

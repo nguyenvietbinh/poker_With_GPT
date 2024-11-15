@@ -4,13 +4,13 @@
     <DoAction/>
     <SplitPot/>
     <GameOverCheck/>
+    <HandleAllinCase v-if="state.haveAllinCase"/>
 </template>
 
 
 <script>
 import { watch } from 'vue';
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
 import GameOverCheck from './gameOverCheck.vue'
 import CalculatePlayPos from './calculatePlayPos.vue';
 import GetResponse from './getResponse.vue'
@@ -18,6 +18,7 @@ import DoAction from './doAction.vue';
 import StartGame from './startGame.vue';
 import SplitPot from './splitPot.vue'
 import MoveToNextRound from './moveToNextRound.vue';
+import HandleAllinCase from './handleAllinCase.vue';
     export default {
         setup() {            
             return {
@@ -42,7 +43,8 @@ import MoveToNextRound from './moveToNextRound.vue';
             DoAction,
             StartGame,
             SplitPot,
-            MoveToNextRound
+            MoveToNextRound,
+            HandleAllinCase
         }
     }
 </script>

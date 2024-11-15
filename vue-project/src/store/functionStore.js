@@ -112,7 +112,6 @@ export function useMyFunction() {
                   },
                 }
             )
-            addGameHistory(state.round, convertChatGPTRespone(result.data.choices[0].message.content), state.actionPos)
             return convertChatGPTRespone(result.data.choices[0].message.content)
         } catch (error) {
             console.error(error);
@@ -165,6 +164,11 @@ export function useMyFunction() {
       state.winner = []
       state.lstOfHand = []
       state.gameHistory = []
+      state.stopBetting = false
+      state.haveAllinCase = false
+      state.allin = [false, false, false, false, false, false]
+      state.numberOfAllinPlayer = 0
+      state.sidePot = [0, 0, 0, 0, 0, 0]
     }
     const mixCards = () => {
       let a, c
@@ -229,7 +233,28 @@ export function useMyFunction() {
       } else {
           state.gameHistory.push(`player: ${pos}, round: river, action: ${act}`)
       }
-    } 
+    }
+    const isOverBet = (act, pos) => {
+      if (act === 'Call') {
+        act = 0
+      } else if (act === 'All in') {
+        act = state.stackList[pos]
+      }
+      let m = (Math.max(...state.betTotalList) - state.betTotalList[pos]) + act
+      if (m >= state.stackList[pos]) {
+        state.betTotalList[pos] += state.stackList[pos]
+        state.haveAllinCase = true
+        state.allin[pos] = true
+        state.numberOfAllinPlayer ++
+        state.numberOfPlayer -= 1
+        state.playerStatus[pos] = false
+        state.stackList[pos] = 0
+        addGameHistory(state.round, 'All in', state.actionPos)
+        return true
+      }
+      addGameHistory(state.round, act, state.actionPos)
+      return false
+    }
     return {
         getChatGPTResponse,
         closestToTheLeft,
@@ -238,6 +263,7 @@ export function useMyFunction() {
         reSetData,
         mixCards,
         disPlayCard,
-        addGameHistory
+        addGameHistory,
+        isOverBet
     };
 }
