@@ -27,8 +27,12 @@ export default {
                 if (state.numberOfAllinPlayer + state.numberOfPlayer === 1) {
                     for (let i = 0 ;i < 6; i ++) {
                         if (state.allin[i]) {
+                            state.stackList[i] += state.pot
+                            state.pot = 0
                         }
                     }
+                } else {
+                    
                 }
             }
         })

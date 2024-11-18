@@ -92,7 +92,6 @@ export function useMyFunction() {
       Look at game history if there are many raise {amount} actions you should call, if there are many check action you should raise {amount} to scared them
       I prefer a simple answer: 'Call,' 'Raise {amount}', 'Fold,' 'Check,' or 'All in,' with no additional information. Play as a tight-agreesive player, folding if my hand is not strong.
       `
-        console.log(JSON.stringify(state.gameHistory))
         return prompt
     }
     const getChatGPTResponse = async (userMessage) => {

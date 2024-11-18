@@ -48,6 +48,15 @@ export default {
                 }
             }
         })
+        watch(() => state.winner, (newval, oldval)  => {
+            console.log(JSON.stringify(oldval), JSON.stringify(newval))
+            if ((!state.haveAllinCase) && (state.winner.length >= 1)) {
+                for (let i = 0; i < state.winner.length; i ++) {
+                    console.log(state.stackList[state.winner[i]], Math.floor(state.pot/state.winner.length))
+                    state.stackList[state.winner[i]] += Math.floor(state.pot/state.winner.length)
+                }
+            }
+        }, { deep: true })
     },
     methods: {
 

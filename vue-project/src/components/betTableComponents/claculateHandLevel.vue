@@ -27,16 +27,13 @@ export default {
         }
     },
     mounted() {
-        watch(() => state.isGameOver, (newval, oldval) => {
-            if (state.isGameOver) {
+        watch(() => state.lstOfHand, (newval, oldval) => {
+            if (state.lstOfHand.length === state.numberOfPlayer) {
                 if (state.numberOfPlayer > 1) {
                     state.winner = this.searchWinner(this.handRanking(state.lstOfHand))
-                    for (let i = 0; i < state.winner.length; i ++) {
-                        state.stackList[state.winner[i]] += Math.floor(state.pot/state.winner.length)
-                    }
                 }
             }
-        })
+        }, { deep: true })
     },
     methods: {
         searchWinner(winnerHands) {
