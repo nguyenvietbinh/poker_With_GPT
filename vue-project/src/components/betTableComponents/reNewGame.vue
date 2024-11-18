@@ -33,7 +33,7 @@ export default {
         setTimeout(() => {
             this.reNewGame()
             this.newGame = true
-        }, 10000);
+        }, 5000);
 
         this.newGame = false
     },

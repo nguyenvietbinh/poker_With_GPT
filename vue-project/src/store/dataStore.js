@@ -4,7 +4,7 @@ export const state = reactive({
   numberOfPlayer: 6,
   playerStatus: [true, true, true, true, true, true],
   cards: [],
-  stackList: [2000, 2000, 2000, 2000, 2000, 2000],
+  stackList: [2000, 2000, 50, 2000, 2000, 2000],
   betTotalList: [0, 0, 0, 0, 0, 0],
   pot: 0,
   communityCards: [null, null, null, null, null],

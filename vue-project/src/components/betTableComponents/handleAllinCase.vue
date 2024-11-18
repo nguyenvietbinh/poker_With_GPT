@@ -1,6 +1,5 @@
 <template>
-    <SplitAllinPot/>
-    <OpenAllinCards/>
+    <OpenAllinCards v-if="state.stopBetting"/>
 </template>
 
 
@@ -33,7 +32,7 @@ export default {
                 this.bigestAllin = this.getBigestAllin()
                 for (let i = 0; i < 6; i ++) {
                     if (state.playerStatus[i]) {
-                        if(state.betTotalList[i] >= this.bigestAllin) {
+                        if (state.betTotalList[i] >= this.bigestAllin) {
                             state.stopBetting = true
                         }
                     }
