@@ -124,8 +124,12 @@ export function useMyFunction() {
       }
       if (state.numberOfPlayer === 1) {
         for (let i in state.playerStatus) {
-          return null
+          if (state.playerStatus[i]) {
+            return parseInt(i)
+          }
         }
+      } else if (state.numberOfPlayer === 0) {
+        return null
       }
       if (a === 5) {
           if (state.playerStatus[0] === true) {
@@ -152,7 +156,6 @@ export function useMyFunction() {
       state.round = 0
       state.numberOfPlayer = 6
       state.betTotalList = [0, 0, 0, 0, 0, 0]
-      state.stackList[state.actionPos] += state.pot
       state.pot = 0
       state.playerStatus = [true, true, true, true, true, true]
       state.communityCards = [null, null, null, null, null]

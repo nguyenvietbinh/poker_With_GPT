@@ -36,7 +36,8 @@ import { useMyFunction } from '../../store/functionStore';
             this.call = document.querySelector('.call')
             this.raise = document.querySelector('.raise')
             watch(() => state.actionPos, (newval, oldval) => {
-                if (state.actionPos !== null) {
+                console.log(oldval, newval)
+                if ((state.actionPos !== null) && (!state.stopBetting)) {
                     if (state.actionPos !== 0) {
                         this.playerAvatar[state.actionPos].style.backgroundColor = 'green'
                         this.getResponse().then(response => {

@@ -1,5 +1,6 @@
 <template>
     <SplitAllinPot/>
+    <OpenAllinCards/>
 </template>
 
 
@@ -8,6 +9,7 @@ import { state } from '@/store/dataStore';
 import { watch } from 'vue';
 import { useMyFunction } from '../../store/functionStore';
 import SplitAllinPot from './SplitAllinPot.vue';
+import OpenAllinCards from './openAllinCards.vue';
 
 
 export default {
@@ -20,27 +22,41 @@ export default {
     },
     data() {
         return {
-
+            bigestAllin: 0
         }
     },
     mounted() {
-        watch(() => state.actionPos, (newval, oldval) => {
-            if (state.numberOfPlayer === 1) {
-                state.actionPos = null
+        watch(() => state.numberOfAction, (newval, oldval) => {
+            if ((state.numberOfPlayer === 0) || (state.round === 4)) {
+                state.stopBetting = true
+            } else if (state.numberOfPlayer === 1) {
+                this.bigestAllin = this.getBigestAllin()
                 for (let i = 0; i < 6; i ++) {
                     if (state.playerStatus[i]) {
-                        state.actionPos = i
-                        state.stopBetting = true
+                        if(state.betTotalList[i] >= this.bigestAllin) {
+                            state.stopBetting = true
+                        }
                     }
                 }
             }
         })
     },
     methods: {
-
+        getBigestAllin() {
+            let ans = 0
+            for (let i in state.allin) {
+                if (state.allin[i]) {
+                    if (state.betTotalList[i] > ans) {
+                        ans = state.betTotalList[i]
+                    }
+                }
+            }
+            return ans
+        }
     },
     components: {
-        SplitAllinPot
+        SplitAllinPot,
+        OpenAllinCards
     }
 }
 </script>

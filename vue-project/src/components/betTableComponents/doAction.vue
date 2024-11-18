@@ -8,6 +8,7 @@ import { watch } from 'vue';
 import { state } from '../../store/dataStore';
 import { useMyFunction } from '../../store/functionStore';
 import MoveToNextRound from './moveToNextRound.vue';
+import OpenAllinCards from './openAllinCards.vue';
 
 
 export default {
@@ -37,7 +38,7 @@ export default {
         this.disPlayCard(state.cards[1], this.playerCards[1])
         watch(() => state.numberOfAction, (newval, oldval) => {
             if ((!state.isGameOver) && (!state.canMoveToNextRound)) {
-                if (state.numberOfAction !== 0) {
+                if ((state.numberOfAction !== 0) && (!state.stopBetting)) {
                     this.doAction(state.playerAct, state.actionPos)
                     
                 }
@@ -76,7 +77,8 @@ export default {
         }
     },
     components: {
-        MoveToNextRound
+        MoveToNextRound,
+        OpenAllinCards
     }
 }
 </script>

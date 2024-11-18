@@ -24,7 +24,12 @@ export default {
     mounted() {
         watch(() => state.stopBetting, (newval, oldval) => {
             if (state.stopBetting) {
-                console.log(JSON.stringify(state.betTotalList))
+                if (state.numberOfAllinPlayer + state.numberOfPlayer === 1) {
+                    for (let i = 0 ;i < 6; i ++) {
+                        if (state.allin[i]) {
+                        }
+                    }
+                }
             }
         })
     },
