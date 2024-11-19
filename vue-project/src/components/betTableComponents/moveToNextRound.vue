@@ -13,9 +13,11 @@ import { useMyFunction } from '../../store/functionStore';
 export default {
     setup() {
         const { closestToTheLeft } = useMyFunction()
+        const { addSidePot } = useMyFunction()
         return {
             state,
-            closestToTheLeft
+            closestToTheLeft,
+            addSidePot
         }
     },
     data() {
@@ -31,6 +33,7 @@ export default {
                 } else {
                     if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
                         if (this.betTotalIsEqual()) {
+                            this.addSidePot()
                             state.actionPos = null
                             state.numberOfAction = 0
                             state.round ++
@@ -57,7 +60,7 @@ export default {
                 }
                 return true
             }
-        }
+        },
     },
     components: {
         CalculatePlayPos

@@ -29,10 +29,8 @@ export default {
         this.communityCards = document.querySelectorAll('.communityCards')
         this.playerCards = document.querySelectorAll('.playerCard')
         if (state.numberOfAllinPlayer + state.numberOfPlayer > 1) {
+            
             this.openCards()
-            if (state.round === 4) {
-                this.startSplitPot = true
-            }
         } else {
             this.startSplitPot = true
         }   
@@ -51,7 +49,7 @@ export default {
                     this.disPlayCard(state.cards[47], this.communityCards[4])
                     state.communityCards[4] = state.cards[47]
                 } else if (state.round === 4) {
-                    
+                    this.startSplitPot = true
                 }
         })
     },

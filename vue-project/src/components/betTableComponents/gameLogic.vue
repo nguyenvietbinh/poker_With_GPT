@@ -2,7 +2,7 @@
     <GetResponse/>
     <StartGame/>
     <DoAction/>
-    <SplitPot/>
+    <SplitPot v-if="!state.haveAllinCase"/>
     <GameOverCheck/>
     <HandleAllinCase v-if="state.haveAllinCase"/>
 </template>

@@ -257,6 +257,22 @@ export function useMyFunction() {
       addGameHistory(state.round, act, state.actionPos)
       return false
     }
+    const addSidePot = () => {
+        if (state.haveAllinCase) {
+            for (let i = 0; i < 6; i ++) {
+                if ((state.sidePot[i] === 0) && (state.allin[i])) {
+                    for (let j = 0; j < 6; j ++) {
+                        if (state.betTotalList[j] > state.betTotalList[i]) {
+                            state.sidePot[i] += state.betTotalList[i]
+                        } else {
+                            state.sidePot[i] += state.betTotalList[j]
+                        }
+                    }
+                    console.log(JSON.stringify(state.sidePot))
+                }
+            }
+        }
+    }
     return {
         getChatGPTResponse,
         closestToTheLeft,
@@ -266,6 +282,7 @@ export function useMyFunction() {
         mixCards,
         disPlayCard,
         addGameHistory,
-        isOverBet
+        isOverBet,
+        addSidePot
     };
 }

@@ -34,7 +34,6 @@ export default {
                 for (let i = 0; i < 6; i ++) {
                     if ((state.playerStatus[i]) || (state.allin[i])) {
                         state.lstOfHand.push([state.cards[i * 2], state.cards[i * 2 + 1]].concat(state.communityCards))
-                        console.log('as')
                     }
                 }
             }
