@@ -22,11 +22,20 @@ export default {
     },
     data() {
         return {
-            numberOfPlayerInCurrentRound: 6,
+            numberOfPlayerInCurrentRound: null,
         }
     },
     mounted() {
         watch(() => state.numberOfAction, (newval, oldval) => {
+            if ((state.round === 0) && (state.numberOfAction === 1)) {
+                let count = 0
+                for (let i = 0; i < 6; i ++) {
+                    if ((state.stackList[i] !== 0) && (!state.allin[i])) {
+                        count ++
+                    }
+                }
+                this.numberOfPlayerInCurrentRound = count
+            }
             if (!state.stopBetting) {
                 if (state.numberOfAction === 0) {
                     this.numberOfPlayerInCurrentRound = state.numberOfPlayer

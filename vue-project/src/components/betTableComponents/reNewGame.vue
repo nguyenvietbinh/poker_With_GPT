@@ -11,6 +11,7 @@ export default {
     setup() {
         const { reSetData } = useMyFunction()
         const { closestToTheLeft } = useMyFunction()
+        const { closestToTheRight } = useMyFunction()
         const { disPlayCard } = useMyFunction()
         return {
             state,
@@ -33,20 +34,20 @@ export default {
         this.communityCards = document.querySelectorAll('.communityCards')
         this.reSetData()
         setTimeout(() => {
-            this.reNewGame2()
             this.newGame = true
             for (let i = 0; i < 6; i ++) {
                 if (state.stackList[i] <= 0) {
                     state.playerStatus[i] = false
                 }
             }
-            console.log(state.playerStatus)
+            this.reNewGame()
+            this.matchGameData()
         }, 5000);
 
         this.newGame = false
     },
     methods: {
-        reNewGame2() {
+        reNewGame() {
             this.communityCards.forEach(element => {
                 element.innerHTML = ''
                 element.style.backgroundColor = 'rgb(220, 38, 38)'
@@ -67,22 +68,18 @@ export default {
                 }
             }
         },
-        reNewGame() {
-            this.playerCards.forEach(element => {
-                element.style.display = 'block'
-            });
-            this.playerAvatar.forEach(element => {
-                element.style.backgroundColor = 'white'
-            });
-            this.communityCards.forEach(element => {
-                element.innerHTML = ''
-                element.style.backgroundColor = 'rgb(220, 38, 38)'
-            });
-            this.playerCards.forEach((element, index) => {
-                element.innerHTML = ''
-                element.style.backgroundColor = 'rgb(220, 38, 38)'
-            });
-        },
+        matchGameData() {
+            for (let i = 0; i < 6; i ++) {
+                if (!state.playerStatus[i]) {
+                    state.numberOfPlayer -= 1
+                    if (state.blindPos === i) {
+                        state.blindPos = closestToTheLeft(state.blindPos)
+                        state.smBlind = closestToTheRight(state.blindPos)
+                        state.dealer = closestToTheRight(state.smBlind)
+                    }
+                }
+            }
+        }
     },
     components: {
         StartGame

@@ -131,13 +131,13 @@ export function useMyFunction() {
         return null
       }
       if (a === 5) {
-          if (state.playerStatus[0] === true) {
+          if (state.playerStatus[0]) {
             return 0
           } else {
             return closestToTheLeft(0)
           }
       } else {
-        if (state.playerStatus[a+1] === true) {
+        if (state.playerStatus[a+1]) {
           return a + 1
         } else {
           return closestToTheLeft(a + 1)
@@ -145,10 +145,31 @@ export function useMyFunction() {
       }
     }
     const closestToTheRight = (a) => {
-      if (a === 0) {
-          return 5
+      if (a === null) {
+        return a
       }
-      return a - 1
+      if (state.numberOfPlayer === 1) {
+        for (let i in state.playerStatus) {
+          if (state.playerStatus[i]) {
+            return parseInt(i)
+          }
+        }
+      } else if (state.numberOfPlayer === 0) {
+        return null
+      }
+      if (a === 0) {
+          if (state.playerStatus[5]) {
+            return 5
+          } else {
+            return closestToTheRight(5)
+          }
+      } else {
+        if (state.playerStatus[a-1]) {
+          return a - 1
+        } else {
+          return closestToTheRight(a - 1)
+        }
+      }
     }
     const reSetData = () => {
       state.cards = mixCards()
