@@ -28,13 +28,27 @@ export default {
             if (state.winner.length >= 1) {
                 for (let i = 0; i < state.winner.length; i ++) {
                     if (state.winner.length === 1) {
-                        if ((state.sidePot[state.winner[i]] === 0) || (state.sidePot[state.winner[i]] === Math.max(...state.sidePot))) {
+                        if ((state.sidePot[state.winner[i]] === 0)) {
                             state.stackList[state.winner[i]] += state.pot
                             state.pot = 0
                         } else {
                             state.stackList[state.winner[i]] += state.sidePot[state.winner[i]]
-                            state.sidePot -= state.sidePot[state.winner[i]]
+                            state.pot -= state.sidePot[state.winner[i]]
+                            state.numberOfAllinPlayer -= 1
+                            if (state.pot > 0) {
+                                this.removeWinner(state.winner[i])
+                            }
                         }
+                    }
+                }
+            } else {
+                let sidePots = []
+                for (let i = 0; i < state.winner.length; i ++) {
+                    sidePots.push(state.sidePot[winner[i]])
+                }
+                for (let i = 0; i < sidePots.length; i ++) {
+                    if (sidePots[i] !== 0) {
+                        
                     }
                 }
             }
@@ -59,7 +73,14 @@ export default {
         }
     },
     methods: {
-
+        removeWinner(winnerpos) {
+            for (let i = 0; i < state.lstOfHand.length; i ++) {
+                if (state.lstOfHand[i][0] === state.cards[winnerpos * 2]) {
+                    state.lstOfHand.splice(i, 1)
+                }
+            }
+            console.log(JSON.stringify(state.lstOfHand))
+        }
     }
 }
 </script>
