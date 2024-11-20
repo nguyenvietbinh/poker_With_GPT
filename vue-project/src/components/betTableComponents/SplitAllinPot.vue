@@ -25,7 +25,7 @@ export default {
     },
     mounted() {
         watch(() => state.pot, (newval, oldval) => {
-            if (state.pot === 0) {
+            if (state.pot <= 0) {
                 state.isGameOver = true
             }
         }) 
@@ -37,9 +37,24 @@ export default {
                             state.stackList[state.winner[i]] += state.pot
                             state.pot = 0
                         } else {
-                            state.stackList[state.winner[i]] += state.sidePot[state.winner[i]]
-                            state.pot -= state.sidePot[state.winner[i]]
+                            let m
+                            if (state.pot <= state.sidePot[state.winner[i]]) {
+                                m = state.pot
+                            } else {
+                                m = state.sidePot[state.winner[i]]
+                            }
+                            state.stackList[state.winner[i]] += m
+                            state.pot -= m
                             state.numberOfAllinPlayer -= 1
+                            state.allin[state.winner[i]] = false
+                            if (state.numberOfAllinPlayer + state.numberOfPlayer === 1) {
+                                for (let i = 0; i < 6; i ++) {
+                                    if (state.playerStatus[i] || state.allin[i]) {
+                                        state.stackList[i] += state.pot
+                                        state.pot = 0
+                                    }
+                                }
+                            }
                             if (state.pot > 0) {
                                 this.removeWinner(state.winner[i])
                             }
