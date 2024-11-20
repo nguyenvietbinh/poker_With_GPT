@@ -24,6 +24,11 @@ export default {
         }
     },
     mounted() {
+        watch(() => state.pot, (newval, oldval) => {
+            if (state.pot === 0) {
+                state.isGameOver = true
+            }
+        }) 
         watch(() => state.winner, (newval, oldval) => {
             if (state.winner.length >= 1) {
                 for (let i = 0; i < state.winner.length; i ++) {
@@ -42,6 +47,7 @@ export default {
                     }
                 }
             } else {
+                console.log('this case is not done yet!')
                 let sidePots = []
                 for (let i = 0; i < state.winner.length; i ++) {
                     sidePots.push(state.sidePot[winner[i]])
