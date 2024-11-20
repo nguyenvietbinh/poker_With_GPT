@@ -64,6 +64,8 @@ export default {
                     state.round ++
                     this.openComunityCards()
                 }, 2000);
+            } else {
+                this.startSplitPot = true
             }
         },
         openPlayerCards() {

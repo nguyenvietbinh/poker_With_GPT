@@ -2,6 +2,7 @@
     <GetResponse/>
     <StartGame/>
     <DoAction/>
+    <ClaculateHandLevel/>
     <SplitPot v-if="!state.haveAllinCase"/>
     <GameOverCheck/>
     <HandleAllinCase v-if="state.haveAllinCase"/>
@@ -19,6 +20,7 @@ import StartGame from './startGame.vue';
 import SplitPot from './splitPot.vue'
 import MoveToNextRound from './moveToNextRound.vue';
 import HandleAllinCase from './handleAllinCase.vue';
+import ClaculateHandLevel from './claculateHandLevel.vue';
     export default {
         setup() {            
             return {
@@ -44,7 +46,8 @@ import HandleAllinCase from './handleAllinCase.vue';
             StartGame,
             SplitPot,
             MoveToNextRound,
-            HandleAllinCase
+            HandleAllinCase,
+            ClaculateHandLevel
         }
     }
 </script>

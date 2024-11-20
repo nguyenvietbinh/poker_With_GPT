@@ -33,7 +33,6 @@ export default {
                 } else {
                     if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
                         if (this.betTotalIsEqual()) {
-                            this.addSidePot()
                             state.actionPos = null
                             state.numberOfAction = 0
                             state.round ++

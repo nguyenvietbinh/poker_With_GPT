@@ -28,8 +28,9 @@ export default {
     },
     mounted() {
         watch(() => state.lstOfHand, (newval, oldval) => {
-            if ((state.lstOfHand.length === state.numberOfPlayer) && (!state.haveAllinCase)) {
-                if (state.numberOfPlayer > 1) {
+            console.log(state.numberOfPlayer + state.numberOfAllinPlayer)
+            if (state.lstOfHand.length === (state.numberOfPlayer + state.numberOfAllinPlayer)) {
+                if ((state.numberOfPlayer + state.numberOfAllinPlayer) > 1) {
                     state.winner = this.searchWinner(this.handRanking(state.lstOfHand))
                 }
             }
