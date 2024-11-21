@@ -16,6 +16,7 @@ export default {
         return {
             state,
             reSetData,
+            closestToTheRight,
             closestToTheLeft,
             disPlayCard
         }
@@ -40,6 +41,9 @@ export default {
                     state.playerStatus[i] = false
                 }
             }
+            state.dealer = this.closestToTheLeft(state.dealer)
+            state.smBlind = this.closestToTheLeft(state.dealer)
+            state.blindPos = this.closestToTheLeft(state.smBlind)
             this.reNewGame()
             this.matchGameData()
         }, 5000);

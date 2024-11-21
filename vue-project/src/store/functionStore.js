@@ -179,9 +179,6 @@ export function useMyFunction() {
       state.pot = 0
       state.playerStatus = [true, true, true, true, true, true]
       state.communityCards = [null, null, null, null, null]
-      state.blindPos = closestToTheLeft(state.blindPos)
-      state.smBlind = closestToTheRight(state.blindPos)
-      state.dealer = closestToTheRight(state.smBlind)
       state.actionPos = null
       state.numberOfAction = 0
       state.winner = []
