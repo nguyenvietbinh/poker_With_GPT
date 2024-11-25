@@ -89,7 +89,6 @@ export default {
                         state.lstOfHand.push([state.cards[i * 2], state.cards[i * 2 + 1]].concat(state.communityCards))
                     }
                 }
-                console.log(JSON.stringify(state.lstOfHand))
             }
         }
     },
@@ -100,7 +99,6 @@ export default {
                     state.lstOfHand.splice(i, 1)
                 }
             }
-            console.log(JSON.stringify(state.lstOfHand))
         }
     }
 }

@@ -286,7 +286,6 @@ export function useMyFunction() {
                             state.sidePot[i] += state.betTotalList[j]
                         }
                     }
-                    console.log(JSON.stringify(state.sidePot))
                 }
             }
         }

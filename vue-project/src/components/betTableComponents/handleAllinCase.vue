@@ -26,7 +26,6 @@ export default {
     },
     mounted() {
         watch(() => state.numberOfAction, (newval, oldval) => {
-            console.log(state.round)
             if ((state.numberOfPlayer === 0) || (state.round === 4)) {
                 state.stopBetting = true
             } else if (state.numberOfPlayer === 1) {
