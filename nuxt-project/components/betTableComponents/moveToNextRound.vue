@@ -1,19 +1,23 @@
 <template>
-    <betTableComponentsCalculatePlayPos/>
+    <CalculatePlayPos/>
 </template>
 
 
 
 <script>
-
+import { watch } from 'vue';
+import { state } from '../../store/dataStore';
+import CalculatePlayPos from './calculatePlayPos.vue';
+import { useMyFunction } from '../../store/functionStore';
 
 export default {
     setup() {
-        const BetTableFunctions = betTableFunctions()
-        const BetTableData = betTableData()
+        const { closestToTheLeft } = useMyFunction()
+        const { addSidePot } = useMyFunction()
         return {
-            BetTableData,
-            BetTableFunctions
+            state,
+            closestToTheLeft,
+            addSidePot
         }
     },
     data() {
@@ -22,30 +26,30 @@ export default {
         }
     },
     mounted() {
-        watch(() => this.BetTableData.numberOfAction, (newval, oldval) => {
-            if ((this.BetTableData.round === 0) && (this.BetTableData.numberOfAction === 1)) {
+        watch(() => state.numberOfAction, (newval, oldval) => {
+            if ((state.round === 0) && (state.numberOfAction === 1)) {
                 let count = 0
                 for (let i = 0; i < 6; i ++) {
-                    if ((this.BetTableData.stackList[i] !== 0) && (!this.BetTableData.allin[i])) {
+                    if ((state.stackList[i] !== 0) && (!state.allin[i])) {
                         count ++
                     }
                 }
                 this.numberOfPlayerInCurrentRound = count
             }
-            if (!this.BetTableData.stopBetting) {
-                if (this.BetTableData.numberOfAction === 0) {
-                    this.numberOfPlayerInCurrentRound = this.BetTableData.numberOfPlayer
+            if (!state.stopBetting) {
+                if (state.numberOfAction === 0) {
+                    this.numberOfPlayerInCurrentRound = state.numberOfPlayer
                 } else {
-                    if (this.BetTableData.numberOfAction >= this.numberOfPlayerInCurrentRound) {
+                    if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
                         if (this.betTotalIsEqual()) {
-                            this.BetTableData.actionPos = null
-                            this.BetTableData.numberOfAction = 0
-                            this.BetTableData.round ++
+                            state.actionPos = null
+                            state.numberOfAction = 0
+                            state.round ++
                         } else {
-                            this.BetTableData.actionPos = this.BetTableFunctions.closestToTheLeft(this.BetTableData.actionPos)
+                            state.actionPos = this.closestToTheLeft(state.actionPos)
                         }
                     } else {
-                        this.BetTableData.actionPos = this.BetTableFunctions.closestToTheLeft(this.BetTableData.actionPos)
+                        state.actionPos = this.closestToTheLeft(state.actionPos)
                     }
                 }
             }
@@ -53,11 +57,11 @@ export default {
     },
     methods: {
         betTotalIsEqual() {
-            if ((this.BetTableData.numberOfAction !== 0) && (this.BetTableData.numberOfPlayer > 1)) {
-                let bigestBetSize = Math.max(...this.BetTableData.betTotalList)
-                for (let i in this.BetTableData.playerStatus) {
-                    if (this.BetTableData.playerStatus[i]) {
-                        if (this.BetTableData.betTotalList[i] < bigestBetSize) {
+            if ((state.numberOfAction !== 0) && (state.numberOfPlayer > 1)) {
+                let bigestBetSize = Math.max(...state.betTotalList)
+                for (let i in state.playerStatus) {
+                    if (state.playerStatus[i]) {
+                        if (state.betTotalList[i] < bigestBetSize) {
                             return false
                         }
                     }
@@ -66,6 +70,9 @@ export default {
             }
         },
     },
+    components: {
+        CalculatePlayPos
+    }
 }
 
 </script>

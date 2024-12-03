@@ -6,6 +6,10 @@
 
 
 <script>
+import { state } from '@/store/dataStore';
+import { watch } from 'vue';
+import { useMyFunction } from '../../store/functionStore';
+
 export default {
     setup() {
         const { addSidePot } = useMyFunction()
@@ -20,39 +24,39 @@ export default {
         }
     },
     mounted() {
-        watch(() => this.BetTableData.pot, (newval, oldval) => {
-            if (this.BetTableData.pot <= 0) {
-                this.BetTableData.isGameOver = true
+        watch(() => state.pot, (newval, oldval) => {
+            if (state.pot <= 0) {
+                state.isGameOver = true
             }
         }) 
-        watch(() => this.BetTableData.winner, (newval, oldval) => {
-            if (this.BetTableData.winner.length >= 1) {
-                for (let i = 0; i < this.BetTableData.winner.length; i ++) {
-                    if (this.BetTableData.winner.length === 1) {
-                        if ((this.BetTableData.sidePot[this.BetTableData.winner[i]] === 0)) {
-                            this.BetTableData.stackList[this.BetTableData.winner[i]] += this.BetTableData.pot
-                            this.BetTableData.pot = 0
+        watch(() => state.winner, (newval, oldval) => {
+            if (state.winner.length >= 1) {
+                for (let i = 0; i < state.winner.length; i ++) {
+                    if (state.winner.length === 1) {
+                        if ((state.sidePot[state.winner[i]] === 0)) {
+                            state.stackList[state.winner[i]] += state.pot
+                            state.pot = 0
                         } else {
                             let m
-                            if (this.BetTableData.pot <= this.BetTableData.sidePot[this.BetTableData.winner[i]]) {
-                                m = this.BetTableData.pot
+                            if (state.pot <= state.sidePot[state.winner[i]]) {
+                                m = state.pot
                             } else {
-                                m = this.BetTableData.sidePot[this.BetTableData.winner[i]]
+                                m = state.sidePot[state.winner[i]]
                             }
-                            this.BetTableData.stackList[this.BetTableData.winner[i]] += m
-                            this.BetTableData.pot -= m
-                            this.BetTableData.numberOfAllinPlayer -= 1
-                            this.BetTableData.allin[this.BetTableData.winner[i]] = false
-                            if (this.BetTableData.numberOfAllinPlayer + this.BetTableData.numberOfPlayer === 1) {
+                            state.stackList[state.winner[i]] += m
+                            state.pot -= m
+                            state.numberOfAllinPlayer -= 1
+                            state.allin[state.winner[i]] = false
+                            if (state.numberOfAllinPlayer + state.numberOfPlayer === 1) {
                                 for (let i = 0; i < 6; i ++) {
-                                    if (this.BetTableData.playerStatus[i] || this.BetTableData.allin[i]) {
-                                        this.BetTableData.stackList[i] += this.BetTableData.pot
-                                        this.BetTableData.pot = 0
+                                    if (state.playerStatus[i] || state.allin[i]) {
+                                        state.stackList[i] += state.pot
+                                        state.pot = 0
                                     }
                                 }
                             }
-                            if (this.BetTableData.pot > 0) {
-                                this.removeWinner(this.BetTableData.winner[i])
+                            if (state.pot > 0) {
+                                this.removeWinner(state.winner[i])
                             }
                         }
                     }
@@ -60,8 +64,8 @@ export default {
             } else {
                 console.log('this case is not done yet!')
                 let sidePots = []
-                for (let i = 0; i < this.BetTableData.winner.length; i ++) {
-                    sidePots.push(this.BetTableData.sidePot[winner[i]])
+                for (let i = 0; i < state.winner.length; i ++) {
+                    sidePots.push(state.sidePot[winner[i]])
                 }
                 for (let i = 0; i < sidePots.length; i ++) {
                     if (sidePots[i] !== 0) {
@@ -70,19 +74,19 @@ export default {
                 }
             }
         }, { deep: true })
-        if (this.BetTableData.stopBetting) {
-            if (this.BetTableData.numberOfAllinPlayer + this.BetTableData.numberOfPlayer === 1) {
+        if (state.stopBetting) {
+            if (state.numberOfAllinPlayer + state.numberOfPlayer === 1) {
                 for (let i = 0 ;i < 6; i ++) {
-                    if (this.BetTableData.allin[i]) {
-                        this.BetTableData.stackList[i] += this.BetTableData.pot
-                        this.BetTableData.pot = 0
+                    if (state.allin[i]) {
+                        state.stackList[i] += state.pot
+                        state.pot = 0
                     }
                 }
             } else {
                 this.addSidePot()
                 for (let i = 0; i < 6; i ++) {
-                    if ((this.BetTableData.playerStatus[i]) || (this.BetTableData.allin[i])) {
-                        this.BetTableData.lstOfHand.push([this.BetTableData.cards[i * 2], this.BetTableData.cards[i * 2 + 1]].concat(this.BetTableData.communityCards))
+                    if ((state.playerStatus[i]) || (state.allin[i])) {
+                        state.lstOfHand.push([state.cards[i * 2], state.cards[i * 2 + 1]].concat(state.communityCards))
                     }
                 }
             }
@@ -90,9 +94,9 @@ export default {
     },
     methods: {
         removeWinner(winnerpos) {
-            for (let i = 0; i < this.BetTableData.lstOfHand.length; i ++) {
-                if (this.BetTableData.lstOfHand[i][0] === this.BetTableData.cards[winnerpos * 2]) {
-                    this.BetTableData.lstOfHand.splice(i, 1)
+            for (let i = 0; i < state.lstOfHand.length; i ++) {
+                if (state.lstOfHand[i][0] === state.cards[winnerpos * 2]) {
+                    state.lstOfHand.splice(i, 1)
                 }
             }
         }

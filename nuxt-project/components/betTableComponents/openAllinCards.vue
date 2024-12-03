@@ -1,9 +1,13 @@
 <template>
-    <betTableComponentsSplitAllinPot v-if="startSplitPot"/>
+    <SplitAllinPot v-if="startSplitPot"/>
 </template>
 
 
 <script>
+import { watch } from 'vue';
+import { state } from '@/store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
+import SplitAllinPot from './SplitAllinPot.vue';
 
 
 export default {
@@ -24,27 +28,27 @@ export default {
     mounted() {
         this.communityCards = document.querySelectorAll('.communityCards')
         this.playerCards = document.querySelectorAll('.playerCard')
-        if (this.BetTableData.numberOfAllinPlayer + this.BetTableData.numberOfPlayer > 1) {
+        if (state.numberOfAllinPlayer + state.numberOfPlayer > 1) {
             
             this.openCards()
         } else {
             this.startSplitPot = true
         }   
-        watch(() => this.BetTableData.round, (newval, oldval) => {
-                if (this.BetTableData.round === 1) {
-                    this.disPlayCard(this.BetTableData.cards[51], this.communityCards[0])
-                    this.BetTableData.communityCards[0] = this.BetTableData.cards[51]
-                    this.disPlayCard(this.BetTableData.cards[50], this.communityCards[1])
-                    this.BetTableData.communityCards[1] = this.BetTableData.cards[50]
-                    this.disPlayCard(this.BetTableData.cards[49], this.communityCards[2])
-                    this.BetTableData.communityCards[2] = this.BetTableData.cards[49]
-                } else if (this.BetTableData.round === 2) {
-                    this.disPlayCard(this.BetTableData.cards[48], this.communityCards[3])
-                    this.BetTableData.communityCards[3] = this.BetTableData.cards[48]
-                } else if (this.BetTableData.round === 3) {
-                    this.disPlayCard(this.BetTableData.cards[47], this.communityCards[4])
-                    this.BetTableData.communityCards[4] = this.BetTableData.cards[47]
-                } else if (this.BetTableData.round === 4) {
+        watch(() => state.round, (newval, oldval) => {
+                if (state.round === 1) {
+                    this.disPlayCard(state.cards[51], this.communityCards[0])
+                    state.communityCards[0] = state.cards[51]
+                    this.disPlayCard(state.cards[50], this.communityCards[1])
+                    state.communityCards[1] = state.cards[50]
+                    this.disPlayCard(state.cards[49], this.communityCards[2])
+                    state.communityCards[2] = state.cards[49]
+                } else if (state.round === 2) {
+                    this.disPlayCard(state.cards[48], this.communityCards[3])
+                    state.communityCards[3] = state.cards[48]
+                } else if (state.round === 3) {
+                    this.disPlayCard(state.cards[47], this.communityCards[4])
+                    state.communityCards[4] = state.cards[47]
+                } else if (state.round === 4) {
                     this.startSplitPot = true
                 }
         })
@@ -55,9 +59,9 @@ export default {
             this.openComunityCards()
         },
         openComunityCards() {
-            if (this.BetTableData.round !== 4) {
+            if (state.round !== 4) {
                 setTimeout(() => {
-                    this.BetTableData.round ++
+                    state.round ++
                     this.openComunityCards()
                 }, 2000);
             } else {
@@ -66,12 +70,15 @@ export default {
         },
         openPlayerCards() {
             for (let i = 0; i < 6; i ++) {
-                if ((this.BetTableData.playerStatus[i]) || (this.BetTableData.allin[i])) {
-                    this.disPlayCard(this.BetTableData.cards[i * 2], this.playerCards[i * 2])
-                    this.disPlayCard(this.BetTableData.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
+                if ((state.playerStatus[i]) || (state.allin[i])) {
+                    this.disPlayCard(state.cards[i * 2], this.playerCards[i * 2])
+                    this.disPlayCard(state.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
                 }
             }
         }
     },
+    components: {
+        SplitAllinPot
+    }
 }
 </script>

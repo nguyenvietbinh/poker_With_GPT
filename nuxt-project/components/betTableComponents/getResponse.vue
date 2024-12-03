@@ -5,14 +5,19 @@
 
 
 <script>
-
+import { watch } from 'vue';
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
     export default {
         setup() {
-            const BetTableFunctions = betTableFunctions()
-            const BetTableData = betTableData()
+            const { getChatGPTResponse } = useMyFunction()
+            const { getPrompt } = useMyFunction()
+            const { closestToTheLeft } = useMyFunction()
             return {
-                BetTableData,
-                BetTableFunctions
+                state,
+                getChatGPTResponse,
+                getPrompt,
+                closestToTheLeft,
             }
         },
         data() {
@@ -30,33 +35,33 @@
             this.check = document.querySelector('.check')
             this.call = document.querySelector('.call')
             this.raise = document.querySelector('.raise')
-            watch(() => this.BetTableData.actionPos, (newval, oldval) => {
-                if ((this.BetTableData.actionPos !== null) && (!this.BetTableData.stopBetting)) {
-                    if (this.BetTableData.actionPos !== 0) {
-                        this.playerAvatar[this.BetTableData.actionPos].style.backgroundColor = 'green'
+            watch(() => state.actionPos, (newval, oldval) => {
+                if ((state.actionPos !== null) && (!state.stopBetting)) {
+                    if (state.actionPos !== 0) {
+                        this.playerAvatar[state.actionPos].style.backgroundColor = 'green'
                         this.getResponse().then(response => {
                             if (response === 'Fold') {
-                                this.playerAvatar[this.BetTableData.actionPos].style.backgroundColor = 'gray'
+                                this.playerAvatar[state.actionPos].style.backgroundColor = 'gray'
                             } else {
-                                this.playerAvatar[this.BetTableData.actionPos].style.backgroundColor = 'white'
+                                this.playerAvatar[state.actionPos].style.backgroundColor = 'white'
                             }
-                            this.BetTableData.playerAct = response
-                            this.BetTableData.numberOfAction ++
+                            state.playerAct = response
+                            state.numberOfAction ++
                         })
                     } else {
-                        this.playerAvatar[this.BetTableData.actionPos].style.backgroundColor = 'green'
+                        this.playerAvatar[state.actionPos].style.backgroundColor = 'green'
                         this.enAbleButton()
                     }
                 }
             })
-            this.BetTableData.actionPos = this.BetTableFunctions.closestToTheLeft(this.BetTableData.blindPos)
+            state.actionPos = this.closestToTheLeft(state.blindPos)
         },
         methods: {
             async getResponse() {
-                return await this.BetTableFunctions.getChatGPTResponse(this.BetTableFunctions.getPrompt(this.BetTableData.actionPos))
+                return await this.getChatGPTResponse(this.getPrompt(state.actionPos))
             },
             enAbleButton() {
-                if (this.BetTableData.betTotalList[0] === Math.max(...this.BetTableData.betTotalList)) {
+                if (state.betTotalList[0] === Math.max(...state.betTotalList)) {
                     this.check.style.display = 'inline-block'
                     this.raise.style.display = 'block'
                 } else {

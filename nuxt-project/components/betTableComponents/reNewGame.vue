@@ -1,9 +1,12 @@
 <template>
-    <betTableComponentsStartGame v-if="newGame"/>
+    <StartGame v-if="newGame"/>
 </template>
 
 
 <script>
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
+import StartGame from './startGame.vue';
 export default {
     setup() {
         const { reSetData } = useMyFunction()
@@ -34,13 +37,13 @@ export default {
         setTimeout(() => {
             this.newGame = true
             for (let i = 0; i < 6; i ++) {
-                if (this.BetTableData.stackList[i] <= 0) {
-                    this.BetTableData.playerStatus[i] = false
+                if (state.stackList[i] <= 0) {
+                    state.playerStatus[i] = false
                 }
             }
-            this.BetTableData.dealer = this.closestToTheLeft(this.BetTableData.dealer)
-            this.BetTableData.smBlind = this.closestToTheLeft(this.BetTableData.dealer)
-            this.BetTableData.blindPos = this.closestToTheLeft(this.BetTableData.smBlind)
+            state.dealer = this.closestToTheLeft(state.dealer)
+            state.smBlind = this.closestToTheLeft(state.dealer)
+            state.blindPos = this.closestToTheLeft(state.smBlind)
             this.reNewGame()
             this.matchGameData()
         }, 5000);
@@ -54,7 +57,7 @@ export default {
                 element.style.backgroundColor = 'rgb(220, 38, 38)'
             });
             for (let i = 0; i < 6; i ++) {
-                if (this.BetTableData.playerStatus[i]) {
+                if (state.playerStatus[i]) {
                     this.playerCards[i * 2].style.display = 'block'
                     this.playerCards[i * 2].innerHTML = ''
                     this.playerCards[i * 2].style.backgroundColor = 'rgb(220, 38, 38)'
@@ -71,16 +74,19 @@ export default {
         },
         matchGameData() {
             for (let i = 0; i < 6; i ++) {
-                if (!this.BetTableData.playerStatus[i]) {
-                    this.BetTableData.numberOfPlayer -= 1
-                    if (this.BetTableData.blindPos === i) {
-                        this.BetTableData.blindPos = closestToTheLeft(this.BetTableData.blindPos)
-                        this.BetTableData.smBlind = closestToTheRight(this.BetTableData.blindPos)
-                        this.BetTableData.dealer = closestToTheRight(this.BetTableData.smBlind)
+                if (!state.playerStatus[i]) {
+                    state.numberOfPlayer -= 1
+                    if (state.blindPos === i) {
+                        state.blindPos = closestToTheLeft(state.blindPos)
+                        state.smBlind = closestToTheRight(state.blindPos)
+                        state.dealer = closestToTheRight(state.smBlind)
                     }
                 }
             }
         }
     },
+    components: {
+        StartGame
+    }
 }
 </script>

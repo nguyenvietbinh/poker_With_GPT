@@ -3,14 +3,15 @@
 </template>
 
 <script>
-
+import { useMyFunction } from '../../store/functionStore';
+import { state } from '../../store/dataStore';
+import { watch } from 'vue';
 export default {
     setup() {
-        const BetTableFunctions = betTableFunctions()
-        const BetTableData = betTableData()
+        const { mixCards } = useMyFunction()
         return {
-            BetTableData,
-            BetTableFunctions
+            mixCards,
+            state
         }
     },
     data () {
@@ -26,10 +27,10 @@ export default {
         }
     },
     mounted() {
-        watch(() => this.BetTableData.lstOfHand, (newval, oldval) => {
-            if (this.BetTableData.lstOfHand.length === (this.BetTableData.numberOfPlayer + this.BetTableData.numberOfAllinPlayer)) {
-                if ((this.BetTableData.numberOfPlayer + this.BetTableData.numberOfAllinPlayer) > 1) {
-                    this.BetTableData.winner = this.searchWinner(this.handRanking(this.BetTableData.lstOfHand))
+        watch(() => state.lstOfHand, (newval, oldval) => {
+            if (state.lstOfHand.length === (state.numberOfPlayer + state.numberOfAllinPlayer)) {
+                if ((state.numberOfPlayer + state.numberOfAllinPlayer) > 1) {
+                    state.winner = this.searchWinner(this.handRanking(state.lstOfHand))
                 }
             }
         }, { deep: true })
@@ -39,7 +40,7 @@ export default {
             let winners = []
             for (let i = 0; i < winnerHands.length; i ++) {
                 for (let j = 0; j < 6; j ++) {
-                    if (winnerHands[i][0] === this.BetTableData.cards[2 * j]) {
+                    if (winnerHands[i][0] === state.cards[2 * j]) {
                         winners.push(j)
                     }
                 }

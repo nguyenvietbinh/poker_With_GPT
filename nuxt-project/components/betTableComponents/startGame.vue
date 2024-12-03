@@ -4,15 +4,21 @@
 
 
 <script>
-
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
 
 export default {
     setup() {
-        const BetTableFunctions = betTableFunctions()
-        const BetTableData = betTableData()
+        const { mixCards } = useMyFunction()
+        const { closestToTheLeft } = useMyFunction()
+        const { closestToTheRight } = useMyFunction()
+        const { disPlayCard } = useMyFunction()
         return {
-            BetTableData,
-            BetTableFunctions
+            state,
+            mixCards,
+            closestToTheLeft,
+            closestToTheRight,
+            disPlayCard
         }
     },
     data() {
@@ -28,20 +34,19 @@ export default {
         this.dealerDots = document.querySelectorAll('.dealer')
         this.smblindDots = document.querySelectorAll('.smblind')
         this.bigblinhDots = document.querySelectorAll('.bigblind')
-        if (this.BetTableData.blindPos === null) {
-            this.BetTableData.blindPos = Math.floor(Math.random() * 6)
-            this.BetTableData.smBlind = this.BetTableFunctions.closestToTheRight(this.BetTableData.blindPos)
-            this.BetTableData.dealer = this.BetTableFunctions.closestToTheRight(this.BetTableData.smBlind)
+        if (state.blindPos === null) {
+            state.blindPos = Math.floor(Math.random() * 6)
+            state.smBlind = this.closestToTheRight(state.blindPos)
+            state.dealer = this.closestToTheRight(state.smBlind)
         }
         this.displayPos()
-        this.BetTableData.cards = this.BetTableFunctions.mixCards()
-        this.BetTableFunctions.disPlayCard(this.BetTableData.cards[0], this.playerCards[0])
-        this.BetTableFunctions.disPlayCard(this.BetTableData.cards[1], this.playerCards[1])
-        this.countBlind(this.BetTableData.blindPos)
+        state.cards = this.mixCards()
+        this.disPlayCard(state.cards[0], this.playerCards[0])
+        this.disPlayCard(state.cards[1], this.playerCards[1])
+        this.countBlind(state.blindPos)
         this.calculateStackList()
-        console.log(JSON.stringify(this.BetTableData.betTotalList))
-        this.BetTableData.actionPos = this.BetTableFunctions.closestToTheLeft(this.BetTableData.blindPos)
-        this.BetTableData.isGameOver = false
+        state.actionPos = this.closestToTheLeft(state.blindPos)
+        state.isGameOver = false
     },
     methods: {
         displayPos() {
@@ -50,19 +55,19 @@ export default {
                 this.smblindDots[i].style.display = 'none'
                 this.bigblinhDots[i].style.display = 'none'
             }
-            this.dealerDots[this.BetTableData.dealer].style.display = 'block'
-            this.smblindDots[this.BetTableData.smBlind].style.display = 'block'
-            this.bigblinhDots[this.BetTableData.blindPos].style.display = 'block'
+            this.dealerDots[state.dealer].style.display = 'block'
+            this.smblindDots[state.smBlind].style.display = 'block'
+            this.bigblinhDots[state.blindPos].style.display = 'block'
         },
         countBlind(bb) {
-            this.BetTableData.betTotalList[bb] = 10
-            this.BetTableData.betTotalList[this.BetTableFunctions.closestToTheRight(bb)] = 5
+            state.betTotalList[bb] = 10
+            state.betTotalList[this.closestToTheRight(bb)] = 5
         },
         calculateStackList() {
-            this.BetTableData.pot = 0
+            state.pot = 0
             for (let i = 0; i < 6; i ++) {
-                this.BetTableData.stackList[i] -= this.BetTableData.betTotalList[i]
-                this.BetTableData.pot += this.BetTableData.betTotalList[i]
+                state.stackList[i] -= state.betTotalList[i]
+                state.pot += state.betTotalList[i]
             }
         },
     }

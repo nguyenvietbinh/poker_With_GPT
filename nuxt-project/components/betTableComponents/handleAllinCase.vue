@@ -1,10 +1,14 @@
 <template>
-    <betTableComponentsOpenAllinCards v-if="this.BetTableData.stopBetting"/>
+    <OpenAllinCards v-if="state.stopBetting"/>
 </template>
 
 
 <script>
-
+import { state } from '@/store/dataStore';
+import { watch } from 'vue';
+import { useMyFunction } from '../../store/functionStore';
+import SplitAllinPot from './SplitAllinPot.vue';
+import OpenAllinCards from './openAllinCards.vue';
 
 
 export default {
@@ -21,15 +25,15 @@ export default {
         }
     },
     mounted() {
-        watch(() => this.BetTableData.numberOfAction, (newval, oldval) => {
-            if ((this.BetTableData.numberOfPlayer === 0) || (this.BetTableData.round === 4)) {
-                this.BetTableData.stopBetting = true
-            } else if (this.BetTableData.numberOfPlayer === 1) {
+        watch(() => state.numberOfAction, (newval, oldval) => {
+            if ((state.numberOfPlayer === 0) || (state.round === 4)) {
+                state.stopBetting = true
+            } else if (state.numberOfPlayer === 1) {
                 this.bigestAllin = this.getBigestAllin()
                 for (let i = 0; i < 6; i ++) {
-                    if (this.BetTableData.playerStatus[i]) {
-                        if (this.BetTableData.betTotalList[i] >= this.bigestAllin) {
-                            this.BetTableData.stopBetting = true
+                    if (state.playerStatus[i]) {
+                        if (state.betTotalList[i] >= this.bigestAllin) {
+                            state.stopBetting = true
                         }
                     }
                 }
@@ -39,15 +43,19 @@ export default {
     methods: {
         getBigestAllin() {
             let ans = 0
-            for (let i in this.BetTableData.allin) {
-                if (this.BetTableData.allin[i]) {
-                    if (this.BetTableData.betTotalList[i] > ans) {
-                        ans = this.BetTableData.betTotalList[i]
+            for (let i in state.allin) {
+                if (state.allin[i]) {
+                    if (state.betTotalList[i] > ans) {
+                        ans = state.betTotalList[i]
                     }
                 }
             }
             return ans
         }
     },
+    components: {
+        SplitAllinPot,
+        OpenAllinCards
+    }
 }
 </script>

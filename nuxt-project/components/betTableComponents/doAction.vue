@@ -1,19 +1,28 @@
 <template>
-    <betTableComponentsMoveToNextRound/>
+    <MoveToNextRound/>
 </template>
 
 
 <script>
-
+import { watch } from 'vue';
+import { state } from '../../store/dataStore';
+import { useMyFunction } from '../../store/functionStore';
+import MoveToNextRound from './moveToNextRound.vue';
+import OpenAllinCards from './openAllinCards.vue';
 
 
 export default {
     setup() {
-        const BetTableFunctions = betTableFunctions()
-        const BetTableData = betTableData()
+        const { closestToTheLeft } = useMyFunction()
+        const { isOverBet } = useMyFunction()
+        const { disPlayCard } = useMyFunction()
+        const { addGameHistory } = useMyFunction()
         return {
-            BetTableData,
-            BetTableFunctions
+            state,
+            closestToTheLeft,
+            disPlayCard,
+            addGameHistory,
+            isOverBet
         }
     },
     data() {
@@ -25,12 +34,12 @@ export default {
     mounted() {
         this.playerAvatar = document.querySelectorAll('.playerAvatar')
         this.playerCards = document.querySelectorAll('.playerCard')
-        this.BetTableFunctions.disPlayCard(this.BetTableData.cards[0], this.playerCards[0])
-        this.BetTableFunctions.disPlayCard(this.BetTableData.cards[1], this.playerCards[1])
-        watch(() => this.BetTableData.numberOfAction, (newval, oldval) => {
-            if ((!this.BetTableData.isGameOver) && (!this.BetTableData.canMoveToNextRound)) {
-                if ((this.BetTableData.numberOfAction !== 0) && (!this.BetTableData.stopBetting)) {
-                    this.doAction(this.BetTableData.playerAct, this.BetTableData.actionPos)
+        this.disPlayCard(state.cards[0], this.playerCards[0])
+        this.disPlayCard(state.cards[1], this.playerCards[1])
+        watch(() => state.numberOfAction, (newval, oldval) => {
+            if ((!state.isGameOver) && (!state.canMoveToNextRound)) {
+                if ((state.numberOfAction !== 0) && (!state.stopBetting)) {
+                    this.doAction(state.playerAct, state.actionPos)
                     
                 }
             }
@@ -39,33 +48,37 @@ export default {
     methods: {
         doAction(act, pos) {
             if (act === 'Fold') {
-                this.BetTableFunctions.addGameHistory(this.BetTableData.round, 'Fold', this.BetTableData.actionPos)
-                this.playerCards[this.BetTableData.actionPos * 2].style.display = 'none'
-                this.playerCards[this.BetTableData.actionPos * 2 + 1].style.display = 'none'
-                this.BetTableData.numberOfPlayer -= 1
-                this.BetTableData.playerStatus[pos] = false
+                this.addGameHistory(state.round, 'Fold', state.actionPos)
+                this.playerCards[state.actionPos * 2].style.display = 'none'
+                this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
+                state.numberOfPlayer -= 1
+                state.playerStatus[pos] = false
             } else if (act === 'Call') {
-                if (!this.BetTableFunctions.isOverBet('Call', pos)) {
-                    this.BetTableData.stackList[pos] -= (Math.max(...this.BetTableData.betTotalList) - this.BetTableData.betTotalList[pos])
-                    this.BetTableData.betTotalList[pos] = Math.max(...this.BetTableData.betTotalList)
+                if (!this.isOverBet('Call', pos)) {
+                    state.stackList[pos] -= (Math.max(...state.betTotalList) - state.betTotalList[pos])
+                    state.betTotalList[pos] = Math.max(...state.betTotalList)
                 }
             } else if (!isNaN(act)) {
-                if (!this.BetTableFunctions.isOverBet(act, pos)) {
-                    this.BetTableData.stackList[pos] -= (Math.max(...this.BetTableData.betTotalList) + act - this.BetTableData.betTotalList[pos])
-                    this.BetTableData.betTotalList[pos] = Math.max(...this.BetTableData.betTotalList) + act
+                if (!this.isOverBet(act, pos)) {
+                    state.stackList[pos] -= (Math.max(...state.betTotalList) + act - state.betTotalList[pos])
+                    state.betTotalList[pos] = Math.max(...state.betTotalList) + act
                 }
             } else if (act === 'All in') {
-                this.BetTableFunctions.isOverBet('All in', pos)
+                this.isOverBet('All in', pos)
             }
-            this.BetTableData.pot = this.countPot()
+            state.pot = this.countPot()
         },
         countPot() {
             let t = 0
-            for (let i of this.BetTableData.betTotalList) {
+            for (let i of state.betTotalList) {
                 t += i
             }
             return t
         }
     },
+    components: {
+        MoveToNextRound,
+        OpenAllinCards
+    }
 }
 </script>

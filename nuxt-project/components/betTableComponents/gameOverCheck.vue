@@ -1,17 +1,16 @@
 <template>
-    <betTableComponentsReNewGame v-if="this.BetTableData.isGameOver"/>
+    <ReNewGame v-if="state.isGameOver"/>
 </template>
 
 
 <script>
-
+import { watch } from 'vue';
+import { state } from '../../store/dataStore';
+import ReNewGame from './reNewGame.vue';
 export default {
     setup() {
-        const BetTableFunctions = betTableFunctions()
-        const BetTableData = betTableData()
         return {
-            BetTableData,
-            BetTableFunctions
+            state,
         }
     },
     data() {
@@ -29,10 +28,10 @@ export default {
         this.call = document.querySelector('.call')
         this.raise = document.querySelector('.raise')
         this.playerAvatar = document.querySelectorAll('.playerAvatar')
-        watch(() => [this.BetTableData.numberOfAction, this.BetTableData.round], (newValue, oldValue) => {
-            if (!this.BetTableData.haveAllinCase) {
-                if ((this.BetTableData.numberOfPlayer === 1) || (this.BetTableData.round === 4)) {
-                    this.BetTableData.isGameOver = true
+        watch(() => [state.numberOfAction, state.round], (newValue, oldValue) => {
+            if (!state.haveAllinCase) {
+                if ((state.numberOfPlayer === 1) || (state.round === 4)) {
+                    state.isGameOver = true
                     this.disAbleButton()
                 }
             }
@@ -47,5 +46,8 @@ export default {
             this.raise.style.display = 'none'
         }
     },
+    components: {
+        ReNewGame
+    }
 }
 </script>
