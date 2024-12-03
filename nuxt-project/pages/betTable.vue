@@ -44,8 +44,8 @@
       <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute -rotate-90 top-[330px] right-[30px] hidden"></div>
       <div class="absolute bottom-[-50px] left-[225px] w-[50px] h-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar absolute h-[50px] w-[50px] bg-white rounded-full">
-          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[0] }}.0$ </div>
-          <div class="left-[50%] top-[-95px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[0] }}.0$</div>
+          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ BetTableData.stackList[0] }}.0$ </div>
+          <div class="left-[50%] top-[-95px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ BetTableData.betTotalList[0] }}.0$</div>
           <div @click="this.checkButtonClick" class="right-[-70px] absolute p-2 m-1 hidden bg-red-500 rounded-md border-[1px] border-solid border-black hover:bg-black hover:text-red-500 hover:translate-y-[-2px] transition-all check">Check</div>
           <div @click="this.foldButtonClick" class="right-[-70px] absolute p-2 m-1 hidden bg-red-500 rounded-md border-[1px] border-solid border-black hover:bg-black hover:text-red-500 hover:translate-y-[-2px] transition-all fold">Fold</div>
           <div @click="this.callButtonClick" class="right-[-120px] absolute p-2 m-1 hidden bg-yellow-500 rounded-md border-[1px] border-solid border-black hover:bg-black hover:text-yellow-500 hover:translate-y-[-2px] transition-all call">Call</div>
@@ -53,30 +53,30 @@
       </div>
       <div class="absolute bottom-[70px] left-[-50px] h-[50px] w-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
-          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[1] }}.0$</div>
-          <div class="top-[50%] right-[-100px] rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[1] }}.0$</div>
+          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ BetTableData.stackList[1] }}.0$</div>
+          <div class="top-[50%] right-[-100px] rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ BetTableData.betTotalList[1] }}.0$</div>
       </div>
       <div class="absolute top-[70px] left-[-50px] h-[50px] w-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
-          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[2] }}.0$</div>
-          <div class="top-[50%] right-[-100px] rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[2] }}.0$</div>
+          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ BetTableData.stackList[2] }}.0$</div>
+          <div class="top-[50%] right-[-100px] rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ BetTableData.betTotalList[2] }}.0$</div>
       </div>
       <div class="absolute top-[-50px] left-[225px] h-[50px] w-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
-          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[3] }}.0$</div>
-          <div class="left-[50%] bottom-[-95px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[3] }}.0$</div>
+          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ BetTableData.stackList[3] }}.0$</div>
+          <div class="left-[50%] bottom-[-95px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ BetTableData.betTotalList[3] }}.0$</div>
       </div>
       <div class="absolute top-[70px] right-[-50px] h-[50px] w-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar h-[50px] w-[50px] absolute bg-white rounded-[50%]">
-          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[4] }}.0$</div>
-          <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[4] }}.0$</div>
+          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ BetTableData.stackList[4] }}.0$</div>
+          <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ BetTableData.betTotalList[4] }}.0$</div>
       </div>
       <div class="absolute bottom-[70px] right-[-50px] h-[50px] w-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
-          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[5] }}.0$</div>
-          <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[5] }}.0$</div>
+          <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ BetTableData.stackList[5] }}.0$</div>
+          <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ BetTableData.betTotalList[5] }}.0$</div>
       </div>
-      <div class="left-[50%] top-[200px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">Pot: {{ state.pot }}.0$</div>
+      <div class="left-[50%] top-[200px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">Pot: {{ BetTableData.pot }}.0$</div>
       </div>      
   </div>
   <BetTableComponentsGameLogic/>
@@ -84,13 +84,13 @@
 
 
 <script>
-
 export default {
-
     setup() {
-        const state = betTableDataStore()
+        const BetTableFunctions = betTableFunctions()
+        const BetTableData = betTableData()
         return {
-            state
+            BetTableData,
+            BetTableFunctions
         }
     },
     data() {
@@ -118,25 +118,25 @@ export default {
                 event.target.value = ''
             }
             if (event.key === 'Enter') {
-                state.playerAct = parseInt(event.target.value)
-                state.numberOfAction ++
+                this.BetTableData.playerAct = parseInt(event.target.value)
+                this.BetTableData.numberOfAction ++
                 this.disAbleButton()
             }
         },
         checkButtonClick() {
-            state.playerAct = 'Check'
-            state.numberOfAction ++
+            this.BetTableData.playerAct = 'Check'
+            this.BetTableData.numberOfAction ++
             this.disAbleButton()
         },
         foldButtonClick() {               
-            state.playerAct = 'Fold'
-            state.numberOfAction ++
+            this.BetTableData.playerAct = 'Fold'
+            this.BetTableData.numberOfAction ++
             this.disAbleButton()
             this.playerAvatar[0].style.backgroundColor = 'gray'
         },
         callButtonClick() {
-            state.playerAct = 'Call'
-            state.numberOfAction ++
+            this.BetTableData.playerAct = 'Call'
+            this.BetTableData.numberOfAction ++
             this.disAbleButton()
         },
         disAbleButton() {

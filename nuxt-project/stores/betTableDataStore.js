@@ -1,4 +1,6 @@
-export const betTableDataStore = defineStore('betTableDataStore', {
+
+
+export const betTableData = defineStore('betTableData', {
   state: () => ({
     numberOfPlayer: 6,
     playerStatus: [true, true, true, true, true, true],
