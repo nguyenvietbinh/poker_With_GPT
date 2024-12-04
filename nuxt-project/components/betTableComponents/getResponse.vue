@@ -10,12 +10,18 @@ import { state } from '../../store/dataStore';
 import { useMyFunction } from '../../store/functionStore';
     export default {
         setup() {
-            const { getChatGPTResponse } = useMyFunction()
             const { getPrompt } = useMyFunction()
             const { closestToTheLeft } = useMyFunction()
+            async function submit() {
+                const res = await $fetch('/api/submit', {
+                    method: 'post',
+                    body: JSON.stringify({ message: 'hello' })
+                })
+                console.log(res);
+            }
             return {
+                submit,
                 state,
-                getChatGPTResponse,
                 getPrompt,
                 closestToTheLeft,
             }
@@ -39,7 +45,7 @@ import { useMyFunction } from '../../store/functionStore';
                 if ((state.actionPos !== null) && (!state.stopBetting)) {
                     if (state.actionPos !== 0) {
                         this.playerAvatar[state.actionPos].style.backgroundColor = 'green'
-                        this.getResponse().then(response => {
+                        this.submit().then(response => {
                             if (response === 'Fold') {
                                 this.playerAvatar[state.actionPos].style.backgroundColor = 'gray'
                             } else {
@@ -57,8 +63,13 @@ import { useMyFunction } from '../../store/functionStore';
             state.actionPos = this.closestToTheLeft(state.blindPos)
         },
         methods: {
+
             async getResponse() {
-                return await this.getChatGPTResponse(this.getPrompt(state.actionPos))
+                const res = await $fetch('/api/submit', {
+                    method: 'post',
+                    body: JSON.stringify({ message: this.getPrompt(state.actionPos) })
+                })
+                return res
             },
             enAbleButton() {
                 if (state.betTotalList[0] === Math.max(...state.betTotalList)) {
