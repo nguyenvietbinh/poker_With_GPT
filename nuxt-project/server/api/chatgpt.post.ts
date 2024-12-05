@@ -22,6 +22,6 @@ export default defineEventHandler(async (event) => {
         return result.data.choices[0].message.content
     } catch (error) {
         console.error(error)
-        return 'blabla'
+        return error
     }
 })

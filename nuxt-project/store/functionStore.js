@@ -1,4 +1,3 @@
-import axios from "axios";
 import { state } from "./dataStore";
 export function useMyFunction() {
   const convertChatGPTRespone = (res) => {
@@ -275,6 +274,7 @@ export function useMyFunction() {
         }
     }
     return {
+        sendReq,
         closestToTheLeft,
         closestToTheRight,
         getPrompt,

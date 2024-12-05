@@ -57,6 +57,7 @@ import { useMyFunction } from '../../store/functionStore';
             state.actionPos = this.closestToTheLeft(state.blindPos)
         },
         methods: {
+
             async getResponse() {
                 return await this.sendReq(this.getPrompt(state.actionPos))
             },
