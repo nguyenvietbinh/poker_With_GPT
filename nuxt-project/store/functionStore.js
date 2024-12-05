@@ -94,29 +94,13 @@ export function useMyFunction() {
       `
         return prompt
     }
-    const getChatGPTResponse = async (userMessage) => {
-        try {
-            const result = await axios.post(
-                'https://api.openai.com/v1/chat/completions',
-                {
-                  model: 'gpt-4o-mini',
-                  messages: [
-                    { role: 'user', content: userMessage }
-                  ],
-                },
-                {
-                  headers: {
-                    Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-                    'Content-Type': 'application/json',
-                  },
-                }
-            )
-            return convertChatGPTRespone(result.data.choices[0].message.content)
-        } catch (error) {
-            console.error(error);
-            return 'error';
-        }
-    };
+    const sendReq = async (req) => {
+        const res = await $fetch('/api/chatgpt', {
+          method: 'post',
+          body: JSON.stringify({ message: req })
+        })
+        return convertChatGPTRespone(res)
+    }
     const closestToTheLeft = (a) => {
       if (a === null) {
         return a
@@ -291,7 +275,6 @@ export function useMyFunction() {
         }
     }
     return {
-        getChatGPTResponse,
         closestToTheLeft,
         closestToTheRight,
         getPrompt,
@@ -300,6 +283,7 @@ export function useMyFunction() {
         disPlayCard,
         addGameHistory,
         isOverBet,
-        addSidePot
+        addSidePot,
+        sendReq,
     };
 }

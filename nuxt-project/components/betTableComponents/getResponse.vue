@@ -10,12 +10,12 @@ import { state } from '../../store/dataStore';
 import { useMyFunction } from '../../store/functionStore';
     export default {
         setup() {
-            const { getChatGPTResponse } = useMyFunction()
+            const { sendReq } = useMyFunction()
             const { getPrompt } = useMyFunction()
             const { closestToTheLeft } = useMyFunction()
             return {
                 state,
-                getChatGPTResponse,
+                sendReq,
                 getPrompt,
                 closestToTheLeft,
             }
@@ -58,7 +58,7 @@ import { useMyFunction } from '../../store/functionStore';
         },
         methods: {
             async getResponse() {
-                return await this.getChatGPTResponse(this.getPrompt(state.actionPos))
+                return await this.sendReq(this.getPrompt(state.actionPos))
             },
             enAbleButton() {
                 if (state.betTotalList[0] === Math.max(...state.betTotalList)) {
