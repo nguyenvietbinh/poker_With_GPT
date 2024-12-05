@@ -1,11 +1,11 @@
 <template>
   <div class="banner2 h-full w-full bg-blue-600 absolute top-0 left-0">
       <NuxtLink to="/">
-          <div class="w-[50px] h-[50px] absolute top-[25px] left-[25px]">
+          <div class="w-[50px] h-[50px] absolute top-[25px] left-[25px] select-none">
               <img src="/img/logo.png" alt="" class="h-full w-full">
           </div>
       </NuxtLink>
-      <div style="top: calc(50% - 250px); left: calc(50% - 250px);" class="h-[500px] w-[500px] absolute select-none">
+      <div style="top: calc(50% - 250px);" :style="{ left: `calc(50% - ${250 + state.historyBarWith/2}px)` }" class="h-[500px] w-[500px] absolute select-none">
       <img src="/img/pokerTable.png" alt="" class="h-[500px] w-auto rounded-[20px] absolute top-0 left-0 z-0">
       <div class="communityCards select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 absolute underline text-center text-[20px] top-[230px] left-[160px]"></div>
       <div class="communityCards select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 absolute underline text-center text-[20px] top-[230px] left-[195px]"></div>
@@ -77,9 +77,10 @@
           <div class="top-[50%] left-[-100px] -rotate-90 px-2 pr-2 translate-y-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">{{ state.betTotalList[5] }}.0$</div>
       </div>
       <div class="left-[50%] top-[200px] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px] absolute">Pot: {{ state.pot }}.0$</div>
-      </div>      
+      </div>   
+      <BetTableComponentsGameHistory/>
   </div>
-  <BetTableComponentsGameLogic/>
+  <BetTableComponentsGameLogic v-if="state.startGame"/>
 </template>
 
 
