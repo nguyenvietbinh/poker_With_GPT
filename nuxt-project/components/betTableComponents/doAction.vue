@@ -53,6 +53,8 @@ export default {
                 this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
                 state.numberOfPlayer -= 1
                 state.playerStatus[pos] = false
+            } else if (act === 'Check') {
+                this.addGameHistory(state.round, 'Check', state.actionPos)
             } else if (act === 'Call') {
                 if (!this.isOverBet('Call', pos)) {
                     state.stackList[pos] -= (Math.max(...state.betTotalList) - state.betTotalList[pos])

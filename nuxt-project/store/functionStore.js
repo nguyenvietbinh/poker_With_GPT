@@ -172,6 +172,7 @@ export function useMyFunction() {
       state.allin = [false, false, false, false, false, false]
       state.numberOfAllinPlayer = 0
       state.sidePot = [0, 0, 0, 0, 0, 0]
+      state.numberOfGame += 1
     }
     const mixCards = () => {
       let a, c
@@ -227,15 +228,47 @@ export function useMyFunction() {
       card.style.color = 'white'
     }
     const addGameHistory = (round, act, pos) => {
+      if (!isNaN(act)) {
+        if (act === 0) {
+          act = 'Call'
+        } else {
+          act = `Raise: ${act}`
+        }
+      }
       if (round === 0) {
           state.gameHistory.push(`player: ${pos}, round: preflop, action: ${act}`)
+          state.everyGameHistory.unshift({
+            stt: state.numberOfAction,
+            player: pos,
+            round: 'preflop',
+            action: act
+          })
       } else if (round === 1) {
           state.gameHistory.push(`player: ${pos}, round: flop, action: ${act}`)
+          state.everyGameHistory.unshift({
+            stt: state.numberOfAction,
+            player: pos,
+            round: 'flop',
+            action: act
+          })
       } else if (round === 2) {
           state.gameHistory.push(`player: ${pos}, round: turn, action: ${act}`)
+          state.everyGameHistory.unshift({
+            stt: state.numberOfAction,
+            player: pos,
+            round: 'turn',
+            action: act
+          })
       } else {
           state.gameHistory.push(`player: ${pos}, round: river, action: ${act}`)
+          state.everyGameHistory.unshift({
+            stt: state.numberOfAction,
+            player: pos,
+            round: 'river',
+            action: act
+          })
       }
+      
     }
     const isOverBet = (act, pos) => {
       if (act === 'Call') {

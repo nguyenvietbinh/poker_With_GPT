@@ -1,5 +1,5 @@
 <template>
-  <div class="banner2 h-full w-full bg-blue-600 absolute top-0 left-0">
+  <div class="banner2 h-full w-full bg-[#2563EB] absolute top-0 left-0">
       <NuxtLink to="/">
           <div class="w-[50px] h-[50px] absolute top-[25px] left-[25px] select-none">
               <img src="/img/logo.png" alt="" class="h-full w-full">
@@ -15,33 +15,33 @@
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute top-[430px] left-[220px]"></div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute top-[430px] left-[250px]"></div>
       <div class="dealer select-none font-sans font-medium rounded-[50%] border-[1px] border-black border-solid text-center bg-white text-[13px] px-[5px] absolute top-[430px] left-[300px] hidden">D</div>
-      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute top-[430px] left-[300px] hidden"></div>
-      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute top-[430px] left-[300px] hidden"></div>
+      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute top-[430px] left-[300px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">S</div>
+      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute top-[430px] left-[300px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute rotate-90 top-[400px] left-[30px]"></div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute rotate-90 top-[370px] left-[30px]"></div>
       <div class="dealer select-none font-sans font-medium rounded-[50%] border-[1px] border-black border-solid text-center bg-white text-[13px] px-[5px] absolute rotate-90 top-[330px] left-[30px] hidden">D</div>
-      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute rotate-90 top-[330px] left-[30px] hidden"></div>
-      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute rotate-90 top-[330px] left-[30px] hidden"></div>
+      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute rotate-90 top-[330px] left-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">S</div>
+      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute rotate-90 top-[330px] left-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute rotate-90 bottom-[400px] left-[30px]"></div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute rotate-90 bottom-[370px] left-[30px]"></div>
       <div class="dealer select-none font-sans font-medium rounded-[50%] border-[1px] border-black border-solid text-center bg-white text-[13px] px-[5px] absolute rotate-90 bottom-[330px] left-[30px] hidden">D</div>
-      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute rotate-90 bottom-[330px] left-[30px] hidden"></div>
-      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute rotate-90 bottom-[330px] left-[30px] hidden"></div>
+      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute rotate-90 bottom-[330px] left-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">S</div>
+      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute rotate-90 bottom-[330px] left-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute bottom-[430px] left-[220px]"></div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute bottom-[430px] left-[250px]"></div>
       <div class="dealer select-none font-sans font-medium rounded-[50%] border-[1px] border-black border-solid text-center bg-white text-[13px] px-[5px] absolute rotate-180 bottom-[430px] left-[170px] hidden">D</div>
-      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute rotate-180 bottom-[430px] left-[170px] hidden"></div>
-      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute rotate-180 bottom-[430px] left-[170px] hidden"></div>
+      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute rotate-180 bottom-[430px] left-[170px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">S</div>
+      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute rotate-180 bottom-[430px] left-[170px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute -rotate-90 bottom-[400px] right-[30px]"></div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute -rotate-90 bottom-[370px] right-[30px]"></div>
       <div class="dealer select-none font-sans font-medium rounded-[50%] border-[1px] border-black border-solid text-center bg-white text-[13px] px-[5px] absolute -rotate-90 bottom-[330px] right-[30px] hidden">D</div>
-      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute -rotate-90 bottom-[330px] right-[30px] hidden"></div>
-      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute -rotate-90 bottom-[330px] right-[30px] hidden"></div>
+      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute -rotate-90 bottom-[330px] right-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">S</div>
+      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute -rotate-90 bottom-[330px] right-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute -rotate-90 top-[400px] right-[30px]"></div>
       <div class="playerCard select-none font-sans font-medium h-[38px] w-[28px] rounded-sm border-[1px] border-black border-solid bg-red-600 underline text-center text-[20px] absolute -rotate-90 top-[370px] right-[30px]"></div>
       <div class="dealer select-none font-sans font-medium rounded-[50%] border-[1px] border-black border-solid text-center bg-white text-[13px] px-[5px] absolute -rotate-90 top-[330px] right-[30px] hidden">D</div>
-      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute -rotate-90 top-[330px] right-[30px] hidden"></div>
-      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute -rotate-90 top-[330px] right-[30px] hidden"></div>
+      <div class="smblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-blue-600 absolute -rotate-90 top-[330px] right-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">S</div>
+      <div class="bigblind h-[20px] w-[20px] rounded-[50%] border-[1px] border-black border-solid bg-red-600 absolute -rotate-90 top-[330px] right-[30px] select-none font-sans font-medium text-center text-[13px] px-[5px] hidden">B</div>
       <div class="absolute bottom-[-50px] left-[225px] w-[50px] h-[50px]">
           <img src="/img/user.png" alt="" class="playerAvatar absolute h-[50px] w-[50px] bg-white rounded-full">
           <div class="absolute bottom-[-10px] left-[50%] px-2 pr-2 translate-x-[-50%] text-[12px] inline-block bg-yellow-200 border-[2px] border-black border-solid rounded-[10px]">{{ state.stackList[0] }}.0$ </div>

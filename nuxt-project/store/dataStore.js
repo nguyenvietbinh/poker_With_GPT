@@ -1,7 +1,8 @@
 import { reactive } from 'vue'
 
 export const state = reactive({
-  startGame: false,
+  startGame: true,
+  numberOfGame: 1,
   historyBarWith: 300,
   numberOfPlayer: 6,
   playerStatus: [true, true, true, true, true, true],
@@ -23,6 +24,7 @@ export const state = reactive({
   winner: [],
   lstOfHand: [],
   gameHistory: [],
+  everyGameHistory: [],
   haveAllinCase: false,
   allin: [false, false, false, false, false, false],
   numberOfAllinPlayer: 0,
