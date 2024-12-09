@@ -9,15 +9,25 @@
         </div>
         <div class="scrollable-content h-[calc(100vh-75px)] bg-slate-600 w-full absolute bottom-0 overflow-y-auto">
             <ul class="">
-                <li v-for="(item, index) in state.everyGameHistory" :key="index">
-                    <div class="h-[25px] w-full">
-                        <div class="h-[25px] w-[10%] text-center absolute left-0">{{ state.everyGameHistory.length - index }}</div>
-                        <div class="h-[25px] w-[30%] text-center absolute left-[10%]">{{ state.everyGameHistory[index].player }}</div>
-                        <div class="h-[25px] w-[30%] text-center absolute left-[40%]">{{ state.everyGameHistory[index].round }}</div>
-                        <div class="h-[25px] w-[30%] text-center absolute left-[70%]">{{ state.everyGameHistory[index].action }}</div>
+                <li v-for="(iItem, i) in state.everyGameHistory" :key="i">
+                    <div class="h-[25px] w-full" v-if="iItem.stt === 'action'">
+                        <div class="h-[25px] w-[10%] text-center absolute left-0">{{ countAct(i) }}</div>
+                        <div class="h-[25px] w-[30%] text-center absolute left-[10%]">{{ iItem.player }}</div>
+                        <div class="h-[25px] w-[30%] text-center absolute left-[40%]">{{ iItem.round }}</div>
+                        <div class="h-[25px] w-[30%] text-center absolute left-[70%]">{{ iItem.action }}</div>
+                    </div>
+                    <div v-else-if="iItem.stt === 'move'" class="h-[2px] w-full bg-[#053191]"></div>
+                    <div v-else-if="iItem.stt === 'end'">
+                        <ul>
+                            <li v-for="(jItem, j) in iItem.winner" :key="j">
+                                <div v-if="jItem === 0">Winner: you</div>
+                                <div v-else>Winner: bot {{ jItem }}</div>
+                            </li>
+                        </ul>
                     </div>
                 </li>
             </ul>
+            <div class="h-[2px] w-full bg-[#053191]"></div>
         </div>
 
     </div>
@@ -34,25 +44,38 @@ export default{
     },
     data() {
         return {
-            startDrag: false,
-            startX: 0,
-            startBarWith: 0,
+            gameHistoryAction: null,
         }
     },
     mounted() {
         watch(() => state.everyGameHistory, (newval, oldval) => {
+            this.gameHistoryAction = 0
             for (let i = 0; i < state.everyGameHistory.length; i ++) {
-                if (state.everyGameHistory[i].player === 0) {
-                    state.everyGameHistory[i].player = 'you'
-                } else {
-                    if (!isNaN(state.everyGameHistory[i].player)) {
-                        state.everyGameHistory[i].player = `bot ${state.everyGameHistory[i].player}`
+                if (state.everyGameHistory[i].stt === 'action') {
+                    this.gameHistoryAction ++
+                    if (state.everyGameHistory[i].player === 0) {
+                        state.everyGameHistory[i].player = 'you'
+                    } else {
+                        if (!isNaN(state.everyGameHistory[i].player)) {
+                            state.everyGameHistory[i].player = `bot ${state.everyGameHistory[i].player}`
+                        }
                     }
+                } else {
+
                 }
             }
         }, { deep: true })
     },
     methods: {
+        countAct(index) {
+            let count = 0
+            for (let i = index; i < state.everyGameHistory.length; i ++) {
+                if (state.everyGameHistory[i].stt === 'action') {
+                    count ++
+                }
+            }
+            return count
+        }
     }
 }
 </script>

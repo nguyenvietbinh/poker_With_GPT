@@ -36,6 +36,10 @@ export default {
                     for (let i in state.playerStatus) {
                         if (state.playerStatus[i]) {
                             state.stackList[i] += state.pot
+                            state.everyGameHistory.unshift({
+                                stt: 'end',
+                                winner: [i],
+                            })
                         }
                     }
                 } else {
@@ -51,6 +55,10 @@ export default {
             if ((!state.haveAllinCase) && (state.winner.length >= 1)) {
                 for (let i = 0; i < state.winner.length; i ++) {
                     state.stackList[state.winner[i]] += Math.floor(state.pot/state.winner.length)
+                    state.everyGameHistory.unshift({
+                        stt: 'end',
+                        winner: state.winner,
+                    })
                 }
             }
         }, { deep: true })

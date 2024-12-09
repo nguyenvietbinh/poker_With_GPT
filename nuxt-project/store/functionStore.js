@@ -172,7 +172,7 @@ export function useMyFunction() {
       state.allin = [false, false, false, false, false, false]
       state.numberOfAllinPlayer = 0
       state.sidePot = [0, 0, 0, 0, 0, 0]
-      state.numberOfGame += 1
+      state.numberOfGame ++
     }
     const mixCards = () => {
       let a, c
@@ -238,7 +238,7 @@ export function useMyFunction() {
       if (round === 0) {
           state.gameHistory.push(`player: ${pos}, round: preflop, action: ${act}`)
           state.everyGameHistory.unshift({
-            stt: state.numberOfAction,
+            stt: 'action',
             player: pos,
             round: 'preflop',
             action: act
@@ -246,7 +246,7 @@ export function useMyFunction() {
       } else if (round === 1) {
           state.gameHistory.push(`player: ${pos}, round: flop, action: ${act}`)
           state.everyGameHistory.unshift({
-            stt: state.numberOfAction,
+            stt: 'action',
             player: pos,
             round: 'flop',
             action: act
@@ -254,7 +254,7 @@ export function useMyFunction() {
       } else if (round === 2) {
           state.gameHistory.push(`player: ${pos}, round: turn, action: ${act}`)
           state.everyGameHistory.unshift({
-            stt: state.numberOfAction,
+            stt: 'action',
             player: pos,
             round: 'turn',
             action: act
@@ -262,7 +262,7 @@ export function useMyFunction() {
       } else {
           state.gameHistory.push(`player: ${pos}, round: river, action: ${act}`)
           state.everyGameHistory.unshift({
-            stt: state.numberOfAction,
+            stt: 'action',
             player: pos,
             round: 'river',
             action: act

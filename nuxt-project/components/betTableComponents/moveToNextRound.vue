@@ -45,6 +45,7 @@ export default {
                             state.actionPos = null
                             state.numberOfAction = 0
                             state.round ++
+                            state.everyGameHistory.unshift({ stt: 'move'})
                         } else {
                             state.actionPos = this.closestToTheLeft(state.actionPos)
                         }
