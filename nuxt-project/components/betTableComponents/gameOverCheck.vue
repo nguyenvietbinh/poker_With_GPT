@@ -1,5 +1,5 @@
 <template>
-    <ReNewGame v-if="false"/>
+    <ReNewGame v-if="state.isGameOver"/>
 </template>
 
 

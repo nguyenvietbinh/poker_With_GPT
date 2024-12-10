@@ -1,11 +1,12 @@
 <template>
-  <div class="banner2 h-full w-full bg-[#2563EB] absolute top-0 left-0">
+  <div class="h-full w-full bg-[#2563EB] absolute top-0 left-0">
       <NuxtLink to="/">
           <div class="w-[50px] h-[50px] absolute top-[25px] left-[25px] select-none">
               <img src="/img/logo.png" alt="" class="h-full w-full">
           </div>
       </NuxtLink>
-      <div style="left: calc(50% - 150px);"class="h-[75vh] w-[75vh] absolute translate-x-[-50%] translate-y-[-50%] top-[50%] select-none">
+
+      <div style="left: 35%;"class="h-[75vh] w-[75vh] absolute translate-x-[-50%] translate-y-[-50%] top-[50%] select-none">
       <img src="/img/pokerTable.png" alt="" class="h-full w-full rounded-[2vh] absolute top-0 left-0 z-0">
       <div class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 absolute underline text-center text-[4vh] top-[50%] left-[32%]"></div>
       <div class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 absolute underline text-center text-[4vh] top-[50%] left-[39%]"></div>
@@ -24,7 +25,7 @@
       <div class="bigblind rounded-[50%] border-[0.2vh] border-black border-solid bg-red-600 absolute rotate-90 top-[65%] left-[6%] select-none font-sans font-medium text-center h-[4%] w-[4%] text-[2vh] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 underline text-center text-[4vh] absolute rotate-90 bottom-[80%] left-[6%]"></div>
       <div class="playerCard select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 underline text-center text-[4vh] absolute rotate-90 bottom-[74%] left-[6%]"></div>
-      <div class="dealer select-none font-sans font-medium rounded-[50%] border-[0.2vh] border-black border-solid text-center bg-white h-[4%] w-[4%] text-[2vh] absolute rotate-90 bottom-[65%] left-[6%] block">D</div>
+      <div class="dealer select-none font-sans font-medium rounded-[50%] border-[0.2vh] border-black border-solid text-center bg-white h-[4%] w-[4%] text-[2vh] absolute rotate-90 bottom-[65%] left-[6%] hidden">D</div>
       <div class="smblind rounded-[50%] border-[0.2vh] border-black border-solid bg-blue-600 absolute rotate-90 bottom-[65%] left-[6%] select-none font-sans font-medium text-center h-[4%] w-[4%] text-[2vh] hidden">S</div>
       <div class="bigblind rounded-[50%] border-[0.2vh] border-black border-solid bg-red-600 absolute rotate-90 bottom-[65%] left-[6%] select-none font-sans font-medium text-center h-[4%] w-[4%] text-[2vh] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 underline text-center text-[4vh] absolute bottom-[87%] left-[44%]"></div>
@@ -84,8 +85,8 @@
       </div>
       <div class="left-[50%] top-[43%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">Pot: {{ state.pot }}.0$</div>
       </div>   
-      <BetTableComponentsGameHistory/>
   </div>
+  <BetTableComponentsGameHistory/>
   <BetTableComponentsGameLogic v-if="state.startGame"/>
 </template>
 

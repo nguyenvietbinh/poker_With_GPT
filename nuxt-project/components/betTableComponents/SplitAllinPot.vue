@@ -31,6 +31,10 @@ export default {
         }) 
         watch(() => state.winner, (newval, oldval) => {
             if (state.winner.length >= 1) {
+                state.everyGameHistory.unshift({
+                    stt: 'end',
+                    winner: state.winner
+                })
                 for (let i = 0; i < state.winner.length; i ++) {
                     if (state.winner.length === 1) {
                         if ((state.sidePot[state.winner[i]] === 0)) {
