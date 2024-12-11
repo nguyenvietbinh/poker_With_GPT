@@ -30,7 +30,7 @@
       <div class="bigblind rounded-[50%] border-[0.2vh] border-black border-solid bg-red-600 absolute rotate-90 bottom-[65%] left-[6%] select-none font-sans font-medium text-center h-[4%] w-[4%] text-[2vh] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 underline text-center text-[4vh] absolute bottom-[87%] left-[44%]"></div>
       <div class="playerCard select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 underline text-center text-[4vh] absolute bottom-[87%] left-[50%]"></div>
-      <div class="dealer select-none font-sans font-medium rounded-[50%] border-[0.2vh] border-black border-solid text-center bg-white h-[4%] w-[4%] text-[2vh]  absolute rotate-180 bottom-[430px] left-[170px] hidden">D</div>
+      <div class="dealer select-none font-sans font-medium rounded-[50%] border-[0.2vh] border-black border-solid text-center bg-white h-[4%] w-[4%] text-[2vh]  absolute rotate-180 bottom-[86%] right-[65%] hidden">D</div>
       <div class="smblind rounded-[50%] border-[0.2vh] border-black border-solid bg-blue-600 absolute rotate-180 bottom-[90%] left-[35%] select-none font-sans font-medium text-center h-[4%] w-[4%] text-[2vh] hidden">S</div>
       <div class="bigblind rounded-[50%] border-[0.2vh] border-black border-solid bg-red-600 absolute rotate-180 bottom-[90%] left-[35%] select-none font-sans font-medium text-center h-[4%] w-[4%] text-[2vh] hidden">B</div>
       <div class="playerCard select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-red-600 underline text-center text-[4vh] absolute -rotate-90 bottom-[80%] right-[6%]"></div>
