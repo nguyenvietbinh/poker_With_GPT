@@ -6,7 +6,7 @@ export const state = reactive({
   historyBarWith: 300,
   numberOfPlayer: 6,
   playerStatus: [true, true, true, true, true, true],
-  botTitle: ['You', 'Bot1', 'Bot2', 'Bot3', 'Bot4', 'Bot5'],
+  botTitle: ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5'],
   cards: [],
   stackList: [2000, 2000, 2000, 2000, 2000, 2000],
   betTotalList: [0, 0, 0, 0, 0, 0],

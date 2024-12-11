@@ -173,9 +173,6 @@ export function useMyFunction() {
       state.numberOfAllinPlayer = 0
       state.sidePot = [0, 0, 0, 0, 0, 0]
       state.numberOfGame ++
-      state.everyGameHistory = []
-      state.botTitle = ['You', 'Bot1', 'Bot2', 'Bot3', 'Bot4', 'Bot5']
-
     }
     const mixCards = () => {
       let a, c

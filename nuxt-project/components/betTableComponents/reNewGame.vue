@@ -36,6 +36,7 @@ export default {
         this.reSetData()
         setTimeout(() => {
             this.newGame = true
+            state.botTitle = ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5']
             for (let i = 0; i < 6; i ++) {
                 if (state.stackList[i] <= 0) {
                     state.playerStatus[i] = false
