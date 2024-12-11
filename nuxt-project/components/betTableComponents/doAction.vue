@@ -47,6 +47,7 @@ export default {
     },
     methods: {
         doAction(act, pos) {
+            state.botTitle[pos] = act
             if (act === 'Fold') {
                 this.addGameHistory(state.round, 'Fold', state.actionPos)
                 this.playerCards[state.actionPos * 2].style.display = 'none'
@@ -62,6 +63,7 @@ export default {
                 }
             } else if (!isNaN(act)) {
                 if (!this.isOverBet(act, pos)) {
+                    state.botTitle[pos] = `Raise:${act}`
                     state.stackList[pos] -= (Math.max(...state.betTotalList) + act - state.betTotalList[pos])
                     state.betTotalList[pos] = Math.max(...state.betTotalList) + act
                 }

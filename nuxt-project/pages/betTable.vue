@@ -56,31 +56,31 @@
       <div class="absolute bottom-[13%] left-[-12%] h-[12%] w-[12%]">
           <img src="/img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
           <div class="absolute bottom-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh]">{{ state.stackList[1] }}.0$</div>
-          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh]">Bot1</div>
+          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh] whitespace-nowrap">{{ state.botTitle[1] }}</div>
           <div class="top-[50%] right-[-12vh] h-[3.3vh] rotate-90 px-[1vh] translate-y-[-50%] translate-x-[50%] text-[1.8vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">{{ state.betTotalList[1] }}.0$</div>
       </div>
       <div class="absolute top-[13%] left-[-12%] h-[12%] w-[12%]">
           <img src="/img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
           <div class="absolute bottom-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh]">{{ state.stackList[2] }}.0$</div>
-          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh]">Bot2</div>
+          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh] whitespace-nowrap">{{ state.botTitle[2] }}</div>
           <div class="top-[50%] right-[-12vh] h-[3.3vh] rotate-90 px-[1vh] translate-y-[-50%] translate-x-[50%] text-[1.8vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">{{ state.betTotalList[2] }}.0$</div>
       </div>
       <div class="absolute top-[-12%] left-[50%] translate-x-[-50%] h-[12%] w-[12%]">
           <img src="/img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
           <div class="absolute bottom-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh]">{{ state.stackList[3] }}.0$</div>
-          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh]">Bot3</div>
+          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh] whitespace-nowrap">{{ state.botTitle[3] }}</div>
           <div class="left-[50%] bottom-[-15vh] px-[1vh] translate-x-[-50%] translate-y-[-50%] text-[1.8vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">{{ state.betTotalList[3] }}.0$</div>
       </div>
       <div class="absolute top-[13%] right-[-12%] h-[12%] w-[12%]">
           <img src="/img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
           <div class="absolute bottom-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh]">{{ state.stackList[4] }}.0$</div>
-          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh]">Bot4</div>
+          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh] whitespace-nowrap">{{ state.botTitle[4] }}</div>
           <div class="top-[50%] left-[-12vh] -rotate-90 px-[1vh] translate-y-[-50%] translate-x-[-50%] text-[1.8vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">{{ state.betTotalList[4] }}.0$</div>
       </div>
       <div class="absolute bottom-[13%] right-[-12%] h-[12%] w-[12%]">
           <img src="/img/user.png" alt="" class="playerAvatar h-full w-full absolute bg-white rounded-[50%]">
           <div class="absolute bottom-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh]">{{ state.stackList[5] }}.0$</div>
-          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh]">Bot5</div>
+          <div class="absolute top-[-20%] left-[50%] px-[1vh] translate-x-[-50%] text-[1.8vh] inline-block bg-[#c5bf8b] border-[0.3vh] border-black border-solid rounded-[1.8vh] whitespace-nowrap">{{ state.botTitle[5] }}</div>
           <div class="top-[50%] left-[-12vh] -rotate-90 px-[1vh] translate-y-[-50%] translate-x-[-50%] text-[1.8vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">{{ state.betTotalList[5] }}.0$</div>
       </div>
       <div class="left-[50%] top-[43%] px-[1vh] translate-x-[-50%] text-[2vh] inline-block bg-yellow-200 border-[0.3vh] border-black border-solid rounded-[1.8vh] absolute">Pot: {{ state.pot }}.0$</div>
@@ -96,7 +96,7 @@ import { state } from '../store/dataStore';
 export default {
     setup() {
         return {
-            state
+            state,
         }
     },
     data() {

@@ -83,7 +83,7 @@ export function useMyFunction() {
       - Game knowed information: ${JSON.stringify(gameKnowedInfor)}.
       - Game history: ${JSON.stringify(state.gameHistory)}.
 
-      You ${canFold ? "can" : "cannot"} Fold but ${canCheck ? "can" : "cannot"} Check.
+      You ${canFold ? "can" : "cannot"} Fold and Call but ${canCheck ? "can" : "cannot"} Check.
       You need ${biggestBetSize - state.betTotalList[playerPos]}$ to call
       Raise {amount} if i having strong hand (exapmle: ["A♦","K♥",null,null,null,null,null], ["K♥","9♥","5♥","3♥","J♣","J♠","A♥"], ["K♥","10♦","Q♥","3♥","J♣","J♠","A♥"], ["A♦","A♥",null,null,null,null,null], ["K♥","Q♦","Q♥","3♥","J♣","J♠","A♥"])
       Call (if you do not need more 50$ to call) if i having good hand (example: ["A♦","J♥","J♣","K♥","9♥",null,null], ["A♥","5♥",null,null,null,null,null], ["10♥","J♠",null,null,null,null,null])
@@ -173,6 +173,9 @@ export function useMyFunction() {
       state.numberOfAllinPlayer = 0
       state.sidePot = [0, 0, 0, 0, 0, 0]
       state.numberOfGame ++
+      state.everyGameHistory = []
+      state.botTitle = ['You', 'Bot1', 'Bot2', 'Bot3', 'Bot4', 'Bot5']
+
     }
     const mixCards = () => {
       let a, c
@@ -278,6 +281,7 @@ export function useMyFunction() {
       }
       let m = (Math.max(...state.betTotalList) - state.betTotalList[pos]) + act
       if (m >= state.stackList[pos]) {
+        state.botTitle[pos] = 'All in'
         state.betTotalList[pos] += state.stackList[pos]
         state.haveAllinCase = true
         state.allin[pos] = true

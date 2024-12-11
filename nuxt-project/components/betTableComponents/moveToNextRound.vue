@@ -42,6 +42,7 @@ export default {
                 } else {
                     if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
                         if (this.betTotalIsEqual()) {
+                            this.changeTitle()
                             state.actionPos = null
                             state.numberOfAction = 0
                             state.round ++
@@ -57,6 +58,13 @@ export default {
         })
     },
     methods: {
+        changeTitle() {
+            for (let i = 0; i < 6; i ++) {
+                if ((state.botTitle[i] !== 'Fold') && (state.botTitle[i] !== 'Eliminated') && (state.botTitle[i] !== 'All in')) {
+                    state.botTitle[i] = `Bot${i}`
+                }
+            }
+        },
         betTotalIsEqual() {
             if ((state.numberOfAction !== 0) && (state.numberOfPlayer > 1)) {
                 let bigestBetSize = Math.max(...state.betTotalList)

@@ -39,6 +39,7 @@ export default {
             for (let i = 0; i < 6; i ++) {
                 if (state.stackList[i] <= 0) {
                     state.playerStatus[i] = false
+                    state.botTitle[i] = 'Eliminated'
                 }
             }
             state.dealer = this.closestToTheLeft(state.dealer)
