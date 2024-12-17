@@ -17,10 +17,10 @@
 </script>
 
 <template>
-    <div class="banner">
+    <div class="banner backgroundImg">
         <HomePageComponentsHeader/>
         <h1 class="absolute text-[50px] font-semibold text-white top-[50%] translate-y-[-70%] text-center left-[50%] translate-x-[-50%]">FOLLOW YOUR DREAM AND JOIN WITH US NOW</h1>
-        <NuxtLink to="/bettable" class="top-[60%] rounded-[35px] hover:text-black hover:bg-white font-semibold hover:top-[59%] text-center left-[50%] translate-x-[-50%] absolute inline-block text-[40px] text-white border-white border-[4px] border-solid px-10 transition-all duration-300">PLAY</NuxtLink>
+        <NuxtLink to="/bettable" class="top-[60%] rounded-[35px] hover:text-primary hover:bg-white font-semibold hover:top-[59%] text-center left-[50%] translate-x-[-50%] absolute inline-block text-[40px] text-white border-white border-[4px] border-solid px-10 transition-all duration-300">PLAY</NuxtLink>
     </div>
 </template>
 

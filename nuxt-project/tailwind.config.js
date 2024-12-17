@@ -4,7 +4,7 @@ module.exports = {
     './components/**/*.{vue,js}',
     './layouts/**/*.{vue,js}',
     './composables/**/*.{vue,js}',
-    './nuxt.config.ts', // Don't forget to include nuxt.config.ts for full build-time purging
+    './nuxt.config.ts',
   ],
   theme: {
     extend: {
@@ -13,5 +13,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 }
