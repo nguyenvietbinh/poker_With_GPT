@@ -2,7 +2,7 @@
     <div class="h-full w-1/4 absolute right-0 top-0 border border-gray-500">
         <div class="h-1/6 w-full bg-gray-800 text-white">
             <p class="pt-8 text-center pl-2">Number Of Game: <span class="font-semibold">{{ state.numberOfGame }}</span></p>
-            <div class="flex justify-center space-x-14 mt-10">
+            <div class="flex space-x-14 ml-3 mt-10">
                 <p>STT</p>
                 <p>Player</p>
                 <p>Round</p>
