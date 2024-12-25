@@ -32,8 +32,8 @@ export default {
     mounted() {
         this.playerCards = document.querySelectorAll('.playerCard')
         this.dealerDots = document.querySelectorAll('.dealer')
-        this.smblindDots = document.querySelectorAll('.smblind')
-        this.bigblinhDots = document.querySelectorAll('.bigblind')
+        this.smblindDots = document.querySelectorAll('.smallBlind')
+        this.bigblinhDots = document.querySelectorAll('.bigBlind')
         if (state.blindPos === null) {
             state.blindPos = Math.floor(Math.random() * 6)
             state.smBlind = this.closestToTheRight(state.blindPos)

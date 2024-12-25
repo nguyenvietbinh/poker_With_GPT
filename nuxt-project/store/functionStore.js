@@ -98,6 +98,7 @@ export function useMyFunction() {
           method: 'post',
           body: JSON.stringify({ message: req })
         })
+        console.log(res)
         return convertChatGPTRespone(res)
     }
     const closestToTheLeft = (a) => {
@@ -212,6 +213,7 @@ export function useMyFunction() {
       }
       return ans
     }
+    
     const disPlayCard = (cardNumber, card) => {
       let cardColor
       if (cardNumber[cardNumber.length - 1] === '♥') {

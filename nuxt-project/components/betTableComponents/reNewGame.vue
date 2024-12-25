@@ -30,7 +30,7 @@ export default {
         }
     },
     mounted() {
-        this.playerAvatar = document.querySelectorAll('.playerAvatar')
+        this.playerAvatar = document.querySelectorAll('.avatar')
         this.playerCards = document.querySelectorAll('.playerCard')
         this.communityCards = document.querySelectorAll('.communityCards')
         this.reSetData()

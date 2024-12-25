@@ -32,10 +32,8 @@ export default {
         }
     },
     mounted() {
-        this.playerAvatar = document.querySelectorAll('.playerAvatar')
+        this.playerAvatar = document.querySelectorAll('.avatar')
         this.playerCards = document.querySelectorAll('.playerCard')
-        this.disPlayCard(state.cards[0], this.playerCards[0])
-        this.disPlayCard(state.cards[1], this.playerCards[1])
         watch(() => state.numberOfAction, (newval, oldval) => {
             if ((!state.isGameOver) && (!state.canMoveToNextRound)) {
                 if ((state.numberOfAction !== 0) && (!state.stopBetting)) {
