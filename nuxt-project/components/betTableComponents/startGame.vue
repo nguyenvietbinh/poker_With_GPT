@@ -39,6 +39,7 @@ export default {
             state.smBlind = this.closestToTheRight(state.blindPos)
             state.dealer = this.closestToTheRight(state.smBlind)
         }
+        state.pause = false
         this.displayPos()
         state.cards = this.mixCards()
         this.disPlayCard(state.cards[0], this.playerCards[0])

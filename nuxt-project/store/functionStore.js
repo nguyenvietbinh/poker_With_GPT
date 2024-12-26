@@ -98,7 +98,6 @@ export function useMyFunction() {
           method: 'post',
           body: JSON.stringify({ message: req })
         })
-        console.log(res)
         return convertChatGPTRespone(res)
     }
     const closestToTheLeft = (a) => {
@@ -154,6 +153,15 @@ export function useMyFunction() {
           return closestToTheRight(a - 1)
         }
       }
+    }
+    const reSetAllData = () => {
+      reSetData()
+      state.numberOfGame = 1
+      state.blindPos = null
+      state.smBlind = null
+      state.dealer = null
+      state.startGame = false
+      state.buttonDisplay = false
     }
     const reSetData = () => {
       state.cards = mixCards()
@@ -314,6 +322,7 @@ export function useMyFunction() {
         closestToTheLeft,
         closestToTheRight,
         getPrompt,
+        reSetAllData,
         reSetData,
         mixCards,
         disPlayCard,

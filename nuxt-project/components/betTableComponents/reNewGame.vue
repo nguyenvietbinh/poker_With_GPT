@@ -43,11 +43,11 @@ export default {
                     state.botTitle[i] = 'Eliminated'
                 }
             }
+            state.numberOfPlayer = this.count()
             state.dealer = this.closestToTheLeft(state.dealer)
             state.smBlind = this.closestToTheLeft(state.dealer)
             state.blindPos = this.closestToTheLeft(state.smBlind)
             this.reNewGame()
-            this.matchGameData()
         }, 5000);
 
         this.newGame = false
@@ -56,36 +56,33 @@ export default {
         reNewGame() {
             this.communityCards.forEach(element => {
                 element.innerHTML = ''
-                element.style.backgroundColor = 'rgb(220, 38, 38)'
+                element.style.backgroundColor = 'rgb(37, 99, 253)'
             });
             for (let i = 0; i < 6; i ++) {
                 if (state.playerStatus[i]) {
                     this.playerCards[i * 2].style.display = 'block'
                     this.playerCards[i * 2].innerHTML = ''
-                    this.playerCards[i * 2].style.backgroundColor = 'rgb(220, 38, 38)'
+                    this.playerCards[i * 2].style.backgroundColor = 'rgb(37, 99, 235)'
                     this.playerCards[i * 2 + 1].style.display = 'block'
                     this.playerCards[i * 2 + 1].innerHTML = ''
-                    this.playerCards[i * 2 + 1].style.backgroundColor = 'rgb(220, 38, 38)'
+                    this.playerCards[i * 2 + 1].style.backgroundColor = 'rgb(37, 99, 235)'
                     this.playerAvatar[i].style.backgroundColor = 'white'
                 } else {
-                    this.playerAvatar[i].style.backgroundColor = 'gray' 
+                    this.playerAvatar[i].style.borderColor = 'gray' 
                     this.playerCards[i * 2].style.display = 'none'
                     this.playerCards[i * 2 + 1].style.display = 'none'
                 }
             }
         },
-        matchGameData() {
+        count() {
+            let c = 0
             for (let i = 0; i < 6; i ++) {
-                if (!state.playerStatus[i]) {
-                    state.numberOfPlayer -= 1
-                    if (state.blindPos === i) {
-                        state.blindPos = closestToTheLeft(state.blindPos)
-                        state.smBlind = closestToTheRight(state.blindPos)
-                        state.dealer = closestToTheRight(state.smBlind)
-                    }
+                if (state.playerStatus[i]) {
+                    c ++
                 }
-            }
-        }
+            } 
+            return c
+        },
     },
     components: {
         StartGame
