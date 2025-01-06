@@ -8,6 +8,8 @@
     <HomePageComponentsFooter class=""/>
 </template>
 
+<script>
+</script>
 
 <style>
 body {
