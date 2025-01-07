@@ -156,6 +156,7 @@ export function useMyFunction() {
     }
     const reSetAllData = () => {
       reSetData()
+      state.stackList = [2000, 2000, 2000, 2000, 2000, 2000]
       state.numberOfGame = 1
       state.blindPos = null
       state.smBlind = null

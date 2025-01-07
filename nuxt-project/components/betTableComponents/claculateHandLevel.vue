@@ -16,14 +16,6 @@ export default {
     },
     data () {
         return {
-            cards: null,
-            communityCards: null,
-            hands: null,
-            hand1: null,
-            hand2: null,
-            hand3: null,
-            hand4: null,
-            count: 0
         }
     },
     mounted() {
@@ -34,8 +26,65 @@ export default {
                 }
             }
         }, { deep: true })
+        watch(() => state.numberOfAction, (newval, oldval) => {
+            console.log(this.getPlayerWinRate([state.cards[0], state.cards[1]],  state.communityCards, state.numberOfPlayer))
+        })
     },
     methods: {
+        getPlayerWinRate(hand, communityCards, n) {
+            let win = 0
+            let lose = 0
+            for (let i = 0; i < 100; i ++) {
+                let hands = this.genRandomCase(hand, communityCards, n)
+                if (hands.length === 1) {
+                    return 1000
+                } else {
+                    let winner = this.handRanking(hands)
+                    if (winner.includes(hands[0])) {
+                        win ++
+                    } else {
+                        lose ++
+                    }
+                }
+            }
+            return win/1
+        },
+        genRandomCase(hand, communityCards, n) {
+            let copyHand = [...hand]
+            let copyCommunityCards = [...communityCards]
+            let copyCards = this.mixCards()
+            copyCards = copyCards.filter(card => card !== copyHand[0])
+            copyCards = copyCards.filter(card => card !== copyHand[1])
+            let ans = []
+            for (let i = 0; i < 5; i ++) {
+                if (copyCommunityCards[i] === null) {
+                    let a = this.getRandomCard(copyCards)
+                    copyCommunityCards[i] = a[0]
+                    copyCards = a[1]
+                } else {
+                    copyCards = copyCards.filter(card => card !== copyCommunityCards[i])
+                }
+            }
+            for (let i = 0; i < n; i ++) {
+                if (i === 0) {
+                    ans.push(copyHand.concat(copyCommunityCards))
+                } else {
+                    let fakeHand = []
+                    for (let j = 0; j < 2; j ++) {
+                        let a = this.getRandomCard(copyCards)
+                        fakeHand.push(a[0])
+                        copyCards = a[1]
+                    }
+                    ans.push(fakeHand.concat(copyCommunityCards))
+                }
+            }
+            return ans
+        },
+        getRandomCard(cards) {
+            let copyCards = [...cards]
+            let a = Math.floor(Math.random() * copyCards.length)
+            return [cards[a], copyCards.filter(card => card !== cards[a])]
+        },
         searchWinner(winnerHands) {
             let winners = []
             for (let i = 0; i < winnerHands.length; i ++) {

@@ -19,13 +19,13 @@
                     </div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
-                    <div class="dealer h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
-                    <div class="smallBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="smallBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
                     </div>
-                    <div class="bigBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="bigBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
                     </div>
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[0] !== 0">{{ betTotalList[0] }}</div>
@@ -37,13 +37,13 @@
                     </div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
-                    <div class="dealer h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
-                    <div class="smallBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="smallBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
                     </div>
-                    <div class="bigBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="bigBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
                     </div>
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[1] !== 0">{{ betTotalList[1] }}</div>
@@ -55,13 +55,13 @@
                     </div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
-                    <div class="dealer h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
-                    <div class="smallBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="smallBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
                     </div>
-                    <div class="bigBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="bigBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
                     </div>
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[2] !== 0">{{ betTotalList[2] }}</div>
@@ -73,13 +73,13 @@
                     </div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute top-[10%] right-[12%]"></div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute top-[10%] right-[24%]"></div>
-                    <div class="dealer h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-gray-200 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
-                    <div class="smallBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="smallBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
                     </div>
-                    <div class="bigBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="bigBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
                     </div>
                     <div class="absolute top-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[3] !== 0">{{ betTotalList[3] }}</div>
@@ -91,13 +91,13 @@
                     </div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
-                    <div class="dealer h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
-                    <div class="smallBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="smallBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
                     </div>
-                    <div class="bigBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="bigBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
                     </div>
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[4] !== 0">{{ betTotalList[4] }}</div>
@@ -109,13 +109,13 @@
                     </div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
                     <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
-                    <div class="dealer h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
-                    <div class="smallBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="smallBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
                     </div>
-                    <div class="bigBlind h-[5vw] md:h-[2.5vh] w-[5vw] md:w-[2.5vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
+                    <div class="bigBlind h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-blue-600 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
                     </div>
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[5] !== 0">{{ betTotalList[5] }}</div>
@@ -123,13 +123,13 @@
                 </div>
                 <div class="h-[50%] w-[50%] absolute top-[25%] left-[25%]">
                     <div v-if="counting" class="text-black text-[20vw] md:text-[20vh] absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">{{ count }}</div>
-                    <div v-else class="absolute bottom-[30%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]">{{ pot }}</div>
+                    <div v-else class="absolute bottom-[30%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]">Pot: {{ pot }}</div>
                 </div>
             </div>
             <div class="w-full h-[7.5vh] absolute bottom-[-7.5vh]">
-                <button @click="foldCheckClick" v-if="state.buttonDisplay" class="btn fold border-none bg-blue-500 text-white h-full w-[30%] mt-[1vw] md:mt-[0.5vh] absolute left-0">Fold/Check</button>
-                <button @click="callClick" v-if="state.buttonDisplay" class="btn call border-none bg-blue-500 text-white h-full w-[30%] mt-[1vw] md:mt-[0.5vh] absolute left-[35%]">Call</button>
-                <input @keyup="this.inputCheck" v-if="state.buttonDisplay" min="0" type="number" placeholder="Raise" id="" class="h-full raise input bg-blue-500 input-bordered w-[30%] mt-[1vw] md:mt-[0.5vh] absolute right-0 text-white rounded-md">
+                <button @click="foldCheckClick" v-if="state.buttonDisplay" class="btn fold border-none bg-blue-500 hover:bg-blue-600 text-white h-full w-[30%] mt-[1vw] md:mt-[0.5vh] absolute left-0">Fold/Check</button>
+                <button @click="callClick" v-if="state.buttonDisplay" class="btn call border-none bg-blue-500 hover:bg-blue-600 text-white h-full w-[30%] mt-[1vw] md:mt-[0.5vh] absolute left-[35%]">Call</button>
+                <input @keyup="this.inputCheck" v-if="state.buttonDisplay" min="0" type="number" placeholder="Raise" id="" class="h-full raise input bg-blue-500 hover:bg-blue-600 input-bordered w-[30%] mt-[1vw] md:mt-[0.5vh] absolute right-0 text-white rounded-md">
             </div>
         </div>
     </div>
@@ -253,7 +253,7 @@ export default {
                 state.playerAct = 'Fold'
                 state.numberOfAction ++
                 state.buttonDisplay = false
-                avatar[0].style.borderColor = 'gray'
+                this.avatar[0].style.borderColor = 'gray'
             }
         },
         callClick() {

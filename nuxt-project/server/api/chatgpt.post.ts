@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     // Introduce a delay using a Promise
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     const result = await axios.post(
       'https://api.openai.com/v1/chat/completions',
