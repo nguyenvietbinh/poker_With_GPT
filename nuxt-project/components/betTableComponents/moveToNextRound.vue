@@ -8,12 +8,12 @@
 import { watch } from 'vue';
 import { state } from '../../store/dataStore';
 import CalculatePlayPos from './calculatePlayPos.vue';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
 
 export default {
     setup() {
-        const { closestToTheLeft } = useMyFunction()
-        const { addSidePot } = useMyFunction()
+        const { closestToTheLeft } = useMyBettbFunc()
+        const { addSidePot } = useMyBettbFunc()
         return {
             state,
             closestToTheLeft,

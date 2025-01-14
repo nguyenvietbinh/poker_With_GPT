@@ -6,14 +6,14 @@
 <script>
 import { state } from '@/store/dataStore';
 import { watch } from 'vue';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
 import SplitAllinPot from './SplitAllinPot.vue';
 import OpenAllinCards from './openAllinCards.vue';
 
 
 export default {
     setup() {
-        const { closestToTheLeft } = useMyFunction()
+        const { closestToTheLeft } = useMyBettbFunc()
         return {
             closestToTheLeft,
             state

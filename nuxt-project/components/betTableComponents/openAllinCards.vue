@@ -6,13 +6,13 @@
 <script>
 import { watch } from 'vue';
 import { state } from '@/store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
 import SplitAllinPot from './SplitAllinPot.vue';
 
 
 export default {
     setup() {
-        const { disPlayCard } = useMyFunction() 
+        const { disPlayCard } = useMyBettbFunc() 
         return {
             disPlayCard,
             state

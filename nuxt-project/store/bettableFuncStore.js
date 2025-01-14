@@ -1,5 +1,5 @@
 import { state } from "./dataStore";
-export function useMyFunction() {
+export function useMyBettbFunc() {
   const convertChatGPTRespone = (res) => {
     if ((res.includes('fold')) || (res.includes('Fold'))) {
         return 'Fold'
@@ -183,6 +183,7 @@ export function useMyFunction() {
       state.numberOfAllinPlayer = 0
       state.sidePot = [0, 0, 0, 0, 0, 0]
       state.numberOfGame ++
+      state.winRate = 0
     }
     const mixCards = () => {
       let a, c

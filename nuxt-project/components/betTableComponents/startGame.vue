@@ -5,20 +5,22 @@
 
 <script>
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
-
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
+import { useMyHandLvFunc } from '~/store/handLvFuncStore';
 export default {
     setup() {
-        const { mixCards } = useMyFunction()
-        const { closestToTheLeft } = useMyFunction()
-        const { closestToTheRight } = useMyFunction()
-        const { disPlayCard } = useMyFunction()
+        const { mixCards } = useMyBettbFunc()
+        const { closestToTheLeft } = useMyBettbFunc()
+        const { closestToTheRight } = useMyBettbFunc()
+        const { disPlayCard } = useMyBettbFunc()
+        const { getPlayerWinRate } = useMyHandLvFunc()
         return {
             state,
             mixCards,
             closestToTheLeft,
             closestToTheRight,
-            disPlayCard
+            disPlayCard,
+            getPlayerWinRate,
         }
     },
     data() {
@@ -44,6 +46,7 @@ export default {
         state.cards = this.mixCards()
         this.disPlayCard(state.cards[0], this.playerCards[0])
         this.disPlayCard(state.cards[1], this.playerCards[1])
+        state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
         this.countBlind(state.blindPos)
         this.calculateStackList()
         state.actionPos = this.closestToTheLeft(state.blindPos)

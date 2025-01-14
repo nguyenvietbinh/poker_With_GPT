@@ -5,14 +5,14 @@
 
 <script>
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
 import StartGame from './startGame.vue';
 export default {
     setup() {
-        const { reSetData } = useMyFunction()
-        const { closestToTheLeft } = useMyFunction()
-        const { closestToTheRight } = useMyFunction()
-        const { disPlayCard } = useMyFunction()
+        const { reSetData } = useMyBettbFunc()
+        const { closestToTheLeft } = useMyBettbFunc()
+        const { closestToTheRight } = useMyBettbFunc()
+        const { disPlayCard } = useMyBettbFunc()
         return {
             state,
             reSetData,
@@ -48,7 +48,7 @@ export default {
             state.smBlind = this.closestToTheLeft(state.dealer)
             state.blindPos = this.closestToTheLeft(state.smBlind)
             this.reNewGame()
-        }, 5000);
+        }, 10000);
 
         this.newGame = false
     },

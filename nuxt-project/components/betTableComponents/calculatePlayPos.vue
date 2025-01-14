@@ -6,17 +6,20 @@
 <script>
 import { watch } from 'vue';
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
+import { useMyHandLvFunc } from '~/store/handLvFuncStore';
 
 
 export default {
     setup() {
-        const { disPlayCard } = useMyFunction()
-        const { closestToTheLeft } = useMyFunction()
+        const { disPlayCard } = useMyBettbFunc()
+        const { closestToTheLeft } = useMyBettbFunc()
+        const { getPlayerWinRate } = useMyHandLvFunc()
         return {
             state,
             disPlayCard,
             closestToTheLeft,
+            getPlayerWinRate
         }
     },
     data() {
@@ -29,7 +32,8 @@ export default {
         watch(() => state.round, (newval, oldval) => {
             if (!state.stopBetting) {
                 if (state.round === 1) {
-                this.disPlayCard(state.cards[51], this.communityCards[0])
+                    state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
+                    this.disPlayCard(state.cards[51], this.communityCards[0])
                     state.communityCards[0] = state.cards[51]
                     this.disPlayCard(state.cards[50], this.communityCards[1])
                     state.communityCards[1] = state.cards[50]
@@ -37,10 +41,12 @@ export default {
                     state.communityCards[2] = state.cards[49]
                     state.actionPos = this.closestToTheLeft(state.dealer)
                 } else if (state.round === 2) {
+                    state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
                     this.disPlayCard(state.cards[48], this.communityCards[3])
                     state.communityCards[3] = state.cards[48]
                     state.actionPos = this.closestToTheLeft(state.dealer)
                 } else if (state.round === 3) {
+                    state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
                     this.disPlayCard(state.cards[47], this.communityCards[4])
                     state.communityCards[4] = state.cards[47]
                     state.actionPos = this.closestToTheLeft(state.dealer)

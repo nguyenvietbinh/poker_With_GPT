@@ -8,11 +8,11 @@
 <script>
 import { state } from '@/store/dataStore';
 import { watch } from 'vue';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
 
 export default {
     setup() {
-        const { addSidePot } = useMyFunction()
+        const { addSidePot } = useMyBettbFunc()
         return {
             state,
             addSidePot

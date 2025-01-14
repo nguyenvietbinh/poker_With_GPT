@@ -7,12 +7,12 @@
 <script>
 import { watch } from 'vue';
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
     export default {
         setup() {
-            const { sendReq } = useMyFunction()
-            const { getPrompt } = useMyFunction()
-            const { closestToTheLeft } = useMyFunction()
+            const { sendReq } = useMyBettbFunc()
+            const { getPrompt } = useMyBettbFunc()
+            const { closestToTheLeft } = useMyBettbFunc()
             return {
                 state,
                 sendReq,

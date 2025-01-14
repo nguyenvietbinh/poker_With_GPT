@@ -6,23 +6,26 @@
 <script>
 import { watch } from 'vue';
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
+import { useMyHandLvFunc } from '~/store/handLvFuncStore';
 import MoveToNextRound from './moveToNextRound.vue';
 import OpenAllinCards from './openAllinCards.vue';
 
 
 export default {
     setup() {
-        const { closestToTheLeft } = useMyFunction()
-        const { isOverBet } = useMyFunction()
-        const { disPlayCard } = useMyFunction()
-        const { addGameHistory } = useMyFunction()
+        const { closestToTheLeft } = useMyBettbFunc()
+        const { isOverBet } = useMyBettbFunc()
+        const { disPlayCard } = useMyBettbFunc()
+        const { addGameHistory } = useMyBettbFunc()
+        const { getPlayerWinRate } = useMyHandLvFunc()
         return {
             state,
             closestToTheLeft,
             disPlayCard,
             addGameHistory,
-            isOverBet
+            isOverBet,
+            getPlayerWinRate
         }
     },
     data() {
@@ -52,6 +55,7 @@ export default {
                 this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
                 state.numberOfPlayer -= 1
                 state.playerStatus[pos] = false
+                state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
             } else if (act === 'Check') {
                 this.addGameHistory(state.round, 'Check', state.actionPos)
             } else if (act === 'Call') {

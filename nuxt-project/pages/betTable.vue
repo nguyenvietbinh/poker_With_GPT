@@ -7,6 +7,11 @@
         </div>
         <div style="" class="h-[98vw] md:h-[80vh] w-[98vw] md:w-[80vh] absolute left-[50%] top-[20vw] md:top-[10vh] mt-[2vw] md:mt-[1vh] translate-x-[-50%]">
             <img src="/img/pokerTable.png" alt="" class="h-full w-full rounded-[2vh] absolute">
+            <div class="winratecontainer h-[2vw] md:h-[2vh] w-[94%] rounded-full border-solid border-white border-[1px] absolute left-[50%] translate-x-[-50%] bottom-0">
+                    <div :style="{ width: state.winRate + '%'}" class="winrate h-full bg-white rounded-l-full absolute left-0">
+                        <p class="text-black text-[2vw] md:text-[1.5vh] font-semibold absolute top-[50%] translate-y-[-50%] right-0">{{ state.winRate }}%</p>
+                    </div>
+                </div>
             <div class="h-[96%] w-[96%] absolute top-[2%] left-[2%]">
                 <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[32%]"></div>
                 <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[39%]"></div>
@@ -139,10 +144,10 @@
 <script>
 import { watch } from 'vue';
 import { state } from '~/store/dataStore';
-import { useMyFunction } from '~/store/functionStore';
+import { useMyBettbFunc } from '~/store/bettableFuncStore';
 export default {
     setup() {
-        const { reSetAllData } = useMyFunction()
+        const { reSetAllData } = useMyBettbFunc()
         return {
             state,
             reSetAllData,

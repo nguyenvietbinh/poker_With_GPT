@@ -5,13 +5,13 @@
 <script>
 import { watch } from 'vue';
 import { state } from '../../store/dataStore';
-import { useMyFunction } from '../../store/functionStore';
+import { useMyBettbFunc } from '../../store/bettableFuncStore';
 import ClaculateHandLevel from './claculateHandLevel.vue';
 
 
 export default {
     setup() {
-        const { disPlayCard } = useMyFunction() 
+        const { disPlayCard } = useMyBettbFunc() 
         return {
             state,
             disPlayCard
@@ -54,6 +54,11 @@ export default {
         watch(() => state.winner, (newval, oldval)  => {
             if ((!state.haveAllinCase) && (state.winner.length >= 1)) {
                 for (let i = 0; i < state.winner.length; i ++) {
+                    if (state.winner.includes(0)) {
+                        state.winRate = 100
+                    } else {
+                        state.winRate = 0
+                    }
                     state.stackList[state.winner[i]] += Math.floor(state.pot/state.winner.length)
                     state.everyGameHistory.unshift({
                         stt: 'end',

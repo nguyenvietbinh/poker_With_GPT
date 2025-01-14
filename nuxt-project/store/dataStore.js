@@ -9,6 +9,7 @@ export const state = reactive({
   stackList: [2000, 2000, 2000, 2000, 2000, 2000],
   betTotalList: [0, 0, 0, 0, 0, 0],
   pot: 0,
+  winRate: 0,
   communityCards: [null, null, null, null, null],
   playerAct: '',
   blindPos: null,
