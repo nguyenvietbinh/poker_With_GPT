@@ -7,11 +7,10 @@
         </div>
         <div style="" class="h-[98vw] md:h-[80vh] w-[98vw] md:w-[80vh] absolute left-[50%] top-[20vw] md:top-[10vh] mt-[2vw] md:mt-[1vh] translate-x-[-50%]">
             <img src="/img/pokerTable.png" alt="" class="h-full w-full rounded-[2vh] absolute">
-            <div class="winratecontainer h-[2vw] md:h-[2vh] w-[94%] rounded-full border-solid border-white border-[1px] absolute left-[50%] translate-x-[-50%] bottom-0">
-                    <div :style="{ width: state.winRate + '%'}" class="winrate h-full bg-white rounded-l-full absolute left-0">
-                        <p class="text-black text-[2vw] md:text-[1.5vh] font-semibold absolute top-[50%] translate-y-[-50%] right-0">{{ state.winRate }}%</p>
-                    </div>
-                </div>
+            <div class="winratecontainer h-[2vw] md:h-[2vh] w-[94%] rounded-full border-solid border-white border-[0.2vh] absolute left-[50%] translate-x-[-50%] bottom-0">
+                <div :style="{ width: this.winRate + '%'}" class="winrateBar h-full bg-white rounded-l-full absolute left-0"></div>
+                <p v-if="this.winRate >= 5" class="text-black whitespace-nowrap text-[2vw] md:text-[1.5vh] font-semibold absolute top-[50%] translate-y-[-50%] left-[2%]">{{ this.winRate }}%</p>
+            </div>
             <div class="h-[96%] w-[96%] absolute top-[2%] left-[2%]">
                 <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[32%]"></div>
                 <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[39%]"></div>
@@ -160,11 +159,14 @@ export default {
             avatar: null,
             pot: state.pot,
             betTotalList: [0, 0, 0, 0, 0, 0],
-            stackList: [2000, 2000, 2000, 2000, 2000, 2000]
+            stackList: [2000, 2000, 2000, 2000, 2000, 2000],
+            winRate: 0,
+            winrateBar: null,
         }
     },
     mounted() {
         this.avatar = document.querySelectorAll('.avatar')
+        this.winrateBar = document.querySelector('.winrateBar')
         this.countDonw()
         watch(() => this.count, (newval, oldval) => {
             if (this.count !== 0) {
@@ -193,6 +195,35 @@ export default {
                 }
                 this.pot = currentValue;
             }, 20)
+        })
+        watch(() => state.winRate, (newval, oldval) => {
+            let currentValue = this.winRate
+            if (state.winRate === 100) {
+                this.winrateBar.style.borderRadius = '9999px'
+            } else {
+                this.winrateBar.style.borderTopRightRadius = '0px'
+                this.winrateBar.style.borderBottomRightRadius = '0px'
+                this.winrateBar.style.borderTopLeftRadius = '9999px';
+                this.winrateBar.style.borderBottomLeftRadius = '9999px';
+            }
+            let targetValue = newval
+            const step = Math.ceil((targetValue - currentValue) / 50)
+            const interval = setInterval(() => {
+                currentValue += step
+                if (step >= 0) {
+                    if (currentValue >= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(interval);
+                    }
+                } else {
+                    if (currentValue <= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(interval);
+                    }
+                }
+                this.winRate = currentValue;
+            }, 20)
+
         })
         watch(() => state.betTotalList, (newval, oldval) => {
             for (let i = 0; i < 6; i ++) {

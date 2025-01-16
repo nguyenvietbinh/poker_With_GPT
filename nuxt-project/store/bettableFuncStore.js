@@ -183,7 +183,6 @@ export function useMyBettbFunc() {
       state.numberOfAllinPlayer = 0
       state.sidePot = [0, 0, 0, 0, 0, 0]
       state.numberOfGame ++
-      state.winRate = 0
     }
     const mixCards = () => {
       let a, c

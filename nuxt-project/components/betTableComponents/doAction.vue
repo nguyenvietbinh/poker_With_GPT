@@ -55,7 +55,7 @@ export default {
                 this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
                 state.numberOfPlayer -= 1
                 state.playerStatus[pos] = false
-                state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
+                state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, (state.numberOfPlayer + state.numberOfAllinPlayer))
             } else if (act === 'Check') {
                 this.addGameHistory(state.round, 'Check', state.actionPos)
             } else if (act === 'Call') {

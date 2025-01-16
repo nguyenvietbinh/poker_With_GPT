@@ -1,21 +1,54 @@
 import { state } from "./dataStore";
 export function useMyHandLvFunc() {
+    const getAllInWinRate = (hands, communityCards) => {
+        let win = 0
+        for (let i = 0; i < 1000; i ++) {
+            let winner = handRanking(genRandomAllInCase(hands, communityCards))
+            for (let j = 0; j < winner.length; j ++) {
+                if (winner[j].includes(hands[0][0])) {
+                    win ++
+                }
+            }
+        }
+        return Math.round(win/10)
+    }
+    const genRandomAllInCase = (hands, communityCards) => {
+        let copyCards = [...state.cards]
+        let copyCommunityCards = [...communityCards]
+        let allInCards = [...hands]
+        let Hands = []
+        if ((!state.playerStatus[0]) && (!state.allin[0])) {
+            return 0
+        }
+        for (let i = 0; i < allInCards.length; i ++) {
+            copyCards.filter(card => card !== allInCards[i][0])
+            copyCards.filter(card => card !== allInCards[i][1])
+        }
+        for (let i = 0; i < copyCommunityCards.length; i ++) {
+            if (copyCommunityCards[i] === null) {
+                let a = getRandomCard(copyCards)
+                copyCommunityCards[i] = a[0]
+                copyCards = a[1]
+            }
+        }
+        for (let i = 0; i < allInCards.length; i ++) {
+            Hands.push(allInCards[i].concat(copyCommunityCards))
+        }
+        return Hands
+    }
     const getPlayerWinRate = (hand, communityCards, n) => {
         let win = 0
-        let lose = 0
-        if (!state.playerStatus[0]) {
+        if ((!state.playerStatus[0]) && (!state.allin[0])) {
             return 0
         }
         for (let i = 0; i < 1000; i ++) {
             let hands = genRandomCase(hand, communityCards, n)
             if (hands.length === 1) {
-                return 1000
+                return 100
             } else {
                 let winner = handRanking(hands)
                 if (winner.includes(hands[0])) {
                     win ++
-                } else {
-                    lose ++
                 }
             }
         }
@@ -365,6 +398,7 @@ export function useMyHandLvFunc() {
     return {
         searchWinner,
         handRanking,
-        getPlayerWinRate
+        getPlayerWinRate,
+        getAllInWinRate
     }
 }
