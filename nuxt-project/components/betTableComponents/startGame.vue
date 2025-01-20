@@ -4,9 +4,9 @@
 
 
 <script>
-import { state } from '../../store/dataStore';
-import { useMyBettbFunc } from '../../store/bettableFuncStore';
-import { useMyHandLvFunc } from '~/store/handLvFuncStore';
+import { state } from '../../store/data/dataStore';
+import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 export default {
     setup() {
         const { mixCards } = useMyBettbFunc()

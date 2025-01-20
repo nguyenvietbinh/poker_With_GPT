@@ -1,4 +1,4 @@
-import { state } from "./dataStore";
+import { state } from "../data/dataStore";
 export function useMyBettbFunc() {
   const convertChatGPTRespone = (res) => {
     if ((res.includes('fold')) || (res.includes('Fold'))) {

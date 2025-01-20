@@ -6,9 +6,9 @@
 
 
 <script>
-import { state } from '@/store/dataStore';
+import { state } from '~/store/data/dataStore';
 import { watch } from 'vue';
-import { useMyBettbFunc } from '../../store/bettableFuncStore';
+import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
 
 export default {
     setup() {

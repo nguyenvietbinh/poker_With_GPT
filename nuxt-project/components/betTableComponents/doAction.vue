@@ -5,9 +5,10 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../../store/dataStore';
-import { useMyBettbFunc } from '../../store/bettableFuncStore';
-import { useMyHandLvFunc } from '~/store/handLvFuncStore';
+import { state } from '../../store/data/dataStore';
+import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
+import { useSounds } from '~/store/functions/soundControl'
 import MoveToNextRound from './moveToNextRound.vue';
 import OpenAllinCards from './openAllinCards.vue';
 
@@ -19,13 +20,17 @@ export default {
         const { disPlayCard } = useMyBettbFunc()
         const { addGameHistory } = useMyBettbFunc()
         const { getPlayerWinRate } = useMyHandLvFunc()
+        const { playFoldingSound } = useSounds()
+        const { playCallSound } = useSounds()
         return {
             state,
             closestToTheLeft,
             disPlayCard,
             addGameHistory,
             isOverBet,
-            getPlayerWinRate
+            getPlayerWinRate,
+            playFoldingSound,
+            playCallSound
         }
     },
     data() {
@@ -50,6 +55,7 @@ export default {
         doAction(act, pos) {
             state.botTitle[pos] = act
             if (act === 'Fold') {
+                this.playFoldingSound()
                 this.addGameHistory(state.round, 'Fold', state.actionPos)
                 this.playerCards[state.actionPos * 2].style.display = 'none'
                 this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
@@ -60,6 +66,7 @@ export default {
                 this.addGameHistory(state.round, 'Check', state.actionPos)
             } else if (act === 'Call') {
                 if (!this.isOverBet('Call', pos)) {
+                    this.playCallSound()
                     state.stackList[pos] -= (Math.max(...state.betTotalList) - state.betTotalList[pos])
                     state.betTotalList[pos] = Math.max(...state.betTotalList)
                 }

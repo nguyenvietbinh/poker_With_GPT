@@ -1,4 +1,4 @@
-import { state } from "./dataStore";
+import { state } from "../data/dataStore";
 export function useMyHandLvFunc() {
     const getAllInWinRate = (hands, communityCards) => {
         let win = 0

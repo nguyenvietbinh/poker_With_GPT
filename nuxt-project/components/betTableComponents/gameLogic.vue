@@ -10,7 +10,7 @@
 
 
 <script>
-import { state } from '../../store/dataStore';
+import { state } from '../../store/data/dataStore';
     export default {
         setup() {            
             return {

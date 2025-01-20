@@ -4,8 +4,8 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../../store/dataStore';
-import { useMyBettbFunc } from '../../store/bettableFuncStore';
+import { state } from '../../store/data/dataStore';
+import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
 import ClaculateHandLevel from './claculateHandLevel.vue';
 
 

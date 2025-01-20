@@ -4,8 +4,8 @@
 
 
 <script>
-import { state } from '../../store/dataStore';
-import { useMyBettbFunc } from '../../store/bettableFuncStore';
+import { state } from '../../store/data/dataStore';
+import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
 import StartGame from './startGame.vue';
 export default {
     setup() {

@@ -5,7 +5,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../../store/dataStore';
+import { state } from '../../store/data/dataStore';
 import ReNewGame from './reNewGame.vue';
 export default {
     setup() {
