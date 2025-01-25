@@ -1,4 +1,6 @@
 import { state } from "../data/dataStore";
+import { useSounds } from "./soundControl";
+const { playAllInSound } = useSounds()
 export function useMyBettbFunc() {
   const convertChatGPTRespone = (res) => {
     if ((res.includes('fold')) || (res.includes('Fold'))) {
@@ -297,6 +299,7 @@ export function useMyBettbFunc() {
         state.numberOfPlayer -= 1
         state.playerStatus[pos] = false
         state.stackList[pos] = 0
+        playAllInSound()
         addGameHistory(state.round, 'All in', state.actionPos)
         return true
       }

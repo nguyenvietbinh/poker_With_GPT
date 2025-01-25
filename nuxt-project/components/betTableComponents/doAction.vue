@@ -22,6 +22,8 @@ export default {
         const { getPlayerWinRate } = useMyHandLvFunc()
         const { playFoldingSound } = useSounds()
         const { playCallSound } = useSounds()
+        const { playCheckSound } = useSounds()
+        const { playCoinDrop } = useSounds()
         return {
             state,
             closestToTheLeft,
@@ -30,7 +32,9 @@ export default {
             isOverBet,
             getPlayerWinRate,
             playFoldingSound,
-            playCallSound
+            playCallSound,
+            playCheckSound,
+            playCoinDrop,
         }
     },
     data() {
@@ -63,6 +67,7 @@ export default {
                 state.playerStatus[pos] = false
                 state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, (state.numberOfPlayer + state.numberOfAllinPlayer))
             } else if (act === 'Check') {
+                this.playCheckSound()
                 this.addGameHistory(state.round, 'Check', state.actionPos)
             } else if (act === 'Call') {
                 if (!this.isOverBet('Call', pos)) {
@@ -72,6 +77,7 @@ export default {
                 }
             } else if (!isNaN(act)) {
                 if (!this.isOverBet(act, pos)) {
+                    this.playCoinDrop()
                     state.botTitle[pos] = `Raise:${act}`
                     state.stackList[pos] -= (Math.max(...state.betTotalList) + act - state.betTotalList[pos])
                     state.betTotalList[pos] = Math.max(...state.betTotalList) + act

@@ -12,17 +12,17 @@
                 <p v-if="this.winRate >= 5" class="text-black whitespace-nowrap text-[2vw] md:text-[1.5vh] font-semibold absolute top-[50%] translate-y-[-50%] left-[2%]">{{ this.winRate }}%</p>
             </div>
             <div class="h-[96%] w-[96%] absolute top-[2%] left-[2%]">
-                <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[32%]"></div>
-                <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[39%]"></div>
-                <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[46%]"></div>
-                <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[54%]"></div>
-                <div v-if="!counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[61%]"></div>
+                <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[32%]"></div>
+                <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[39%]"></div>
+                <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[46%]"></div>
+                <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[54%]"></div>
+                <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[61%]"></div>
                 <div class="player0 boder-solid h-[25%] w-[50%] absolute bottom-0 left-[25%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt1.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
                     <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
@@ -39,8 +39,8 @@
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
                     <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
@@ -57,8 +57,8 @@
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt2.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
                     <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
@@ -75,8 +75,8 @@
                     <div class="w-[10vw] md:w-[7.5vh] absolute right-[50%] translate-x-[50%] md:top-[2.5vh] top-[2.5vw]">
                         <img src="/img/avt3.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute top-[10%] right-[12%]"></div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute top-[10%] right-[24%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute top-[10%] right-[12%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute top-[10%] right-[24%]"></div>
                     <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute right-[20%] bottom-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
@@ -93,8 +93,8 @@
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt4.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
                     <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
@@ -111,8 +111,8 @@
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt5.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
-                    <div v-if="!counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[12%]"></div>
+                    <div v-if="startCounting && !counting" class="playerCard block select-none font-sans font-medium h-[30%] w-[12%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 underline text-center text-[4vw] md:text-[3.5vh] absolute bottom-[12%] left-[24%]"></div>
                     <div class="dealer h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] bg-gray-200 rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden">
                         <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">D</p>
                     </div>
@@ -126,8 +126,9 @@
                     <div class="absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" >{{ stackList[5] }}</div>
                 </div>
                 <div class="h-[50%] w-[50%] absolute top-[25%] left-[25%]">
+                    <p v-if="!startCounting" class="text-black text-[3vw] md:text-[2.5vh] font-bold text-center absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">Click anywhere to play.</p>
                     <div v-if="counting" class="text-black text-[20vw] md:text-[20vh] absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">{{ count }}</div>
-                    <div v-else class="absolute bottom-[30%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]">Pot: {{ pot }}</div>
+                    <div v-if="startCounting && !counting" class="absolute bottom-[30%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]">Pot: {{ pot }}</div>
                 </div>
             </div>
             <div class="w-full h-[7.5vh] absolute bottom-[-7.5vh]">
@@ -144,18 +145,26 @@
 import { watch } from 'vue';
 import { state } from '~/store/data/dataStore';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
+import { useSounds } from '~/store/functions/soundControl';
 export default {
     setup() {
         const { reSetAllData } = useMyBettbFunc()
+        const { playCoinDrop } = useSounds()
+        const { stopCoinDrop } = useSounds()
+        const { defSoundVal } = useSounds()
         return {
             state,
             reSetAllData,
+            playCoinDrop,
+            stopCoinDrop,
+            defSoundVal,
         }
     },
     data() {
         return {
             count: 3,
-            counting: true,
+            startCounting: false,
+            counting: false,
             avatar: null,
             pot: state.pot,
             betTotalList: [0, 0, 0, 0, 0, 0],
@@ -167,7 +176,14 @@ export default {
     mounted() {
         this.avatar = document.querySelectorAll('.avatar')
         this.winrateBar = document.querySelector('.winrateBar')
-        this.countDonw()
+        document.addEventListener('click', (event) => {
+            if (!this.startCounting) {
+                this.startCounting = true
+                this.counting = true
+                this.defSoundVal()
+                this.countDonw()
+            }
+        })
         watch(() => this.count, (newval, oldval) => {
             if (this.count !== 0) {
                 this.countDonw()
@@ -236,6 +252,7 @@ export default {
                         if (step >= 0) {
                             if (currentValue >= targetValue) {
                                 currentValue = targetValue;
+                                this.stopCoinDrop()
                                 clearInterval(interval);
                             }
                         } else {

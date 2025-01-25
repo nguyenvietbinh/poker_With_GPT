@@ -5,7 +5,6 @@ export default defineEventHandler(async (event) => {
   const res = await readBody(event);
 
   try {
-    // Introduce a delay using a Promise
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const result = await axios.post(
