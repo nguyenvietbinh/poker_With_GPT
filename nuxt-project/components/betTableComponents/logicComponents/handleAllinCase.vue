@@ -6,7 +6,7 @@
 <script>
 import { state } from '~/store/data/dataStore';
 import { watch } from 'vue';
-import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import SplitAllinPot from './SplitAllinPot.vue';
 import OpenAllinCards from './openAllinCards.vue';
 

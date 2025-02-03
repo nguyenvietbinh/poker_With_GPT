@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import { useMyHandLvFunc } from '../../store/functions/handLvFuncStore'
-import { state } from '../../store/data/dataStore';
+import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore'
+import { state } from '~/store/data/dataStore';
 import { watch } from 'vue';
 export default {
     setup() {

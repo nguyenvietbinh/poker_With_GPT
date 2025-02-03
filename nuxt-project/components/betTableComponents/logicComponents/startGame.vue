@@ -4,8 +4,8 @@
 
 
 <script>
-import { state } from '../../store/data/dataStore';
-import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { state } from '~/store/data/dataStore';
+import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 export default {
     setup() {

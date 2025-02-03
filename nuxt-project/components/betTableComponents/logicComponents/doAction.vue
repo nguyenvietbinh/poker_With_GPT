@@ -5,8 +5,8 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../../store/data/dataStore';
-import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { state } from '~/store/data/dataStore';
+import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 import { useSounds } from '~/store/functions/soundControl'
 import MoveToNextRound from './moveToNextRound.vue';

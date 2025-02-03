@@ -17,7 +17,7 @@
                 <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[46%]"></div>
                 <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[54%]"></div>
                 <div v-if="startCounting && !counting" class="communityCards select-none font-sans font-medium h-[8%] w-[6%] rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[4vw] md:text-[3.5vh] top-[46%] left-[61%]"></div>
-                <div class="player0 boder-solid h-[25%] w-[50%] absolute bottom-0 left-[25%]">
+                <div v-if="startCounting && !counting" class="player0 boder-solid h-[25%] w-[50%] absolute bottom-0 left-[25%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt1.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
@@ -35,7 +35,7 @@
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[0] !== 0">{{ betTotalList[0] }}</div>
                     <div class="absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" >{{ stackList[0] }}</div>
                 </div>
-                <div class="player1 boder-solid h-[25%] w-[50%] absolute rotate-90 bottom-[12.5%] left-[-12.5%]">
+                <div v-if="startCounting && !counting" class="player1 boder-solid h-[25%] w-[50%] absolute rotate-90 bottom-[12.5%] left-[-12.5%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
@@ -53,7 +53,7 @@
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[1] !== 0">{{ betTotalList[1] }}</div>
                     <div class="absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" >{{ stackList[1] }}</div>
                 </div>
-                <div class="player2 boder-solid h-[25%] w-[50%] absolute rotate-90 top-[12.5%] left-[-12.5%]">
+                <div v-if="startCounting && !counting" class="player2 boder-solid h-[25%] w-[50%] absolute rotate-90 top-[12.5%] left-[-12.5%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt2.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
@@ -71,7 +71,7 @@
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[2] !== 0">{{ betTotalList[2] }}</div>
                     <div class="absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" >{{ stackList[2] }}</div>
                 </div>
-                <div class="player3 boder-solid h-[25%] w-[50%] absolute top-0 left-[25%]">
+                <div v-if="startCounting && !counting" class="player3 boder-solid h-[25%] w-[50%] absolute top-0 left-[25%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute right-[50%] translate-x-[50%] md:top-[2.5vh] top-[2.5vw]">
                         <img src="/img/avt3.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
@@ -89,7 +89,7 @@
                     <div class="absolute top-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[3] !== 0">{{ betTotalList[3] }}</div>
                     <div class="absolute top-[12%] md:top-[10%] right-[75%] md:right-[50%] px-[2vw] md:px-[2vh] translate-x-[50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" >{{ stackList[3] }}</div>
                 </div>
-                <div class="player4 boder-solid h-[25%] w-[50%] absolute -rotate-90 top-[12.5%] right-[-12.5%]">
+                <div v-if="startCounting && !counting" class="player4 boder-solid h-[25%] w-[50%] absolute -rotate-90 top-[12.5%] right-[-12.5%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt4.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
@@ -107,7 +107,7 @@
                     <div class="absolute bottom-[50%] left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" v-if="betTotalList[4] !== 0">{{ betTotalList[4] }}</div>
                     <div class="absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]" >{{ stackList[4] }}</div>
                 </div>
-                <div class="player5 boder-solid h-[25%] w-[50%] absolute -rotate-90 bottom-[12.5%] right-[-12.5%]">
+                <div v-if="startCounting && !counting" class="player5 boder-solid h-[25%] w-[50%] absolute -rotate-90 bottom-[12.5%] right-[-12.5%]">
                     <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
                         <img src="/img/avt5.png" alt="" class="avatar rounded-full border-solid border-[0.5vw] md:border-[0.3vh] border-white">
                     </div>
@@ -138,7 +138,7 @@
             </div>
         </div>
     </div>
-    <BetTableComponentsGameLogic v-if="state.startGame" />
+    <BetTableComponentsLogicComponentsGameLogic v-if="state.startGame" />
 </template>
 
 <script>

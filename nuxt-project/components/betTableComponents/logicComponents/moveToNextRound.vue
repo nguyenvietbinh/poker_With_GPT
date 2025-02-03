@@ -6,9 +6,9 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../../store/data/dataStore';
+import { state } from '~/store/data/dataStore';
 import CalculatePlayPos from './calculatePlayPos.vue';
-import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 
 export default {
     setup() {

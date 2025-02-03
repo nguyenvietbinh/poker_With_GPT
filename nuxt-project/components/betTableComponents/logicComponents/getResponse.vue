@@ -6,8 +6,8 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '../../store/data/dataStore';
-import { useMyBettbFunc } from '../../store/functions/bettableFuncStore';
+import { state } from '~/store/data/dataStore';
+import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
     export default {
         setup() {
             const { sendReq } = useMyBettbFunc()
