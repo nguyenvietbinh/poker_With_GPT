@@ -9,4 +9,5 @@ export const style = reactive({
     playerAreaXPosition: ['left-[25%]', 'left-[-12.5%]', 'left-[-12.5%]', 'left-[25%]', 'right-[-12.5%]', 'right-[-12.5%]'],
     playerAreaYPosition: ['bottom-0', 'bottom-[12.5%]', 'top-[12.5%]', 'top-0', 'top-[12.5%]', 'bottom-[12.5%]'],
     chipDisplay: 'px-[2vw] md:px-[2vh] translate-x-[-50%] text-[3vw] md:text-[1.5vh] inline-block bg-blue-200 text-black border-[0.5vw] md:border-[0.3vh] border-neutral border-solid rounded-[3.6vw]',
+    border: 'border-[0.3vh] border-white'
 })
