@@ -299,7 +299,6 @@ export function useMyBettbFunc() {
         state.numberOfPlayer -= 1
         state.playerStatus[pos] = false
         state.stackList[pos] = 0
-        playAllInSound()
         addGameHistory(state.round, 'All in', state.actionPos)
         return true
       }

@@ -5,23 +5,14 @@
                 <img src="/img/logo.png" alt="" class="logo h-[60%] cursor-pointer w-auto absolute left-[5vw] md:left-[2.5vh] top-[50%] translate-y-[-50%]">
             </NuxtLink>
         </div>
-        <div style="" class="h-[98vw] md:h-[80vh] w-[98vw] md:w-[80vh] absolute left-[50%] top-[20vw] md:top-[10vh] mt-[2vw] md:mt-[1vh] translate-x-[-50%]">
+        <div class="h-[98vw] md:h-[80vh] w-[98vw] md:w-[80vh] absolute left-[50%] top-[20vw] md:top-[10vh] mt-[2vw] md:mt-[1vh] translate-x-[-50%]">
             <img src="/img/pokerTable.png" alt="" class="h-full w-full rounded-[2vh] absolute">
-            <div class="winratecontainer h-[2.5vw] md:h-[2vh] w-[94%] rounded-full border-solid border-white border-[0.2vh] absolute left-[50%] translate-x-[-50%] bottom-0">
-                <div :style="{ width: this.winRate + '%'}" class="winrateBar h-full bg-white rounded-l-full absolute left-0"></div>
-                <p v-if="this.winRate >= 5" class="text-black whitespace-nowrap text-[2vw] md:text-[1.5vh] font-semibold absolute top-[50%] translate-y-[-50%] left-[2%]">{{ this.winRate }}%</p>
-            </div>
             <div class="h-[96%] w-[96%] absolute top-[2%] left-[2%]">
-
-                <BetTableComponentsUiComponentsPlayerArea/>
+                <BetTableComponentsUiComponentsPlayerArea v-if="state.startGame"/>
                 <BetTableComponentsUiComponentsCenterOfTable/>
-
             </div>
-            <div class="w-full h-[7.5vh] absolute bottom-[-7.5vh]">
-                <button @click="foldCheckClick" v-if="state.buttonDisplay" class="btn fold border-none bg-blue-500 hover:bg-blue-600 text-white h-full w-[30%] mt-[1vw] md:mt-[0.5vh] absolute left-0">Fold/Check</button>
-                <button @click="callClick" v-if="state.buttonDisplay" class="btn call border-none bg-blue-500 hover:bg-blue-600 text-white h-full w-[30%] mt-[1vw] md:mt-[0.5vh] absolute left-[35%]">Call</button>
-                <input @keyup="this.inputCheck" v-if="state.buttonDisplay" min="0" type="number" placeholder="Raise" id="" class="h-full raise input bg-blue-500 hover:bg-blue-600 input-bordered w-[30%] mt-[1vw] md:mt-[0.5vh] absolute right-0 text-white rounded-md">
-            </div>
+            <BetTableComponentsUiComponentsWinRate/>
+            <BetTableComponentsUiComponentsButtons/>
         </div>
     </div>
     <BetTableComponentsLogicComponentsGameLogic v-if="state.startGame" />
