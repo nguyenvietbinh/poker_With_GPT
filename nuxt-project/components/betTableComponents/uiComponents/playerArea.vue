@@ -16,8 +16,8 @@
                 <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
             </div>
         </div>
-        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="state.betTotalList[n-1] !== 0">{{ state.betTotalList[n-1] }}</div>
-        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ state.stackList[n-1] }}</div>
+        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="state.betTotalList[n-1] !== 0">{{ betTotalList[n-1] }}</div>
+        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ stackList[n-1] }}</div>
     </div>
 </template>
 
@@ -34,10 +34,59 @@ export default {
     },
     data() {
         return {
+            betTotalList: [0, 0, 0, 0, 0, 0],
+            stackList: [0, 0, 0, 0, 0, 0]
         }
     },
     mounted() {
-
+        watch(() => state.betTotalList, (newval, oldval) => {
+            for (let i = 0; i < 6; i ++) {
+                if (state.betTotalList[i] !== this.betTotalList[i]) {
+                    let currentValue = this.betTotalList[i]
+                    let targetValue = state.betTotalList[i]
+                    const step = Math.ceil((targetValue - currentValue) / 50)
+                    const interval = setInterval(() => {
+                        currentValue += step
+                        if (step >= 0) {
+                            if (currentValue >= targetValue) {
+                                currentValue = targetValue;
+                                clearInterval(interval);
+                            }
+                        } else {
+                            if (currentValue <= targetValue) {
+                                currentValue = targetValue;
+                                clearInterval(interval);
+                            }
+                        }
+                        this.betTotalList[i] = currentValue;
+                    }, 20)
+                }
+            }
+        },{ deep: true })
+        watch(() => state.stackList, (newval, oldval) => {
+            for (let i = 0; i < 6; i ++) {
+                if (state.stackList[i] !== this.stackList[i]) {
+                    let currentValue = this.stackList[i]
+                    let targetValue = state.stackList[i]
+                    const step = Math.ceil((targetValue - currentValue) / 50)
+                    const interval = setInterval(() => {
+                        currentValue += step
+                        if (step >= 0) {
+                            if (currentValue >= targetValue) {
+                                currentValue = targetValue;
+                                clearInterval(interval);
+                            }
+                        } else {
+                            if (currentValue <= targetValue) {
+                                currentValue = targetValue;
+                                clearInterval(interval);
+                            }
+                        }
+                        this.stackList[i] = currentValue;
+                    }, 20)
+                }
+            }
+        },{ deep: true })
     },
 }
 

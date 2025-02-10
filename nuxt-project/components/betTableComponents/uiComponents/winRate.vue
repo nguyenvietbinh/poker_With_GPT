@@ -6,16 +6,49 @@
 </template>
 
 <script>
+import { state } from '~/store/data/dataStore';
 export default {
     setup() {
         return {
-
+            state
         }
     },
     data() {
         return {
-            winRate: 0
+            winRate: 0,
+            winrateBar: 0,
         }
+    },
+    mounted() {
+        this.winrateBar = document.querySelector('.winrateBar')
+        watch(() => state.winRate, (newval, oldval) => {
+            let currentValue = this.winRate
+            if (state.winRate === 100) {
+                this.winrateBar.style.borderRadius = '9999px'
+            } else {
+                this.winrateBar.style.borderTopRightRadius = '0px'
+                this.winrateBar.style.borderBottomRightRadius = '0px'
+                this.winrateBar.style.borderTopLeftRadius = '9999px';
+                this.winrateBar.style.borderBottomLeftRadius = '9999px';
+            }
+            let targetValue = newval
+            const step = Math.ceil((targetValue - currentValue) / 50)
+            const interval = setInterval(() => {
+                currentValue += step
+                if (step >= 0) {
+                    if (currentValue >= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(interval);
+                    }
+                } else {
+                    if (currentValue <= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(interval);
+                    }
+                }
+                this.winRate = currentValue;
+            }, 20)
+        })
     }
 }
 

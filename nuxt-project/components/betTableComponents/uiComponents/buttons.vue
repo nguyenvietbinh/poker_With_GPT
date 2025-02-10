@@ -21,11 +21,11 @@ export default {
     },
     data() {
         return {
-
+            avatar: null
         }
     },
     mounted() {
-
+        this.avatar = document.querySelector('.avatar')
     },
     methods: {
         foldCheckClick() {
