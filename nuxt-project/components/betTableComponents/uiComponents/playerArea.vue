@@ -25,11 +25,13 @@
 <script>
 import { style } from '~/store/data/taildwindStyle';
 import { state } from '~/store/data/dataStore';
+import { audio } from '~/store/data/audioStore';
 export default {
     setup() {
         return {
             state,
-            style
+            style,
+            audio
         }
     },
     data() {
@@ -75,11 +77,13 @@ export default {
                             if (currentValue >= targetValue) {
                                 currentValue = targetValue;
                                 clearInterval(interval);
+                                audio.coinDrop.stop()
                             }
                         } else {
                             if (currentValue <= targetValue) {
                                 currentValue = targetValue;
                                 clearInterval(interval);
+                                audio.coinDrop.stop()
                             }
                         }
                         this.stackList[i] = currentValue;

@@ -25,7 +25,7 @@ export default {
         }
     },
     mounted() {
-        this.avatar = document.querySelector('.avatar')
+        this.avatar = document.querySelectorAll('.avatar')
     },
     methods: {
         foldCheckClick() {
@@ -37,7 +37,6 @@ export default {
                 state.playerAct = 'Fold'
                 state.numberOfAction ++
                 state.buttonDisplay = false
-                this.avatar[0].style.borderColor = 'gray'
             }
         },
         callClick() {

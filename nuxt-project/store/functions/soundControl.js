@@ -1,24 +1,7 @@
 import { Howl } from 'howler'
 import { audio } from '../data/audioStore'
 export function useSounds() {
-    const defSoundVal = () => {
-        audio.call1 = new Audio('/sounds/call1.mp3')
-        audio.call2 = new Audio('/sounds/call2.mp3')
-        audio.call3 = new Audio('/sounds/call3.mp3')
-        audio.check1 = new Audio('/sounds/check3.mp3')
-        audio.check2 = new Audio('/sounds/check3.mp3')
-        audio.check3 = new Audio('/sounds/check3.mp3')
-        audio.allIn = new Audio('/sounds/allin.mp3')
-        audio.coinDropSound = new Howl({
-            src: ['/sounds/coinsDrop.mp3'],
-            autoplay: false,
-            volume: 1.0
-        })
-        audio.foldingSound = new Howl({
-            src: ['/sounds/foldingSound.mp3'],
-            volume: 1.0
-        })
-    }
+
     const playCoinDrop = () => {
         audio.coinDropSound.play()
     }
@@ -58,6 +41,5 @@ export function useSounds() {
         playCheckSound,
         playCoinDrop,
         stopCoinDrop,
-        defSoundVal,
     }
 }

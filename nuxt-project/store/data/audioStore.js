@@ -1,3 +1,4 @@
+
 import { reactive } from 'vue'
 
 export const audio = reactive({
@@ -11,4 +12,3 @@ export const audio = reactive({
     coinDrop: null,
     foldingSound: null,
 })
-

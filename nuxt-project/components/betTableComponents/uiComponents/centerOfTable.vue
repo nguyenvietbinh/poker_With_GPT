@@ -11,11 +11,14 @@
 <script>
 import { style } from '~/store/data/taildwindStyle';
 import { state } from '~/store/data/dataStore';
+import { audio } from '~/store/data/audioStore';
+import { Howl } from 'howler'
 export default {
     setup() {
         return {
             style,
-            state
+            state,
+            audio
         }
     },
     data() {
@@ -62,8 +65,54 @@ export default {
             this.counting = true
             this.count -= 1
             event.target.style.display = 'none'
+            this.createAudio()
         },
-
+        createAudio() {
+            audio.call1 = new Howl({
+                src: ['/sounds/call1.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.call2 = new Howl({
+                src: ['/sounds/call2.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.call3 = new Howl({
+                src: ['/sounds/call3.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.check1 = new Howl({
+                src: ['/sounds/check1.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.check2 = new Howl({
+                src: ['/sounds/check2.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.check3 = new Howl({
+                src: ['/sounds/check3.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.allIn = new Howl({
+                src: ['/sounds/allin.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.coinDrop = new Howl({
+                src: ['/sounds/coinsDrop.mp3'],
+                autoplay: false,
+                volume: 1.0
+            })
+            audio.foldingSound = new Howl({
+                src: ['/sounds/foldingSound.mp3'],
+                volume: 1.0
+            })
+        }
     }
 }
 </script>

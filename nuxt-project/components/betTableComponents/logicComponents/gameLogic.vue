@@ -6,6 +6,7 @@
     <BetTableComponentsLogicComponentsSplitPot v-if="!state.haveAllinCase"/>
     <BetTableComponentsLogicComponentsGameOverCheck/>
     <BetTableComponentsLogicComponentsHandleAllinCase v-if="state.haveAllinCase"/>
+    <BetTableComponentsLogicComponentsPlayAudio/>
 </template>
 
 
