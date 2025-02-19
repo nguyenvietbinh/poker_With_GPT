@@ -1,106 +1,125 @@
 import { state } from "../data/dataStore";
-import { useSounds } from "./soundControl";
-const { playAllInSound } = useSounds()
 export function useMyBettbFunc() {
-  const convertChatGPTRespone = (res) => {
+  const convertChatGPTRespone = (res, playerPos) => {
+    let ans
     if ((res.includes('fold')) || (res.includes('Fold'))) {
-        return 'Fold'
+        ans = 'Fold'
     } else if ((res.includes('raise')) || (res.includes('Raise'))) {
         let n = res.replace('Raise', '')
         n = n.replace('raise', '')
-        return parseInt(n)
+        ans = parseInt(n)
     } else if ((res.includes('call')) || (res.includes('Call'))) {
-        return 'Call'
+        ans = 'Call'
     } else if ((res.includes('check')) || (res.includes('Check'))) {
-        return 'Check'
+        ans = 'Check'
     } else if ((res.includes('all in')) || (res.includes('All in'))) {
-        return 'All in'
+        ans = 'All in'
     } else {
-      return 'Fold'
+      ans = 'Fold'
     }
+    let biggestBetSize = Math.max(...state.betTotalList)
+    if (biggestBetSize > state.betTotalList[playerPos]) {
+      if (ans === 'Check') {
+        ans = 'Fold'
+      }
+    } else {
+      if ((ans === 'Fold') || (ans === 'Call')) {
+        ans = 'Check'
+      }
+    }
+    return ans
   }
   const getPrompt = (playerPos) => {
-      let canFold, canCheck, round
-      let biggestBetSize = Math.max(...state.betTotalList)
-      if (biggestBetSize > state.betTotalList[playerPos]) {
-          canCheck = false
-          canFold = true
-      } else {
-          canCheck = true
-          canFold = false
-      }
-      if (state.round === 0) {
-        round = 'preFlop'
-      } else if (state.round === 1) {
-        round = 'flop'
-      } else if (state.round === 2) {
-        round = 'turn'
-      } else {
-        round = 'river'
-      } 
-      let hand = `${state.cards[playerPos * 2]}, ${state.cards[playerPos * 2 + 1]}`
-      let gameKnowedInfor = [
-        {
-          player_ID: 0,
-          stack: state.stackList[0],
-          bet_size: state.betTotalList[0]
-        },
-        {
-          player_ID: 1,
-          stack: state.stackList[1],
-          bet_size: state.betTotalList[1]
-        },
-        {
-          player_ID: 2,
-          stack: state.stackList[2],
-          bet_size: state.betTotalList[2]
-        },
-        {
-          player_ID: 3,
-          stack: state.stackList[3],
-          bet_size: state.betTotalList[3]
-        },
-        {
-          player_ID: 4,
-          stack: state.stackList[4],
-          bet_size: state.betTotalList[4]
-        },
-        {
-          player_ID: 5,
-          stack: state.stackList[5],
-          bet_size: state.betTotalList[5]
-        },
-      ]
-      let prompt = `Help me decide my next poker move based on this game information: 
-      There are 6 players on the table with IDs corresponding to sitting positions, there are 6 sitting positions from 0 to 5 clockwise
+    let hand = `${state.cards[playerPos * 2]}, ${state.cards[playerPos * 2 + 1]}`
+    let prompt = `
+      Bạn là một AI được thiết kế để chơi poker Texas Hold'em thay cho người chơi. Bạn sẽ đưa ra quyết định dựa trên các thông tin sau:
 
-      - My hand: ${hand}.
-      - My player_ID: ${playerPos}.
-      - Number of player still on the table: ${state.numberOfPlayer}.
-      - Community cards: ${state.communityCards}.
-      - big_blind_ID: ${state.blindPos}.
-      - small_blind_ID: ${state.smBlind}.
-      - dealer_ID: ${state.dealer}.
-      - round: ${round}.
-      - Game knowed information: ${JSON.stringify(gameKnowedInfor)}.
-      - Game history: ${JSON.stringify(state.gameHistory)}.
+- Lịch sử cược trong ván bài(bao gồm cả bạn, player ${playerPos} chính là bạn): Bao gồm các hành động đã diễn ra trong ván bài (call, raise, fold, check, v.v.) của tất cả người chơi từ đầu ván đến thời điểm hiện tại: ${JSON.stringify(state.gameHistory)}.
 
-      You ${canFold ? "can" : "cannot"} Fold and Call but ${canCheck ? "can" : "cannot"} Check.
-      You need ${biggestBetSize - state.betTotalList[playerPos]}$ to call
-      Raise {amount} if i having strong hand (exapmle: ["A♦","K♥",null,null,null,null,null], ["K♥","9♥","5♥","3♥","J♣","J♠","A♥"], ["K♥","10♦","Q♥","3♥","J♣","J♠","A♥"], ["A♦","A♥",null,null,null,null,null], ["K♥","Q♦","Q♥","3♥","J♣","J♠","A♥"])
-      Call (if you do not need more 50$ to call) if i having good hand (example: ["A♦","J♥","J♣","K♥","9♥",null,null], ["A♥","5♥",null,null,null,null,null], ["10♥","J♠",null,null,null,null,null])
-      Fold if i having week hand (example: ["3♠","K♣",null,null,null,null,null], ["Q♣","5♦",null,null,null,null,null], ["J♣","7♠",null,null,null,null,null], ["6♥","A♣",null,null,null,null,null])
-      Look at game history if there are many raise {amount} actions you should call, if there are many check action you should raise {amount} to scared them
-      I prefer a simple answer: 'Call,' 'Raise {amount}', 'Fold,' 'Check,' or 'All in,' with no additional information. Play as a tight-agreesive player, folding if my hand is not strong.
-      `
-        return prompt
+- Số lượng chip còn lại của tất cả người chơi(bao gồm cả bạn): Biết được số chip hiện có của mỗi người chơi giúp bạn đánh giá khả năng cược của họ và đưa ra chiến lược phù hợp. player 0 have ${state.stackList[0]}; player 1 have ${state.stackList[1]}; player 2 have ${state.stackList[2]}; player 3 have ${state.stackList[3]}; player 4 have ${state.stackList[4]}; player 5 have ${state.stackList[5]}
+
+- Số lượng người chơi: Tổng số người chơi đang tham gia ván bài, bao gồm cả bạn ${state.numberOfPlayer}
+
+- Tổng pot: Số chip hiện có trong pot (tổng cược của tất cả người chơi) ${state.pot}
+
+- Cược của từng người chơi: Số chip mà mỗi người chơi đã cược vào pot trong lượt hiện tại. player 0 have ${state.betTotalList[0]}; player 1 have ${state.betTotalList[1]}; player 2 have ${state.betTotalList[2]}; player 3 have ${state.betTotalList[3]}; player 4 have ${state.betTotalList[4]}; player 5 have ${state.betTotalList[5]}
+
+- Các lá bài chung (Community Cards): Các lá bài đã được lật trên bàn, bao gồm flop, turn, và river (nếu có). ${JSON.stringify(state.communityCards)}
+
+- hai lá bài riêng của người chơi: Hai lá bài mà bạn đang nắm giữ, chỉ bạn biết. ${hand}
+
+    Nhiệm vụ của bạn:
+- Play as a tight player
+
+- Phân tích tình huống hiện tại dựa trên các thông tin trên.
+
+- Đưa ra quyết định hành động (call, raise, fold, check) một cách hợp lý, giống như một người chơi poker có kinh nghiệm.
+
+- Cân nhắc các yếu tố như xác suất thắng, chiến lược cược, và tâm lý của đối thủ.
+
+- Đảm bảo rằng quyết định của bạn phù hợp với số chip hiện có và tình hình chung của ván bài.
+
+- Tôi muốn câu trả lời ở dạng tối dản ví dụ: 'Call,' 'Raise {amount}', 'Fold,' 'Check,' or 'All in,'. With no additional information.
+
+- Nếu lịch sử cược có quá nhiều lệnh raise trong 1 round hay call để sang round khác.
+Đánh giá bài của bạn:
+
+- Xác định sức mạnh của 2 lá bài riêng kết hợp với các lá bài chung.
+
+- Tính toán xác suất cải thiện bài của bạn (nếu còn lá bài chung chưa được lật).
+
+- Phân tích hành động của đối thủ:
+
+- Dựa vào lịch sử cược, đánh giá xu hướng chơi của từng đối thủ (aggressive, conservative, bluffing, v.v.).
+
+- Xem xét số chip còn lại của đối thủ để đoán khả năng họ sẽ cược hoặc fold.
+
+Tính toán pot odds:
+
+- So sánh số chip bạn cần bỏ ra để call với tổng số chip trong pot.
+
+- Quyết định xem liệu việc call có mang lại lợi nhuận dài hạn hay không.
+
+Chiến lược cược:
+
+- Nếu bài của bạn mạnh, cân nhắc raise để tăng giá trị pot hoặc loại bỏ đối thủ.
+
+- Nếu bài của bạn yếu hoặc không chắc chắn, có thể fold để bảo toàn chip.
+
+- Nếu bài của bạn có tiềm năng (draw), cân nhắc call hoặc raise nhỏ để theo bài.
+
+Tâm lý và bluffing:
+
+- Đôi khi, bạn có thể bluff (đánh lừa đối thủ) nếu tình huống cho phép, đặc biệt khi bạn nhận thấy đối thủ có xu hướng fold dễ dàng.
+
+- Ngược lại, nếu đối thủ có vẻ mạnh, hãy cân nhắc fold để tránh mất nhiều chip.
+
+Ví dụ minh họa:
+
+- Tình huống: Bạn đang có 2 lá bài riêng là A♠ K♠. Các lá bài chung là 7♠ 8♠ 2♦. Pot hiện tại là 1000 chip. Đối thủ đã raise 300 chip, và bạn cần quyết định hành động tiếp theo.
+
+- Phân tích:
+
+Bài của bạn có tiềm năng thùng (flush) nếu lá bài chung tiếp theo là bất kỳ lá bài nào có chất ♠.
+
+Pot odds là 300 chip để call vào pot 1300 chip (1000 + 300), tức là bạn cần tỷ lệ thắng khoảng 23% để call có lợi.
+
+Xác suất bạn có thùng ở vòng turn là khoảng 19%, nhưng nếu tính cả river thì xác suất tăng lên khoảng 35%.
+
+Đối thủ có thể đang có bài mạnh, nhưng cũng có thể đang bluff.
+
+Quyết định: Call để theo bài, vì xác suất cải thiện bài của bạn khá cao và pot odds hợp lý.
+
+Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chiến lược dựa trên diễn biến của ván bài. Hãy chơi một cách thông minh và linh hoạt để tối đa hóa lợi nhuận và giảm thiểu rủi ro.
+    `
+      return prompt
     }
     const sendReq = async (req) => {
         const res = await $fetch('/api/chatgpt', {
           method: 'post',
           body: JSON.stringify({ message: req })
         })
-        return convertChatGPTRespone(res)
+        return convertChatGPTRespone(res, state.actionPos)
     }
     const closestToTheLeft = (a) => {
       if (a === null) {
