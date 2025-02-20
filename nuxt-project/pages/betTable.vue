@@ -19,44 +19,15 @@
 </template>
 
 <script>
-import { watch } from 'vue';
 import { state } from '~/store/data/dataStore';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
-import { useSounds } from '~/store/functions/soundControl';
 export default {
     setup() {
         const { reSetAllData } = useMyBettbFunc()
-        const { playCoinDrop } = useSounds()
-        const { stopCoinDrop } = useSounds()
-        const { defSoundVal } = useSounds()
         return {
             state,
-            reSetAllData,
-            playCoinDrop,
-            stopCoinDrop,
-            defSoundVal,
+            reSetAllData
         }
     },
-    data() {
-        return {
-            count: 3,
-            counting: false,
-            counted: false,
-            avatar: null,
-            pot: state.pot,
-            betTotalList: [0, 0, 0, 0, 0, 0],
-            stackList: [2000, 2000, 2000, 2000, 2000, 2000],
-            winRate: 0,
-            winrateBar: null,
-        }
-    },
-    mounted() {
-        this.avatar = document.querySelectorAll('.avatar')
-        this.winrateBar = document.querySelector('.winrateBar')
-
-    },
-    methods: {
-
-    }
 }
 </script>

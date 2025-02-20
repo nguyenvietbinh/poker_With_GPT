@@ -7,6 +7,7 @@
     <BetTableComponentsLogicComponentsGameOverCheck/>
     <BetTableComponentsLogicComponentsHandleAllinCase v-if="state.haveAllinCase"/>
     <BetTableComponentsLogicComponentsPlayAudio/>
+    <BetTableComponentsLogicComponentsDisplayPlayerTurn/>
 </template>
 
 

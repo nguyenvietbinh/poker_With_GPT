@@ -50,7 +50,6 @@ export default {
             if ((!state.isGameOver) && (!state.canMoveToNextRound)) {
                 if ((state.numberOfAction !== 0) && (!state.stopBetting)) {
                     this.doAction(state.playerAct, state.actionPos)
-                    
                 }
             }
         })

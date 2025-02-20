@@ -38,18 +38,11 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
             watch(() => state.actionPos, (newval, oldval) => {
                 if ((state.actionPos !== null) && (!state.stopBetting)) {
                     if (state.actionPos !== 0) {
-                        this.playerAvatar[state.actionPos].style.borderColor = 'green'
                         this.getResponse().then(response => {
-                            if (response === 'Fold') {
-                                this.playerAvatar[state.actionPos].style.borderColor = 'gray'
-                            } else {
-                                this.playerAvatar[state.actionPos].style.borderColor = 'white'
-                            }
                             state.playerAct = response
                             state.numberOfAction ++
                         })
                     } else {
-                        this.playerAvatar[state.actionPos].style.borderColor = 'green'
                         state.buttonDisplay = true
                     }
                 }

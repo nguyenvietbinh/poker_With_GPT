@@ -34,7 +34,9 @@ export default {
         this.playerCards = document.querySelectorAll('.playerCard')
         if (state.numberOfAllinPlayer + state.numberOfPlayer > 1) {
             this.openCards()
-            state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+            if (state.playerStatus[0]) {
+                state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+            }
         } else {
             this.startSplitPot = true
         }   
@@ -46,15 +48,21 @@ export default {
                     state.communityCards[1] = state.cards[50]
                     this.disPlayCard(state.cards[49], this.communityCards[2])
                     state.communityCards[2] = state.cards[49]
-                    state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                    if (state.playerStatus[0]) {
+                        state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                    }
                 } else if (state.round === 2) {
                     this.disPlayCard(state.cards[48], this.communityCards[3])
                     state.communityCards[3] = state.cards[48]
-                    state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                    if (state.playerStatus[0]) {
+                        state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                    }
                 } else if (state.round === 3) {
                     this.disPlayCard(state.cards[47], this.communityCards[4])
                     state.communityCards[4] = state.cards[47]
-                    state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                    if (state.playerStatus[0]) {
+                        state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                    }
                 } else if (state.round === 4) {
                     this.startSplitPot = true
                 }

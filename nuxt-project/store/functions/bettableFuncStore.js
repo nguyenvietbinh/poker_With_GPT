@@ -49,7 +49,8 @@ export function useMyBettbFunc() {
 - hai lá bài riêng của người chơi: Hai lá bài mà bạn đang nắm giữ, chỉ bạn biết. ${hand}
 
     Nhiệm vụ của bạn:
-- Play as a tight player
+
+- Play as a tight player, if your hand is stronge play as a aggressive player.
 
 - Phân tích tình huống hiện tại dựa trên các thông tin trên.
 
@@ -62,6 +63,7 @@ export function useMyBettbFunc() {
 - Tôi muốn câu trả lời ở dạng tối dản ví dụ: 'Call,' 'Raise {amount}', 'Fold,' 'Check,' or 'All in,'. With no additional information.
 
 - Nếu lịch sử cược có quá nhiều lệnh raise trong 1 round hay call để sang round khác.
+
 Đánh giá bài của bạn:
 
 - Xác định sức mạnh của 2 lá bài riêng kết hợp với các lá bài chung.
