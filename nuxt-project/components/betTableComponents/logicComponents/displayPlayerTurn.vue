@@ -20,7 +20,7 @@ export default {
     },
     mounted() {
         this.avtBorder = document.querySelectorAll('.avatar')
-        watch(() => state.actionPos, (n, o) => {
+        watch(() => state.actionPos, (newval, oldval) => {
             if (state.haveAllinCase) {
                 if (state.actionPos !== null) {
                     this.avtBorder.forEach((element, index) => {

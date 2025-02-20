@@ -1,4 +1,5 @@
 <template>
+    <BetTableComponentsLogicComponentsCalculatePlayerWinRate/>
     <BetTableComponentsLogicComponentsGetResponse/>
     <BetTableComponentsLogicComponentsStartGame/>
     <BetTableComponentsLogicComponentsDoAction/>

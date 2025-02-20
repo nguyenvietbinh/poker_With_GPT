@@ -7,7 +7,6 @@
 import { watch } from 'vue';
 import { state } from '~/store/data/dataStore';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
-import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 import { useSounds } from '~/store/functions/soundControl'
 import MoveToNextRound from './moveToNextRound.vue';
 import OpenAllinCards from './openAllinCards.vue';
@@ -19,7 +18,6 @@ export default {
         const { isOverBet } = useMyBettbFunc()
         const { disPlayCard } = useMyBettbFunc()
         const { addGameHistory } = useMyBettbFunc()
-        const { getPlayerWinRate } = useMyHandLvFunc()
         const { playFoldingSound } = useSounds()
         const { playCallSound } = useSounds()
         const { playCheckSound } = useSounds()
@@ -30,7 +28,6 @@ export default {
             disPlayCard,
             addGameHistory,
             isOverBet,
-            getPlayerWinRate,
             playFoldingSound,
             playCallSound,
             playCheckSound,
@@ -50,6 +47,7 @@ export default {
             if ((!state.isGameOver) && (!state.canMoveToNextRound)) {
                 if ((state.numberOfAction !== 0) && (!state.stopBetting)) {
                     this.doAction(state.playerAct, state.actionPos)
+                    
                 }
             }
         })
@@ -63,7 +61,6 @@ export default {
                 this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
                 state.numberOfPlayer -= 1
                 state.playerStatus[pos] = false
-                state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, (state.numberOfPlayer + state.numberOfAllinPlayer))
             } else if (act === 'Check') {
                 this.addGameHistory(state.round, 'Check', state.actionPos)
             } else if (act === 'Call') {
