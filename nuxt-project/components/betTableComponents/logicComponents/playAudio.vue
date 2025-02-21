@@ -17,14 +17,16 @@ export default {
     },
     mounted() {
         watch(() => [state.playerAct, state.numberOfAction], (newval, oldval) => {
-            if (state.playerAct === 'Check') {
-                this.playCheckAudio()
-            } else if (state.playerAct === 'Fold') {
-                audio.foldingSound.play()
-            } else if (state.playerAct === 'Call') {
-                this.playCallAudio()
-            } else if (!isNaN(state.playerAct)) {
-                audio.coinDrop.play()
+            if (!state.mute) {
+                if (state.playerAct === 'Check') {
+                    this.playCheckAudio()
+                } else if (state.playerAct === 'Fold') {
+                    audio.foldingSound.play()
+                } else if (state.playerAct === 'Call') {
+                    this.playCallAudio()
+                } else if (!isNaN(state.playerAct)) {
+                    audio.coinDrop.play()
+                }
             }
         }, { deep: true })
     },

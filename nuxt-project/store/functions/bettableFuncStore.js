@@ -50,7 +50,7 @@ export function useMyBettbFunc() {
 
     Nhiệm vụ của bạn:
 
-- Play as a tight player, if your hand is stronge play as a aggressive player.
+- Play as a tight player, if your hand is stronge play as a aggressive player, fold if your hand is not good.
 
 - Phân tích tình huống hiện tại dựa trên các thông tin trên.
 

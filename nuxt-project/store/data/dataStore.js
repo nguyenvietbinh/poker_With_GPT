@@ -30,6 +30,7 @@ export const state = reactive({
   allin: [false, false, false, false, false, false],
   numberOfAllinPlayer: 0,
   sidePot: [0, 0, 0, 0, 0, 0],
-  stopBetting: false
+  stopBetting: false,
+  mute: false
 })
 
