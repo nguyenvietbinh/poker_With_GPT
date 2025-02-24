@@ -245,21 +245,27 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       }
       return ans
     }
-    
+    function replaceAt(string, index, replacement) {
+      return string.substring(0, index) + replacement + string.substring(index + 1);
+    }
     const disPlayCard = (cardNumber, card) => {
-      let cardColor
+      let src = 'XX@3x.png'
       if (cardNumber[cardNumber.length - 1] === '♥') {
-          cardColor = 'red'
+          src = replaceAt(src, 1, 'H')
       } else if (cardNumber[cardNumber.length - 1]=== '♦') {
-          cardColor = 'orange'
+          src = replaceAt(src, 1, 'D')
       } else if (cardNumber[cardNumber.length - 1] === '♣') {
-          cardColor = 'green'
+          src = replaceAt(src, 1, 'C')
       } else {
-          cardColor = 'black'
+          src = replaceAt(src, 1, 'S')
       }
-      card.innerHTML = cardNumber.slice(0, -1)
-      card.style.backgroundColor = cardColor
-      card.style.color = 'white'
+      let n = cardNumber.slice(0, -1)
+      if (n === '10') {
+        n = 'T'
+      }
+      src = replaceAt(src, 0, n)
+      src = '/img/cards/' + src
+      card.src = src
     }
     const addGameHistory = (round, act, pos) => {
       if (!isNaN(act)) {

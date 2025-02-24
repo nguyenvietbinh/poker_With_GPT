@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
 
 export const style = reactive({
-    card: 'select-none font-sans font-medium rounded-sm border-[0.2vh] border-black border-solid bg-blue-600 absolute underline text-center text-[3.8vw] md:text-[3.5vh]',
+    card: 'select-none md:h-[6.5vh] w-[4.8vw] md:w-[5vh] font-sans font-medium rounded-sm absolute underline text-center text-[3.8vw] md:text-[3.5vh]',
     commmunityCardXPosition: ['left-[20%]', 'left-[32%]', 'left-[44%]', 'left-[56%]', 'left-[68%]'],
     blindText: 'absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]',
     blindDiv: 'h-[5vw] md:h-[3vh] w-[5vw] md:w-[3vh] rounded-full absolute left-[20%] top-[10%] border-solid border-black border-[0.1vw] hidden',

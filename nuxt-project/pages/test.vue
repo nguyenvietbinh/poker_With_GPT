@@ -1,6 +1,5 @@
 <template>
     <div :class="`${style.card} bottom-[50%] left-[45%]`">
-        <img src="/img/cards/clubs_k.png" alt="">
     </div>
 </template>
 

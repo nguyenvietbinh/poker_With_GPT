@@ -3,8 +3,12 @@
         <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
             <img src="~/public/img/avt4.png" alt="" class="avatar rounded-full border-[0.3vh] border-white">
         </div>
-        <div :class="`playerCard ${style.card} h-[6vw] md:h-[5.5vh] w-[4.8vw] md:w-[4vh] bottom-[12%] left-[12%]`"></div>
-        <div :class="`playerCard ${style.card} h-[6vw] md:h-[5.5vh] w-[4.8vw] md:w-[4vh] bottom-[12%] left-[22%]`"></div>
+        <div :class="`${style.card} bottom-[12%] left-[10%]`">
+            <img class="playerCard" src="/img/cards/back.png" alt="">
+        </div>
+        <div :class="`${style.card} bottom-[12%] left-[25%]`">
+            <img class="playerCard" src="/img/cards/back.png" alt="">
+        </div>
         <div>
             <div :class="`dealer ${style.blindDiv} bg-gray-200`">
                 <p :class="`${style.blindText}`">D</p>
