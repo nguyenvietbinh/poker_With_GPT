@@ -3,9 +3,12 @@
         <p @click="startCounting" class="text-black text-[3vw] md:text-[2.5vh] hover:underline cursor-pointer font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">Click here to play.</p>
         <div v-if="counting && !state.startGame" class="text-black text-[20vw] md:text-[20vh] absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">{{ count }}</div>
         <div v-if="state.startGame" :class="`absolute bottom-[30%] left-[50%] ${style.chipDisplay}`">Pot: {{ pot }}</div>
-        <div v-if="state.startGame" v-for="n in 5" :key="n" :class="`${style.card} h-[7vw] md:h-[6.5vh] w-[6vw] md:w-[5vh] bottom-[46%] ${style.commmunityCardXPosition[n-1]}`">
-            <img class="communityCards" src="~/public/img/cards/back.png" alt="">
+        <div v-if="state.startGame" class="inline-block relative left-[50%] translate-x-[-50%] top-[30%]">
+            <div  v-for="n in 5" :key="n" :class="`h-auto w-[7.5vw] mx-[1px] inline-block md:w-[6.5vh] bottom-[50%] ${blabla[n - 1]}`">
+                <img class="communityCards" src="~/public/img/cards/back.png" alt="">
+            </div>
         </div>
+
     </div>
 </template>
 
@@ -28,9 +31,12 @@ export default {
             count: 4,
             counting: false,
             pot: 0,
+            blabla: ['left-[8%]', 'left-[25%]', 'left-[42%]', 'left-[59%]', 'left-[76%]'],
+            bla: null
         }
     },
     mounted() {
+        this.bla = document.querySelectorAll('.bla')
         watch(() => this.count, (newval, oldval) => {
             if (this.count !== 0) {
                 setTimeout(() => {

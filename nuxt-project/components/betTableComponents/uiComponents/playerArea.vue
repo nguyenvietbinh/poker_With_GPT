@@ -3,10 +3,10 @@
         <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
             <img src="~/public/img/avt4.png" alt="" class="avatar rounded-full border-[0.3vh] border-white">
         </div>
-        <div :class="`${style.card} h-[7vw] md:h-[6.5vh] w-[6.5vw] md:w-[6vh] bottom-[20%] left-[6%]`">
+        <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[6%]`">
             <img class="playerCard" src="~/public/img/cards/back.png" alt="">
         </div>
-        <div :class="`${style.card} h-[7vw] md:h-[6.5vh] w-[6.5vw] md:w-[6vh] bottom-[20%] left-[22%]`">
+        <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[22%]`">
             <img class="playerCard" src="~/public/img/cards/back.png" alt="">
         </div>
         <div>
