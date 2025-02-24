@@ -55,17 +55,15 @@ export default {
     methods: {
         reNewGame() {
             this.communityCards.forEach(element => {
-                element.innerHTML = ''
-                element.style.backgroundColor = 'rgb(37, 99, 253)'
+                element.src = '/img/cards/back.png'
+            });
+            this.playerCards.forEach(element => {
+                element.src = '/img/cards/back.png'
             });
             for (let i = 0; i < 6; i ++) {
                 if (state.playerStatus[i]) {
                     this.playerCards[i * 2].style.display = 'block'
-                    this.playerCards[i * 2].innerHTML = ''
-                    this.playerCards[i * 2].style.backgroundColor = 'rgb(37, 99, 235)'
                     this.playerCards[i * 2 + 1].style.display = 'block'
-                    this.playerCards[i * 2 + 1].innerHTML = ''
-                    this.playerCards[i * 2 + 1].style.backgroundColor = 'rgb(37, 99, 235)'
                     this.playerAvatar[i].style.backgroundColor = 'white'
                 } else {
                     this.playerAvatar[i].style.borderColor = 'gray' 
