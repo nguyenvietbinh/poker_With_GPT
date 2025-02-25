@@ -1,7 +1,7 @@
 <template>
 
-<div v-if="!state.loadingDone" class="h-[2.5vw] md:h-[2vh] w-[94%] rounded-full border-solid border-white border-[0.2vh] absolute left-[50%] translate-x-[-50%] bottom-0">
-    <div :style="{ width: this.process + '%'}" class="h-full bg-white rounded-l-full absolute left-0"></div>
+<div class="h-[2.5vw] md:h-[2vh] w-[94%] rounded-full border-solid border-white border-[0.2vh] absolute left-[50%] translate-x-[-50%] bottom-0">
+    <div :style="{ width: this.process + '%'}" class="processBar h-full bg-white rounded-l-full absolute left-0"></div>
     <p v-if="this.process >= 5" class="text-black whitespace-nowrap text-[2vw] md:text-[1.5vh] font-semibold absolute top-[50%] translate-y-[-50%] left-[2%]">{{ this.process }}%</p>
 </div>
 </template>
@@ -24,11 +24,23 @@ export default {
         return {
             process: 0,
             count: 0,
+            processBar: null,
             imgToLoad: ['/img/cards/back.png', '/img/avt4.png', '/img/mute.png', '/img/unmute.png'],
         }
     }, 
     mounted() {
+        this.processBar = document.querySelector('.processBar')
         this.getImgToLoad()
+        watch(() => this.process, (newval, oldval) => {
+            if (this.process === 100) {
+                this.processBar.style.borderRadius = '9999px'
+            } else {
+                this.processBar.style.borderTopRightRadius = '0px'
+                this.processBar.style.borderBottomRightRadius = '0px'
+                this.processBar.style.borderTopLeftRadius = '9999px';
+                this.processBar.style.borderBottomLeftRadius = '9999px';
+            }
+        })
         Promise.all(this.imgToLoad.map(this.loadingImg))
         .then(() => {
             state.loadingDone = true
