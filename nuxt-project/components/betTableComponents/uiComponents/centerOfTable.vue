@@ -5,7 +5,7 @@
         <div v-if="state.startGame" :class="`absolute bottom-[30%] left-[50%] ${style.chipDisplay}`">Pot: {{ pot }}</div>
         <div v-if="state.startGame" class="inline-block relative left-[50%] translate-x-[-50%] top-[30%]">
             <div  v-for="n in 5" :key="n" :class="`h-auto w-[7.5vw] mx-[1px] inline-block md:w-[6.5vh] bottom-[50%] ${blabla[n - 1]}`">
-                <img class="communityCards" src="~/public/img/cards/back.png" alt="">
+                <img class="communityCards" src="~/public/img/cards/back.png" loading="lazy" alt="card">
             </div>
         </div>
 

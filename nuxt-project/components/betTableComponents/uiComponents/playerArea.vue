@@ -4,10 +4,10 @@
             <img src="~/public/img/avt4.png" alt="" class="avatar rounded-full border-[0.3vh] border-white">
         </div>
         <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[6%]`">
-            <img class="playerCard" src="~/public/img/cards/back.png" alt="">
+            <img class="playerCard" src="~/public/img/cards/back.png" alt="card">
         </div>
         <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[22%]`">
-            <img class="playerCard" src="~/public/img/cards/back.png" alt="">
+            <img class="playerCard" src="~/public/img/cards/back.png" alt="card">
         </div>
         <div>
             <div :class="`dealer ${style.blindDiv} bg-gray-200`">

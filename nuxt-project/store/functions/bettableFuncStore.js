@@ -266,6 +266,7 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       src = replaceAt(src, 0, n)
       src = '/img/cards/' + src
       card.src = src
+      card.alt = cardNumber
     }
     const addGameHistory = (round, act, pos) => {
       if (!isNaN(act)) {
