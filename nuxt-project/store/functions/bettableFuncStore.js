@@ -361,5 +361,7 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         isOverBet,
         addSidePot,
         sendReq,
+        convertCards,
+        replaceAt,
     };
 }

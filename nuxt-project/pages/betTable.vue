@@ -7,7 +7,8 @@
                 <BetTableComponentsUiComponentsPlayerArea v-if="state.startGame"/>
                 <BetTableComponentsUiComponentsCenterOfTable/>
             </div>
-            <BetTableComponentsUiComponentsWinRate/>
+            <BetTableComponentsUiComponentsWinRate v-if="state.startGame"/>
+            <BetTableComponentsUiComponentsLoadingBar/>
             <BetTableComponentsUiComponentsButtons/>
         </div>
     </div>

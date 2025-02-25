@@ -1,6 +1,7 @@
 <template>
     <div :class="`h-[50%] w-[50%] absolute top-[25%] left-[25%]`">
-        <p @click="startCounting" class="text-black text-[3vw] md:text-[2.5vh] hover:underline cursor-pointer font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">Click here to play.</p>
+        <p v-if="state.loadingDone" @click="startCounting" class="text-black text-[3vw] md:text-[2.5vh] hover:underline cursor-pointer font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">Click here to play.</p>
+        <p v-if="!state.loadingDone" class="text-black text-[3vw] md:text-[2.5vh] font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">loading...</p>
         <div v-if="counting && !state.startGame" class="text-black text-[20vw] md:text-[20vh] absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">{{ count }}</div>
         <div v-if="state.startGame" :class="`absolute bottom-[30%] left-[50%] ${style.chipDisplay}`">Pot: {{ pot }}</div>
         <div v-if="state.startGame" class="inline-block relative left-[50%] translate-x-[-50%] top-[30%]">
