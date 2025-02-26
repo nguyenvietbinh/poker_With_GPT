@@ -37,7 +37,7 @@ export function useMyHandLvFunc() {
         return Hands
     }
     const getPlayerWinRate = async (req) => {
-        const res = await $fetch('/worker/calculatePlayerWinrate', {
+        const res = await $fetch('/worker/winrate', {
             method: 'post',
             body: JSON.stringify({ message: req })
           })
