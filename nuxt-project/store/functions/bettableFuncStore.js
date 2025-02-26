@@ -123,6 +123,12 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         })
         return convertChatGPTRespone(res, betTableState.actionPos)
     }
+    const updateSvBetTbState = () => {
+      $fetch('/api/updateBetTableState', {
+        method: 'post',
+        body: JSON.stringify({ message: betTableState })
+      })
+    }
     const closestToTheLeft = (a) => {
       if (a === null) {
         return a
@@ -363,5 +369,6 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         sendReq,
         convertCards,
         replaceAt,
+        updateSvBetTbState,
     };
 }

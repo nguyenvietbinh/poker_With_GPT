@@ -18,7 +18,7 @@ export default {
         return {
             disPlayCard,
             getAllInWinRate,
-            state
+            betTableState
         }
     },
     data() {

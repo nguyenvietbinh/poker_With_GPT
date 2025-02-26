@@ -68,7 +68,7 @@ export default {
     },
     methods: {
         async GetPlayerWinRate() {
-            return await this.getPlayerWinRate([[betTableState.cards[0], betTableState.cards[1]], betTableState.communityCards, betTableState.numberOfPlayer])
+            return await this.getPlayerWinRate([[betTableState.cards[0], betTableState.cards[1]], betTableState.communityCards, betTableState.numberOfPlayer, betTableState])
         }
     }
 }

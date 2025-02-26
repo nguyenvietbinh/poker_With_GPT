@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 
-export const sharedbetTableState = reactive({
+export const svBetTbState = reactive({
   startGame: false,
   loadingDone: false,
   numberOfPlayer: 6,

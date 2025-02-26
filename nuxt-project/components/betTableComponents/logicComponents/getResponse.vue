@@ -13,11 +13,13 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
             const { sendReq } = useMyBettbFunc()
             const { getPrompt } = useMyBettbFunc()
             const { closestToTheLeft } = useMyBettbFunc()
+            const { updateSvBetTbState } = useMyBettbFunc()
             return {
                 betTableState,
                 sendReq,
                 getPrompt,
                 closestToTheLeft,
+                updateSvBetTbState
             }
         },
         data() {
@@ -40,6 +42,7 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
                     if (betTableState.actionPos !== 0) {
                         this.getResponse().then(response => {
                             betTableState.playerAct = response
+                            this.updateSvBetTbState()
                             betTableState.numberOfAction ++
                         })
                     } else {

@@ -16,7 +16,7 @@ export default {
         const { closestToTheLeft } = useMyBettbFunc()
         return {
             closestToTheLeft,
-            state
+            betTableState
         }
     },
     data() {
