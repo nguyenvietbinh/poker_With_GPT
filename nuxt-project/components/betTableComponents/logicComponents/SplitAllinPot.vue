@@ -6,7 +6,7 @@
 
 
 <script>
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 import { watch } from 'vue';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 

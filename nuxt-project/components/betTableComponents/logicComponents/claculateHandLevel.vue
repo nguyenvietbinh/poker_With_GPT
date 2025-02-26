@@ -4,7 +4,7 @@
 
 <script>
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore'
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 import { watch } from 'vue';
 export default {
     setup() {

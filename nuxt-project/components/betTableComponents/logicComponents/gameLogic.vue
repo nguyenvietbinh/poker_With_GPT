@@ -13,7 +13,7 @@
 
 
 <script>
-import { state } from '~/store/data/dataStore'
+import { state } from '~/store/data/betTableState'
     export default {
         setup() {            
             return {

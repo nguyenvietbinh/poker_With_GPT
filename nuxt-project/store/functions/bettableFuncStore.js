@@ -1,4 +1,4 @@
-import { state } from "../data/dataStore";
+import { state } from "../data/betTableState";
 export function useMyBettbFunc() {
   const convertChatGPTRespone = (res, playerPos) => {
     let ans

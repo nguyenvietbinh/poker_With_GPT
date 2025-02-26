@@ -16,7 +16,7 @@
 
 <script>
 import { style } from '~/store/data/taildwindStyle';
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 import { audio } from '~/store/data/audioStore';
 import { Howl } from 'howler'
 export default {

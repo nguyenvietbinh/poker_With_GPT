@@ -7,7 +7,7 @@
 <script>
 import { watch } from 'vue';
 import { audio } from '~/store/data/audioStore';
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 export default {
     setup() {
         return {

@@ -1,5 +1,4 @@
-import { state } from "../data/betTableState";
-export function useMyHandLvFunc() {
+export function useMyServerFunc() {
     const getAllInWinRate = (hands, communityCards) => {
         let win = 0
         for (let i = 0; i < 1000; i ++) {

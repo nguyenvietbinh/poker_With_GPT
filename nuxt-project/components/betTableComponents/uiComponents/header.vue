@@ -11,7 +11,7 @@
 
 <script>
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 export default {
     setup() {
         const { reSetAllData } = useMyBettbFunc()

@@ -9,7 +9,7 @@
 
 
 <script>
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 import { style } from '~/store/data/taildwindStyle';
 export default {
 

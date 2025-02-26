@@ -4,7 +4,7 @@
 
 
 <script>
-import { state } from '~/store/data/dataStore';
+import { state } from '~/store/data/betTableState';
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 export default {
     setup() {
@@ -47,7 +47,7 @@ export default {
                             console.log('1')
                             this.GetPlayerWinRate().then(response => {
                                 console.log('2')
-                                state.winRate = response
+                                console.log(response)
                             })
                         }
                     }
