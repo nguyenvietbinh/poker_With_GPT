@@ -35,7 +35,7 @@ export default {
 
                         } else {
                             if ((oldval[1] + oldval[2]) !== (newval[1] + newval[2])) {
-                                state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer + state.numberOfAllinPlayer)
+                                state.winRate = this.getAllInWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer + state.numberOfAllinPlayer)
                             } 
                         }
                     }
@@ -44,7 +44,11 @@ export default {
                         if (state.numberOfAllinPlayer === 1) {
                             state.winRate = 100
                         } else {
-                            state.winRate = this.getPlayerWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer)
+                            console.log('1')
+                            this.GetPlayerWinRate().then(response => {
+                                console.log('2')
+                                state.winRate = response
+                            })
                         }
                     }
                 }
@@ -61,6 +65,11 @@ export default {
                 state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
             }
         }, { deep: true })
+    },
+    methods: {
+        async GetPlayerWinRate() {
+            return await this.getPlayerWinRate([[state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer])
+        }
     }
 }
 </script>

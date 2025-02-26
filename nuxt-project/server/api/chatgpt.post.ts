@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const res = await readBody(event);
 
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const result = await axios.post(
       'https://api.openai.com/v1/chat/completions',
