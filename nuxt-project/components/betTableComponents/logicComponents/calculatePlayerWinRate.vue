@@ -4,14 +4,14 @@
 
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 export default {
     setup() {
         const { getPlayerWinRate } = useMyHandLvFunc()
         const { getAllInWinRate } = useMyHandLvFunc()
         return {
-            state,
+            betTableState,
             getPlayerWinRate,
             getAllInWinRate
         }
@@ -22,27 +22,27 @@ export default {
         }
     },
     mounted() {
-        watch(() => [state.actionPos, state.numberOfPlayer, state.numberOfAllinPlayer], (newval, oldval) => {
-            if((!state.playerStatus[0]) && (!state.allin[0])) {
-                state.winRate = 0
+        watch(() => [betTableState.actionPos, betTableState.numberOfPlayer, betTableState.numberOfAllinPlayer], (newval, oldval) => {
+            if((!betTableState.playerStatus[0]) && (!betTableState.allin[0])) {
+                betTableState.winRate = 0
                 this.allInCards = []
             } else {
-                if (state.haveAllinCase) {
-                    if ((state.numberOfPlayer + state.numberOfAllinPlayer) === 1) {
-                        state.winRate = 100
+                if (betTableState.haveAllinCase) {
+                    if ((betTableState.numberOfPlayer + betTableState.numberOfAllinPlayer) === 1) {
+                        betTableState.winRate = 100
                     } else {
-                        if (state.stopBetting) {
+                        if (betTableState.stopBetting) {
 
                         } else {
                             if ((oldval[1] + oldval[2]) !== (newval[1] + newval[2])) {
-                                state.winRate = this.getAllInWinRate([state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer + state.numberOfAllinPlayer)
+                                betTableState.winRate = this.getAllInWinRate([betTableState.cards[0], betTableState.cards[1]], betTableState.communityCards, betTableState.numberOfPlayer + betTableState.numberOfAllinPlayer)
                             } 
                         }
                     }
                 } else {
-                    if (((oldval[0] === null) || (oldval[0] === newval[0])) && (!state.isGameOver)) {
-                        if (state.numberOfAllinPlayer === 1) {
-                            state.winRate = 100
+                    if (((oldval[0] === null) || (oldval[0] === newval[0])) && (!betTableState.isGameOver)) {
+                        if (betTableState.numberOfAllinPlayer === 1) {
+                            betTableState.winRate = 100
                         } else {
                             console.log('1')
                             this.GetPlayerWinRate().then(response => {
@@ -54,21 +54,21 @@ export default {
                 }
             }
         }, { deep: true })
-        watch(() => [state.stopBetting, state.communityCards], (newval, oldval) => {
-            if (state.stopBetting) {
+        watch(() => [betTableState.stopBetting, betTableState.communityCards], (newval, oldval) => {
+            if (betTableState.stopBetting) {
                 this.allInCards = []
                 for (let i = 0; i < 6; i ++) {
-                    if ((state.playerStatus[i]) || (state.allin[i])) {
-                        this.allInCards.push([state.cards[i * 2], state.cards[i * 2 + 1]])
+                    if ((betTableState.playerStatus[i]) || (betTableState.allin[i])) {
+                        this.allInCards.push([betTableState.cards[i * 2], betTableState.cards[i * 2 + 1]])
                     }
                 }
-                state.winRate = this.getAllInWinRate(this.allInCards, state.communityCards)
+                betTableState.winRate = this.getAllInWinRate(this.allInCards, betTableState.communityCards)
             }
         }, { deep: true })
     },
     methods: {
         async GetPlayerWinRate() {
-            return await this.getPlayerWinRate([[state.cards[0], state.cards[1]], state.communityCards, state.numberOfPlayer])
+            return await this.getPlayerWinRate([[betTableState.cards[0], betTableState.cards[1]], betTableState.communityCards, betTableState.numberOfPlayer])
         }
     }
 }

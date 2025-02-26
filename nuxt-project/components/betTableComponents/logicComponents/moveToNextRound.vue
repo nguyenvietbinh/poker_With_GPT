@@ -6,7 +6,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import CalculatePlayPos from './calculatePlayPos.vue';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 
@@ -15,7 +15,7 @@ export default {
         const { closestToTheLeft } = useMyBettbFunc()
         const { addSidePot } = useMyBettbFunc()
         return {
-            state,
+            betTableState,
             closestToTheLeft,
             addSidePot
         }
@@ -26,32 +26,32 @@ export default {
         }
     },
     mounted() {
-        watch(() => state.numberOfAction, (newval, oldval) => {
-            if ((state.round === 0) && (state.numberOfAction === 1)) {
+        watch(() => betTableState.numberOfAction, (newval, oldval) => {
+            if ((betTableState.round === 0) && (betTableState.numberOfAction === 1)) {
                 let count = 0
                 for (let i = 0; i < 6; i ++) {
-                    if ((state.stackList[i] !== 0) && (!state.allin[i])) {
+                    if ((betTableState.stackList[i] !== 0) && (!betTableState.allin[i])) {
                         count ++
                     }
                 }
                 this.numberOfPlayerInCurrentRound = count
             }
-            if (!state.stopBetting) {
-                if (state.numberOfAction === 0) {
-                    this.numberOfPlayerInCurrentRound = state.numberOfPlayer
+            if (!betTableState.stopBetting) {
+                if (betTableState.numberOfAction === 0) {
+                    this.numberOfPlayerInCurrentRound = betTableState.numberOfPlayer
                 } else {
-                    if (state.numberOfAction >= this.numberOfPlayerInCurrentRound) {
+                    if (betTableState.numberOfAction >= this.numberOfPlayerInCurrentRound) {
                         if (this.betTotalIsEqual()) {
                             this.changeTitle()
-                            state.actionPos = null
-                            state.numberOfAction = 0
-                            state.round ++
-                            state.everyGameHistory.unshift({ stt: 'move'})
+                            betTableState.actionPos = null
+                            betTableState.numberOfAction = 0
+                            betTableState.round ++
+                            betTableState.everyGameHistory.unshift({ stt: 'move'})
                         } else {
-                            state.actionPos = this.closestToTheLeft(state.actionPos)
+                            betTableState.actionPos = this.closestToTheLeft(betTableState.actionPos)
                         }
                     } else {
-                        state.actionPos = this.closestToTheLeft(state.actionPos)
+                        betTableState.actionPos = this.closestToTheLeft(betTableState.actionPos)
                     }
                 }
             }
@@ -60,17 +60,17 @@ export default {
     methods: {
         changeTitle() {
             for (let i = 0; i < 6; i ++) {
-                if ((state.botTitle[i] !== 'Fold') && (state.botTitle[i] !== 'Eliminated') && (state.botTitle[i] !== 'All in')) {
-                    state.botTitle[i] = `Bot${i}`
+                if ((betTableState.botTitle[i] !== 'Fold') && (betTableState.botTitle[i] !== 'Eliminated') && (betTableState.botTitle[i] !== 'All in')) {
+                    betTableState.botTitle[i] = `Bot${i}`
                 }
             }
         },
         betTotalIsEqual() {
-            if ((state.numberOfAction !== 0) && (state.numberOfPlayer > 1)) {
-                let bigestBetSize = Math.max(...state.betTotalList)
-                for (let i in state.playerStatus) {
-                    if (state.playerStatus[i]) {
-                        if (state.betTotalList[i] < bigestBetSize) {
+            if ((betTableState.numberOfAction !== 0) && (betTableState.numberOfPlayer > 1)) {
+                let bigestBetSize = Math.max(...betTableState.betTotalList)
+                for (let i in betTableState.playerStatus) {
+                    if (betTableState.playerStatus[i]) {
+                        if (betTableState.betTotalList[i] < bigestBetSize) {
                             return false
                         }
                     }

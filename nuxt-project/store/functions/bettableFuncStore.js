@@ -1,4 +1,4 @@
-import { state } from "../data/betTableState";
+import { betTableState } from "../data/betTableState";
 export function useMyBettbFunc() {
   const convertChatGPTRespone = (res, playerPos) => {
     let ans
@@ -17,8 +17,8 @@ export function useMyBettbFunc() {
     } else {
       ans = 'Fold'
     }
-    let biggestBetSize = Math.max(...state.betTotalList)
-    if (biggestBetSize > state.betTotalList[playerPos]) {
+    let biggestBetSize = Math.max(...betTableState.betTotalList)
+    if (biggestBetSize > betTableState.betTotalList[playerPos]) {
       if (ans === 'Check') {
         ans = 'Fold'
       }
@@ -30,21 +30,21 @@ export function useMyBettbFunc() {
     return ans
   }
   const getPrompt = (playerPos) => {
-    let hand = `${state.cards[playerPos * 2]}, ${state.cards[playerPos * 2 + 1]}`
+    let hand = `${betTableState.cards[playerPos * 2]}, ${betTableState.cards[playerPos * 2 + 1]}`
     let prompt = `
       Bạn là một AI được thiết kế để chơi poker Texas Hold'em thay cho người chơi. Bạn sẽ đưa ra quyết định dựa trên các thông tin sau:
 
-- Lịch sử cược trong ván bài(bao gồm cả bạn, player ${playerPos} chính là bạn): Bao gồm các hành động đã diễn ra trong ván bài (call, raise, fold, check, v.v.) của tất cả người chơi từ đầu ván đến thời điểm hiện tại: ${JSON.stringify(state.gameHistory)}.
+- Lịch sử cược trong ván bài(bao gồm cả bạn, player ${playerPos} chính là bạn): Bao gồm các hành động đã diễn ra trong ván bài (call, raise, fold, check, v.v.) của tất cả người chơi từ đầu ván đến thời điểm hiện tại: ${JSON.stringify(betTableState.gameHistory)}.
 
-- Số lượng chip còn lại của tất cả người chơi(bao gồm cả bạn): Biết được số chip hiện có của mỗi người chơi giúp bạn đánh giá khả năng cược của họ và đưa ra chiến lược phù hợp. player 0 have ${state.stackList[0]}; player 1 have ${state.stackList[1]}; player 2 have ${state.stackList[2]}; player 3 have ${state.stackList[3]}; player 4 have ${state.stackList[4]}; player 5 have ${state.stackList[5]}
+- Số lượng chip còn lại của tất cả người chơi(bao gồm cả bạn): Biết được số chip hiện có của mỗi người chơi giúp bạn đánh giá khả năng cược của họ và đưa ra chiến lược phù hợp. player 0 have ${betTableState.stackList[0]}; player 1 have ${betTableState.stackList[1]}; player 2 have ${betTableState.stackList[2]}; player 3 have ${betTableState.stackList[3]}; player 4 have ${betTableState.stackList[4]}; player 5 have ${betTableState.stackList[5]}
 
-- Số lượng người chơi: Tổng số người chơi đang tham gia ván bài, bao gồm cả bạn ${state.numberOfPlayer}
+- Số lượng người chơi: Tổng số người chơi đang tham gia ván bài, bao gồm cả bạn ${betTableState.numberOfPlayer}
 
-- Tổng pot: Số chip hiện có trong pot (tổng cược của tất cả người chơi) ${state.pot}
+- Tổng pot: Số chip hiện có trong pot (tổng cược của tất cả người chơi) ${betTableState.pot}
 
-- Cược của từng người chơi: Số chip mà mỗi người chơi đã cược vào pot trong lượt hiện tại. player 0 have ${state.betTotalList[0]}; player 1 have ${state.betTotalList[1]}; player 2 have ${state.betTotalList[2]}; player 3 have ${state.betTotalList[3]}; player 4 have ${state.betTotalList[4]}; player 5 have ${state.betTotalList[5]}
+- Cược của từng người chơi: Số chip mà mỗi người chơi đã cược vào pot trong lượt hiện tại. player 0 have ${betTableState.betTotalList[0]}; player 1 have ${betTableState.betTotalList[1]}; player 2 have ${betTableState.betTotalList[2]}; player 3 have ${betTableState.betTotalList[3]}; player 4 have ${betTableState.betTotalList[4]}; player 5 have ${betTableState.betTotalList[5]}
 
-- Các lá bài chung (Community Cards): Các lá bài đã được lật trên bàn, bao gồm flop, turn, và river (nếu có). ${JSON.stringify(state.communityCards)}
+- Các lá bài chung (Community Cards): Các lá bài đã được lật trên bàn, bao gồm flop, turn, và river (nếu có). ${JSON.stringify(betTableState.communityCards)}
 
 - hai lá bài riêng của người chơi: Hai lá bài mà bạn đang nắm giữ, chỉ bạn biết. ${hand}
 
@@ -121,29 +121,29 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
           method: 'post',
           body: JSON.stringify({ message: req })
         })
-        return convertChatGPTRespone(res, state.actionPos)
+        return convertChatGPTRespone(res, betTableState.actionPos)
     }
     const closestToTheLeft = (a) => {
       if (a === null) {
         return a
       }
-      if (state.numberOfPlayer === 1) {
-        for (let i in state.playerStatus) {
-          if (state.playerStatus[i]) {
+      if (betTableState.numberOfPlayer === 1) {
+        for (let i in betTableState.playerStatus) {
+          if (betTableState.playerStatus[i]) {
             return parseInt(i)
           }
         }
-      } else if (state.numberOfPlayer === 0) {
+      } else if (betTableState.numberOfPlayer === 0) {
         return null
       }
       if (a === 5) {
-          if (state.playerStatus[0]) {
+          if (betTableState.playerStatus[0]) {
             return 0
           } else {
             return closestToTheLeft(0)
           }
       } else {
-        if (state.playerStatus[a+1]) {
+        if (betTableState.playerStatus[a+1]) {
           return a + 1
         } else {
           return closestToTheLeft(a + 1)
@@ -154,23 +154,23 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       if (a === null) {
         return a
       }
-      if (state.numberOfPlayer === 1) {
-        for (let i in state.playerStatus) {
-          if (state.playerStatus[i]) {
+      if (betTableState.numberOfPlayer === 1) {
+        for (let i in betTableState.playerStatus) {
+          if (betTableState.playerStatus[i]) {
             return parseInt(i)
           }
         }
-      } else if (state.numberOfPlayer === 0) {
+      } else if (betTableState.numberOfPlayer === 0) {
         return null
       }
       if (a === 0) {
-          if (state.playerStatus[5]) {
+          if (betTableState.playerStatus[5]) {
             return 5
           } else {
             return closestToTheRight(5)
           }
       } else {
-        if (state.playerStatus[a-1]) {
+        if (betTableState.playerStatus[a-1]) {
           return a - 1
         } else {
           return closestToTheRight(a - 1)
@@ -179,33 +179,33 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
     }
     const reSetAllData = () => {
       reSetData()
-      state.stackList = [2000, 2000, 2000, 2000, 2000, 2000]
-      state.numberOfGame = 1
-      state.blindPos = null
-      state.smBlind = null
-      state.dealer = null
-      state.startGame = false
-      state.buttonDisplay = false
+      betTableState.stackList = [2000, 2000, 2000, 2000, 2000, 2000]
+      betTableState.numberOfGame = 1
+      betTableState.blindPos = null
+      betTableState.smBlind = null
+      betTableState.dealer = null
+      betTableState.startGame = false
+      betTableState.buttonDisplay = false
     }
     const reSetData = () => {
-      state.cards = mixCards()
-      state.round = 0
-      state.numberOfPlayer = 6
-      state.betTotalList = [0, 0, 0, 0, 0, 0]
-      state.pot = 0
-      state.playerStatus = [true, true, true, true, true, true]
-      state.communityCards = [null, null, null, null, null]
-      state.actionPos = null
-      state.numberOfAction = 0
-      state.winner = []
-      state.lstOfHand = []
-      state.gameHistory = []
-      state.stopBetting = false
-      state.haveAllinCase = false
-      state.allin = [false, false, false, false, false, false]
-      state.numberOfAllinPlayer = 0
-      state.sidePot = [0, 0, 0, 0, 0, 0]
-      state.numberOfGame ++
+      betTableState.cards = mixCards()
+      betTableState.round = 0
+      betTableState.numberOfPlayer = 6
+      betTableState.betTotalList = [0, 0, 0, 0, 0, 0]
+      betTableState.pot = 0
+      betTableState.playerStatus = [true, true, true, true, true, true]
+      betTableState.communityCards = [null, null, null, null, null]
+      betTableState.actionPos = null
+      betTableState.numberOfAction = 0
+      betTableState.winner = []
+      betTableState.lstOfHand = []
+      betTableState.gameHistory = []
+      betTableState.stopBetting = false
+      betTableState.haveAllinCase = false
+      betTableState.allin = [false, false, false, false, false, false]
+      betTableState.numberOfAllinPlayer = 0
+      betTableState.sidePot = [0, 0, 0, 0, 0, 0]
+      betTableState.numberOfGame ++
     }
     const mixCards = () => {
       let a, c
@@ -277,32 +277,32 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         }
       }
       if (round === 0) {
-          state.gameHistory.push(`player: ${pos}, round: preflop, action: ${act}`)
-          state.everyGameHistory.unshift({
+          betTableState.gameHistory.push(`player: ${pos}, round: preflop, action: ${act}`)
+          betTableState.everyGameHistory.unshift({
             stt: 'action',
             player: pos,
             round: 'preflop',
             action: act
           })
       } else if (round === 1) {
-          state.gameHistory.push(`player: ${pos}, round: flop, action: ${act}`)
-          state.everyGameHistory.unshift({
+          betTableState.gameHistory.push(`player: ${pos}, round: flop, action: ${act}`)
+          betTableState.everyGameHistory.unshift({
             stt: 'action',
             player: pos,
             round: 'flop',
             action: act
           })
       } else if (round === 2) {
-          state.gameHistory.push(`player: ${pos}, round: turn, action: ${act}`)
-          state.everyGameHistory.unshift({
+          betTableState.gameHistory.push(`player: ${pos}, round: turn, action: ${act}`)
+          betTableState.everyGameHistory.unshift({
             stt: 'action',
             player: pos,
             round: 'turn',
             action: act
           })
       } else {
-          state.gameHistory.push(`player: ${pos}, round: river, action: ${act}`)
-          state.everyGameHistory.unshift({
+          betTableState.gameHistory.push(`player: ${pos}, round: river, action: ${act}`)
+          betTableState.everyGameHistory.unshift({
             stt: 'action',
             player: pos,
             round: 'river',
@@ -315,33 +315,33 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       if (act === 'Call') {
         act = 0
       } else if (act === 'All in') {
-        act = state.stackList[pos]
+        act = betTableState.stackList[pos]
       }
-      let m = (Math.max(...state.betTotalList) - state.betTotalList[pos]) + act
-      if (m >= state.stackList[pos]) {
-        state.botTitle[pos] = 'All in'
-        state.betTotalList[pos] += state.stackList[pos]
-        state.haveAllinCase = true
-        state.allin[pos] = true
-        state.numberOfAllinPlayer ++
-        state.numberOfPlayer -= 1
-        state.playerStatus[pos] = false
-        state.stackList[pos] = 0
-        addGameHistory(state.round, 'All in', state.actionPos)
+      let m = (Math.max(...betTableState.betTotalList) - betTableState.betTotalList[pos]) + act
+      if (m >= betTableState.stackList[pos]) {
+        betTableState.botTitle[pos] = 'All in'
+        betTableState.betTotalList[pos] += betTableState.stackList[pos]
+        betTableState.haveAllinCase = true
+        betTableState.allin[pos] = true
+        betTableState.numberOfAllinPlayer ++
+        betTableState.numberOfPlayer -= 1
+        betTableState.playerStatus[pos] = false
+        betTableState.stackList[pos] = 0
+        addGameHistory(betTableState.round, 'All in', betTableState.actionPos)
         return true
       }
-      addGameHistory(state.round, act, state.actionPos)
+      addGameHistory(betTableState.round, act, betTableState.actionPos)
       return false
     }
     const addSidePot = () => {
-        if (state.haveAllinCase) {
+        if (betTableState.haveAllinCase) {
             for (let i = 0; i < 6; i ++) {
-                if ((state.sidePot[i] === 0) && (state.allin[i])) {
+                if ((betTableState.sidePot[i] === 0) && (betTableState.allin[i])) {
                     for (let j = 0; j < 6; j ++) {
-                        if (state.betTotalList[j] > state.betTotalList[i]) {
-                            state.sidePot[i] += state.betTotalList[i]
+                        if (betTableState.betTotalList[j] > betTableState.betTotalList[i]) {
+                            betTableState.sidePot[i] += betTableState.betTotalList[i]
                         } else {
-                            state.sidePot[i] += state.betTotalList[j]
+                            betTableState.sidePot[i] += betTableState.betTotalList[j]
                         }
                     }
                 }

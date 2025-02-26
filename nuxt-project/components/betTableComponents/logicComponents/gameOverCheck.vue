@@ -1,16 +1,16 @@
 <template>
-    <ReNewGame v-if="state.isGameOver"/>
+    <ReNewGame v-if="betTableState.isGameOver"/>
 </template>
 
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import ReNewGame from './reNewGame.vue';
 export default {
     setup() {
         return {
-            state,
+            betTableState,
         }
     },
     data() {
@@ -22,11 +22,11 @@ export default {
         }
     },
     mounted() {
-        watch(() => [state.numberOfAction, state.round], (newValue, oldValue) => {
-            if (!state.haveAllinCase) {
-                if ((state.numberOfPlayer === 1) || (state.round === 4)) {
-                    state.isGameOver = true
-                    state.buttonDisplay = false
+        watch(() => [betTableState.numberOfAction, betTableState.round], (newValue, oldValue) => {
+            if (!betTableState.haveAllinCase) {
+                if ((betTableState.numberOfPlayer === 1) || (betTableState.round === 4)) {
+                    betTableState.isGameOver = true
+                    betTableState.buttonDisplay = false
                 }
             }
         }, { deep: true });

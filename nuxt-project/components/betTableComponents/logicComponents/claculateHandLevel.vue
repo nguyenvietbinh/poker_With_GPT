@@ -4,14 +4,14 @@
 
 <script>
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore'
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { watch } from 'vue';
 export default {
     setup() {
         const { searchWinner } = useMyHandLvFunc()
         const { handRanking } = useMyHandLvFunc()
         return {
-            state,
+            betTableState,
             searchWinner,
             handRanking
         }
@@ -21,10 +21,10 @@ export default {
         }
     },
     mounted() {
-        watch(() => state.lstOfHand, (newval, oldval) => {
-            if (state.lstOfHand.length === (state.numberOfPlayer + state.numberOfAllinPlayer)) {
-                if ((state.numberOfPlayer + state.numberOfAllinPlayer) > 1) {
-                    state.winner = this.searchWinner(this.handRanking(state.lstOfHand))
+        watch(() => betTableState.lstOfHand, (newval, oldval) => {
+            if (betTableState.lstOfHand.length === (betTableState.numberOfPlayer + betTableState.numberOfAllinPlayer)) {
+                if ((betTableState.numberOfPlayer + betTableState.numberOfAllinPlayer) > 1) {
+                    betTableState.winner = this.searchWinner(this.handRanking(betTableState.lstOfHand))
                 }
             }
         }, { deep: true })

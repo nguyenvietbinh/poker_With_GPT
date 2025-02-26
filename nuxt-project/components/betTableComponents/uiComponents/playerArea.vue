@@ -20,20 +20,20 @@
                 <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
             </div>
         </div>
-        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="state.betTotalList[n-1] !== 0">{{ betTotalList[n-1] }}</div>
-        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ stackList[n-1] }}</div>
+        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="betTableState.betTotalList[n-1] !== 0">{{ betTableState.betTotalList[n-1] }}</div>
+        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ betTableState.stackList[n-1] }}</div>
     </div>
 </template>
 
 
 <script>
 import { style } from '~/store/data/taildwindStyle';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { audio } from '~/store/data/audioStore';
 export default {
     setup() {
         return {
-            state,
+            betTableState,
             style,
             audio
         }
@@ -45,11 +45,11 @@ export default {
         }
     },
     mounted() {
-        watch(() => state.betTotalList, (newval, oldval) => {
+        watch(() => betTableState.betTotalList, (newval, oldval) => {
             for (let i = 0; i < 6; i ++) {
-                if (state.betTotalList[i] !== this.betTotalList[i]) {
+                if (betTableState.betTotalList[i] !== this.betTotalList[i]) {
                     let currentValue = this.betTotalList[i]
-                    let targetValue = state.betTotalList[i]
+                    let targetValue = betTableState.betTotalList[i]
                     const step = Math.ceil((targetValue - currentValue) / 50)
                     const interval = setInterval(() => {
                         currentValue += step
@@ -69,11 +69,11 @@ export default {
                 }
             }
         },{ deep: true })
-        watch(() => state.stackList, (newval, oldval) => {
+        watch(() => betTableState.stackList, (newval, oldval) => {
             for (let i = 0; i < 6; i ++) {
-                if (state.stackList[i] !== this.stackList[i]) {
+                if (betTableState.stackList[i] !== this.stackList[i]) {
                     let currentValue = this.stackList[i]
-                    let targetValue = state.stackList[i]
+                    let targetValue = betTableState.stackList[i]
                     const step = Math.ceil((targetValue - currentValue) / 50)
                     const interval = setInterval(() => {
                         currentValue += step

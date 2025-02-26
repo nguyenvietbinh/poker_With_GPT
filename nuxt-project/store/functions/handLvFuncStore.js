@@ -1,4 +1,4 @@
-import { state } from "../data/betTableState";
+import { betTableState } from "../data/betTableState";
 export function useMyHandLvFunc() {
     const getAllInWinRate = (hands, communityCards) => {
         let win = 0
@@ -13,11 +13,11 @@ export function useMyHandLvFunc() {
         return Math.round(win/10)
     }
     const genRandomAllInCase = (hands, communityCards) => {
-        let copyCards = [...state.cards]
+        let copyCards = [...betTableState.cards]
         let copyCommunityCards = [...communityCards]
         let allInCards = [...hands]
         let Hands = []
-        if ((!state.playerStatus[0]) && (!state.allin[0])) {
+        if ((!betTableState.playerStatus[0]) && (!betTableState.allin[0])) {
             return 0
         }
         for (let i = 0; i < allInCards.length; i ++) {
@@ -46,7 +46,7 @@ export function useMyHandLvFunc() {
     const genRandomCase = (hand, communityCards, n) => {
         let copyHand = [...hand]
         let copyCommunityCards = [...communityCards]
-        let copyCards = [...state.cards]
+        let copyCards = [...betTableState.cards]
         copyCards = copyCards.filter(card => card !== copyHand[0])
         copyCards = copyCards.filter(card => card !== copyHand[1])
         let ans = []
@@ -83,7 +83,7 @@ export function useMyHandLvFunc() {
         let winners = []
         for (let i = 0; i < winnerHands.length; i ++) {
             for (let j = 0; j < 6; j ++) {
-                if (winnerHands[i][0] === state.cards[2 * j]) {
+                if (winnerHands[i][0] === betTableState.cards[2 * j]) {
                     winners.push(j)
                 }
             }

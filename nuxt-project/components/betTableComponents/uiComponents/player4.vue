@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 export default {  
     setup() {
         return {

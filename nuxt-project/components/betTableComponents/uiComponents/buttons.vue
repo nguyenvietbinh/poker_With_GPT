@@ -1,21 +1,21 @@
 <template>
     <div class="w-full h-[7.5vh] absolute bottom-[-7.5vh]">
-        <button @click="foldCheckClick" v-if="state.buttonDisplay" :class="`btn fold ${style.button} left-0`">Fold/Check</button>
-        <button @click="callClick" v-if="state.buttonDisplay" :class="`btn call ${style.button} absolute left-[35%]`">Call</button>
-        <input @keyup="inputCheck" v-if="state.buttonDisplay" min="0" type="number" placeholder="Raise" id="" class="h-full raise input bg-blue-500 hover:bg-blue-600 input-bordered w-[30%] mt-[1vw] md:mt-[0.5vh] absolute right-0 text-white rounded-md">
+        <button @click="foldCheckClick" v-if="betTableState.buttonDisplay" :class="`btn fold ${style.button} left-0`">Fold/Check</button>
+        <button @click="callClick" v-if="betTableState.buttonDisplay" :class="`btn call ${style.button} absolute left-[35%]`">Call</button>
+        <input @keyup="inputCheck" v-if="betTableState.buttonDisplay" min="0" type="number" placeholder="Raise" id="" class="h-full raise input bg-blue-500 hover:bg-blue-600 input-bordered w-[30%] mt-[1vw] md:mt-[0.5vh] absolute right-0 text-white rounded-md">
     </div>
 </template>
 
 
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { style } from '~/store/data/taildwindStyle';
 export default {
 
     setup() {
         return {
-            state,
+            betTableState,
             style
         }
     },
@@ -29,25 +29,25 @@ export default {
     },
     methods: {
         foldCheckClick() {
-            if (state.betTotalList[0] === Math.max(...state.betTotalList)) {
-                state.playerAct = 'Check'
-                state.numberOfAction ++
-                state.buttonDisplay = false
+            if (betTableState.betTotalList[0] === Math.max(...betTableState.betTotalList)) {
+                betTableState.playerAct = 'Check'
+                betTableState.numberOfAction ++
+                betTableState.buttonDisplay = false
             } else {
-                state.playerAct = 'Fold'
-                state.numberOfAction ++
-                state.buttonDisplay = false
+                betTableState.playerAct = 'Fold'
+                betTableState.numberOfAction ++
+                betTableState.buttonDisplay = false
             }
         },
         callClick() {
-            if (state.betTotalList[0] === Math.max(...state.betTotalList)) {
-                state.playerAct = 'Check'
-                state.numberOfAction ++
-                state.buttonDisplay = false
+            if (betTableState.betTotalList[0] === Math.max(...betTableState.betTotalList)) {
+                betTableState.playerAct = 'Check'
+                betTableState.numberOfAction ++
+                betTableState.buttonDisplay = false
             } else {
-                state.playerAct = 'Call'
-                state.numberOfAction ++
-                state.buttonDisplay = false
+                betTableState.playerAct = 'Call'
+                betTableState.numberOfAction ++
+                betTableState.buttonDisplay = false
             }
         },
         inputCheck() {
@@ -60,10 +60,10 @@ export default {
                 if (event.target.value === '') {
                     this.callClick()
                 } else {
-                    state.playerAct = parseInt(event.target.value)
+                    betTableState.playerAct = parseInt(event.target.value)
                 }
-                state.numberOfAction ++
-                state.buttonDisplay = false
+                betTableState.numberOfAction ++
+                betTableState.buttonDisplay = false
             }
         }
     }

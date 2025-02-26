@@ -1,10 +1,10 @@
 <template>
-    <OpenAllinCards v-if="state.stopBetting"/>
+    <OpenAllinCards v-if="betTableState.stopBetting"/>
 </template>
 
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { watch } from 'vue';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import SplitAllinPot from './SplitAllinPot.vue';
@@ -25,15 +25,15 @@ export default {
         }
     },
     mounted() {
-        watch(() => state.numberOfAction, (newval, oldval) => {
-            if ((state.numberOfPlayer === 0) || (state.round === 4)) {
-                state.stopBetting = true
-            } else if (state.numberOfPlayer === 1) {
+        watch(() => betTableState.numberOfAction, (newval, oldval) => {
+            if ((betTableState.numberOfPlayer === 0) || (betTableState.round === 4)) {
+                betTableState.stopBetting = true
+            } else if (betTableState.numberOfPlayer === 1) {
                 this.bigestAllin = this.getBigestAllin()
                 for (let i = 0; i < 6; i ++) {
-                    if (state.playerStatus[i]) {
-                        if (state.betTotalList[i] >= this.bigestAllin) {
-                            state.stopBetting = true
+                    if (betTableState.playerStatus[i]) {
+                        if (betTableState.betTotalList[i] >= this.bigestAllin) {
+                            betTableState.stopBetting = true
                         }
                     }
                 }
@@ -43,10 +43,10 @@ export default {
     methods: {
         getBigestAllin() {
             let ans = 0
-            for (let i in state.allin) {
-                if (state.allin[i]) {
-                    if (state.betTotalList[i] > ans) {
-                        ans = state.betTotalList[i]
+            for (let i in betTableState.allin) {
+                if (betTableState.allin[i]) {
+                    if (betTableState.betTotalList[i] > ans) {
+                        ans = betTableState.betTotalList[i]
                     }
                 }
             }

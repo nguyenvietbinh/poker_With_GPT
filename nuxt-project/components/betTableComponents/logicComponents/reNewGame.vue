@@ -4,7 +4,7 @@
 
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import StartGame from './startGame.vue';
 export default {
@@ -14,7 +14,7 @@ export default {
         const { closestToTheRight } = useMyBettbFunc()
         const { disPlayCard } = useMyBettbFunc()
         return {
-            state,
+            betTableState,
             reSetData,
             closestToTheRight,
             closestToTheLeft,
@@ -36,17 +36,17 @@ export default {
         this.reSetData()
         setTimeout(() => {
             this.newGame = true
-            state.botTitle = ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5']
+            betTableState.botTitle = ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5']
             for (let i = 0; i < 6; i ++) {
-                if (state.stackList[i] <= 0) {
-                    state.playerStatus[i] = false
-                    state.botTitle[i] = 'Eliminated'
+                if (betTableState.stackList[i] <= 0) {
+                    betTableState.playerStatus[i] = false
+                    betTableState.botTitle[i] = 'Eliminated'
                 }
             }
-            state.numberOfPlayer = this.count()
-            state.dealer = this.closestToTheLeft(state.dealer)
-            state.smBlind = this.closestToTheLeft(state.dealer)
-            state.blindPos = this.closestToTheLeft(state.smBlind)
+            betTableState.numberOfPlayer = this.count()
+            betTableState.dealer = this.closestToTheLeft(betTableState.dealer)
+            betTableState.smBlind = this.closestToTheLeft(betTableState.dealer)
+            betTableState.blindPos = this.closestToTheLeft(betTableState.smBlind)
             this.reNewGame()
         }, 10000);
 
@@ -61,7 +61,7 @@ export default {
                 element.src = '/img/cards/back.png'
             });
             for (let i = 0; i < 6; i ++) {
-                if (state.playerStatus[i]) {
+                if (betTableState.playerStatus[i]) {
                     this.playerCards[i * 2].style.display = 'block'
                     this.playerCards[i * 2 + 1].style.display = 'block'
                     this.playerAvatar[i].style.backgroundColor = 'white'
@@ -75,7 +75,7 @@ export default {
         count() {
             let c = 0
             for (let i = 0; i < 6; i ++) {
-                if (state.playerStatus[i]) {
+                if (betTableState.playerStatus[i]) {
                     c ++
                 }
             } 

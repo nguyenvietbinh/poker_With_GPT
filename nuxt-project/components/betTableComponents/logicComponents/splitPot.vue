@@ -4,7 +4,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import ClaculateHandLevel from './claculateHandLevel.vue';
 
@@ -13,7 +13,7 @@ export default {
     setup() {
         const { disPlayCard } = useMyBettbFunc() 
         return {
-            state,
+            betTableState,
             disPlayCard
         }
     },
@@ -24,19 +24,19 @@ export default {
     },
     mounted() {
         this.playerCards = document.querySelectorAll('.playerCard')
-        watch(() => state.isGameOver, (newval, oldval) => {
-            if (state.isGameOver) {
+        watch(() => betTableState.isGameOver, (newval, oldval) => {
+            if (betTableState.isGameOver) {
                 for (let i = 0; i < 6; i ++) {
-                    if (state.playerStatus[i]) {
-                        this.disPlayCard(state.cards[i * 2], this.playerCards[i * 2])
-                        this.disPlayCard(state.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
+                    if (betTableState.playerStatus[i]) {
+                        this.disPlayCard(betTableState.cards[i * 2], this.playerCards[i * 2])
+                        this.disPlayCard(betTableState.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
                     }
                 }
-                if (state.numberOfPlayer === 1) {
-                    for (let i in state.playerStatus) {
-                        if (state.playerStatus[i]) {
-                            state.stackList[i] += state.pot
-                            state.everyGameHistory.unshift({
+                if (betTableState.numberOfPlayer === 1) {
+                    for (let i in betTableState.playerStatus) {
+                        if (betTableState.playerStatus[i]) {
+                            betTableState.stackList[i] += betTableState.pot
+                            betTableState.everyGameHistory.unshift({
                                 stt: 'end',
                                 winner: [i],
                             })
@@ -44,25 +44,25 @@ export default {
                     }
                 } else {
                     for (let i = 0; i < 6; i ++) {
-                        if (state.playerStatus[i]) {                           
-                            state.lstOfHand.push([state.cards[i * 2], state.cards[i * 2 + 1]].concat(state.communityCards))
+                        if (betTableState.playerStatus[i]) {                           
+                            betTableState.lstOfHand.push([betTableState.cards[i * 2], betTableState.cards[i * 2 + 1]].concat(betTableState.communityCards))
                         }
                     }
                 }
             }
         })
-        watch(() => state.winner, (newval, oldval)  => {
-            if ((!state.haveAllinCase) && (state.winner.length >= 1)) {
-                for (let i = 0; i < state.winner.length; i ++) {
-                    if (state.winner.includes(0)) {
-                        state.winRate = 100
+        watch(() => betTableState.winner, (newval, oldval)  => {
+            if ((!betTableState.haveAllinCase) && (betTableState.winner.length >= 1)) {
+                for (let i = 0; i < betTableState.winner.length; i ++) {
+                    if (betTableState.winner.includes(0)) {
+                        betTableState.winRate = 100
                     } else {
-                        state.winRate = 0
+                        betTableState.winRate = 0
                     }
-                    state.stackList[state.winner[i]] += Math.floor(state.pot/state.winner.length)
-                    state.everyGameHistory.unshift({
+                    betTableState.stackList[betTableState.winner[i]] += Math.floor(betTableState.pot/betTableState.winner.length)
+                    betTableState.everyGameHistory.unshift({
                         stt: 'end',
-                        winner: state.winner,
+                        winner: betTableState.winner,
                     })
                 }
             }

@@ -7,24 +7,24 @@
 <script>
 import { watch } from 'vue';
 import { audio } from '~/store/data/audioStore';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 export default {
     setup() {
         return {
             audio,
-            state
+            betTableState
         }
     },
     mounted() {
-        watch(() => [state.playerAct, state.numberOfAction], (newval, oldval) => {
-            if (!state.mute) {
-                if (state.playerAct === 'Check') {
+        watch(() => [betTableState.playerAct, betTableState.numberOfAction], (newval, oldval) => {
+            if (!betTableState.mute) {
+                if (betTableState.playerAct === 'Check') {
                     this.playCheckAudio()
-                } else if (state.playerAct === 'Fold') {
+                } else if (betTableState.playerAct === 'Fold') {
                     audio.foldingSound.play()
-                } else if (state.playerAct === 'Call') {
+                } else if (betTableState.playerAct === 'Call') {
                     this.playCallAudio()
-                } else if (!isNaN(state.playerAct)) {
+                } else if (!isNaN(betTableState.playerAct)) {
                     audio.coinDrop.play()
                 }
             }

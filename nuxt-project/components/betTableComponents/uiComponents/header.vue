@@ -3,26 +3,26 @@
         <NuxtLink @click="reSetAllData" to="/">
             <img src="/img/logo.png" alt="" class="logo h-[60%] cursor-pointer w-auto absolute left-[5vw] md:left-[2.5vh] top-[50%] translate-y-[-50%]">
         </NuxtLink>
-        <img @click="toggleMute" v-if="!state.mute" src="/img/unmute.png" alt="" class="h-[10vw] md:h-[5vh] w-[10vw] md:w-[5vh] cursor-pointer absolute right-[5vw] md:right-[2.5vh] top-[50%] translate-y-[-50%]">
-        <img @click="toggleMute" v-if="state.mute" src="/img/mute.png" alt="" class="h-[10vw] md:h-[5vh] w-[10vw] md:w-[5vh] cursor-pointer absolute right-[5vw] md:right-[2.5vh] top-[50%] translate-y-[-50%]">
+        <img @click="toggleMute" v-if="!betTableState.mute" src="/img/unmute.png" alt="" class="h-[10vw] md:h-[5vh] w-[10vw] md:w-[5vh] cursor-pointer absolute right-[5vw] md:right-[2.5vh] top-[50%] translate-y-[-50%]">
+        <img @click="toggleMute" v-if="betTableState.mute" src="/img/mute.png" alt="" class="h-[10vw] md:h-[5vh] w-[10vw] md:w-[5vh] cursor-pointer absolute right-[5vw] md:right-[2.5vh] top-[50%] translate-y-[-50%]">
     </div>
 </template>
 
 
 <script>
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 export default {
     setup() {
         const { reSetAllData } = useMyBettbFunc()
         return {
             reSetAllData,
-            state
+            betTableState
         }
     },
     methods: {
         toggleMute() {
-            state.mute = !state.mute
+            betTableState.mute = !betTableState.mute
         }
     }
 }

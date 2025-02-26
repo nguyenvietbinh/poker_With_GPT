@@ -5,7 +5,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 
@@ -15,7 +15,7 @@ export default {
         const { disPlayCard } = useMyBettbFunc()
         const { closestToTheLeft } = useMyBettbFunc()
         return {
-            state,
+            betTableState,
             disPlayCard,
             closestToTheLeft,
         }
@@ -27,25 +27,25 @@ export default {
     },
     mounted() {
         this.communityCards = document.querySelectorAll('.communityCards')
-        watch(() => state.round, (newval, oldval) => {
-            if (!state.stopBetting) {
-                if (state.round === 1) {
-                    this.disPlayCard(state.cards[51], this.communityCards[0])
-                    state.communityCards[0] = state.cards[51]
-                    this.disPlayCard(state.cards[50], this.communityCards[1])
-                    state.communityCards[1] = state.cards[50]
-                    this.disPlayCard(state.cards[49], this.communityCards[2])
-                    state.communityCards[2] = state.cards[49]
-                    state.actionPos = this.closestToTheLeft(state.dealer)
-                } else if (state.round === 2) {
-                    this.disPlayCard(state.cards[48], this.communityCards[3])
-                    state.communityCards[3] = state.cards[48]
-                    state.actionPos = this.closestToTheLeft(state.dealer)
-                } else if (state.round === 3) {
-                    this.disPlayCard(state.cards[47], this.communityCards[4])
-                    state.communityCards[4] = state.cards[47]
-                    state.actionPos = this.closestToTheLeft(state.dealer)
-                } else if (state.round === 4) {
+        watch(() => betTableState.round, (newval, oldval) => {
+            if (!betTableState.stopBetting) {
+                if (betTableState.round === 1) {
+                    this.disPlayCard(betTableState.cards[51], this.communityCards[0])
+                    betTableState.communityCards[0] = betTableState.cards[51]
+                    this.disPlayCard(betTableState.cards[50], this.communityCards[1])
+                    betTableState.communityCards[1] = betTableState.cards[50]
+                    this.disPlayCard(betTableState.cards[49], this.communityCards[2])
+                    betTableState.communityCards[2] = betTableState.cards[49]
+                    betTableState.actionPos = this.closestToTheLeft(betTableState.dealer)
+                } else if (betTableState.round === 2) {
+                    this.disPlayCard(betTableState.cards[48], this.communityCards[3])
+                    betTableState.communityCards[3] = betTableState.cards[48]
+                    betTableState.actionPos = this.closestToTheLeft(betTableState.dealer)
+                } else if (betTableState.round === 3) {
+                    this.disPlayCard(betTableState.cards[47], this.communityCards[4])
+                    betTableState.communityCards[4] = betTableState.cards[47]
+                    betTableState.actionPos = this.closestToTheLeft(betTableState.dealer)
+                } else if (betTableState.round === 4) {
                     
                 }
             }

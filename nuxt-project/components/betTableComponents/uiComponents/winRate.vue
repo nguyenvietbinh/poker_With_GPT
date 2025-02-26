@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 export default {
     setup() {
         return {
-            state
+            betTableState
         }
     },
     data() {
@@ -21,9 +21,9 @@ export default {
     },
     mounted() {
         this.winrateBar = document.querySelector('.winrateBar')
-        watch(() => state.winRate, (newval, oldval) => {
+        watch(() => betTableState.winRate, (newval, oldval) => {
             let currentValue = this.winRate
-            if (state.winRate === 100) {
+            if (betTableState.winRate === 100) {
                 this.winrateBar.style.borderRadius = '9999px'
             } else {
                 this.winrateBar.style.borderTopRightRadius = '0px'

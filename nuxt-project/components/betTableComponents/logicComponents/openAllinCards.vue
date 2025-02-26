@@ -5,7 +5,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
 import SplitAllinPot from './SplitAllinPot.vue';
@@ -32,26 +32,26 @@ export default {
     mounted() {
         this.communityCards = document.querySelectorAll('.communityCards')
         this.playerCards = document.querySelectorAll('.playerCard')
-        if (state.numberOfAllinPlayer + state.numberOfPlayer > 1) {
+        if (betTableState.numberOfAllinPlayer + betTableState.numberOfPlayer > 1) {
             this.openCards()
         } else {
             this.startSplitPot = true
         }   
-        watch(() => state.round, (newval, oldval) => {
-                if (state.round === 1) {
-                    this.disPlayCard(state.cards[51], this.communityCards[0])
-                    state.communityCards[0] = state.cards[51]
-                    this.disPlayCard(state.cards[50], this.communityCards[1])
-                    state.communityCards[1] = state.cards[50]
-                    this.disPlayCard(state.cards[49], this.communityCards[2])
-                    state.communityCards[2] = state.cards[49]
-                } else if (state.round === 2) {
-                    this.disPlayCard(state.cards[48], this.communityCards[3])
-                    state.communityCards[3] = state.cards[48]
-                } else if (state.round === 3) {
-                    this.disPlayCard(state.cards[47], this.communityCards[4])
-                    state.communityCards[4] = state.cards[47]
-                } else if (state.round === 4) {
+        watch(() => betTableState.round, (newval, oldval) => {
+                if (betTableState.round === 1) {
+                    this.disPlayCard(betTableState.cards[51], this.communityCards[0])
+                    betTableState.communityCards[0] = betTableState.cards[51]
+                    this.disPlayCard(betTableState.cards[50], this.communityCards[1])
+                    betTableState.communityCards[1] = betTableState.cards[50]
+                    this.disPlayCard(betTableState.cards[49], this.communityCards[2])
+                    betTableState.communityCards[2] = betTableState.cards[49]
+                } else if (betTableState.round === 2) {
+                    this.disPlayCard(betTableState.cards[48], this.communityCards[3])
+                    betTableState.communityCards[3] = betTableState.cards[48]
+                } else if (betTableState.round === 3) {
+                    this.disPlayCard(betTableState.cards[47], this.communityCards[4])
+                    betTableState.communityCards[4] = betTableState.cards[47]
+                } else if (betTableState.round === 4) {
                     this.startSplitPot = true
                 }
         })
@@ -62,9 +62,9 @@ export default {
             this.openComunityCards()
         },
         openComunityCards() {
-            if (state.round !== 4) {
+            if (betTableState.round !== 4) {
                 setTimeout(() => {
-                    state.round ++
+                    betTableState.round ++
                     this.openComunityCards()
                 }, 3000);
             } else {
@@ -73,10 +73,10 @@ export default {
         },
         openPlayerCards() {
             for (let i = 0; i < 6; i ++) {
-                if ((state.playerStatus[i]) || (state.allin[i])) {
-                    this.allInCards.push([state.cards[i * 2], state.cards[i * 2 + 1]])
-                    this.disPlayCard(state.cards[i * 2], this.playerCards[i * 2])
-                    this.disPlayCard(state.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
+                if ((betTableState.playerStatus[i]) || (betTableState.allin[i])) {
+                    this.allInCards.push([betTableState.cards[i * 2], betTableState.cards[i * 2 + 1]])
+                    this.disPlayCard(betTableState.cards[i * 2], this.playerCards[i * 2])
+                    this.disPlayCard(betTableState.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
                 }
             }
         }

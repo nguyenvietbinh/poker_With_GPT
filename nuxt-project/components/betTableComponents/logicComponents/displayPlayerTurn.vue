@@ -5,12 +5,12 @@
 
 
 <script>
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 
 export default {
     setup() {
         return {
-            state
+            betTableState
         }
     },
     data() {
@@ -20,37 +20,37 @@ export default {
     },
     mounted() {
         this.avtBorder = document.querySelectorAll('.avatar')
-        watch(() => state.actionPos, (newval, oldval) => {
-            if (state.haveAllinCase) {
-                if (state.actionPos !== null) {
+        watch(() => betTableState.actionPos, (newval, oldval) => {
+            if (betTableState.haveAllinCase) {
+                if (betTableState.actionPos !== null) {
                     this.avtBorder.forEach((element, index) => {
                         element.style.borderColor = 'white'
-                        if((!state.playerStatus[index]) && (!state.allin[index])) {
+                        if((!betTableState.playerStatus[index]) && (!betTableState.allin[index])) {
                             element.style.borderColor = 'gray'
                         }
-                        this.avtBorder[state.actionPos].style.borderColor = 'green'
+                        this.avtBorder[betTableState.actionPos].style.borderColor = 'green'
                     });
                 } else {
                     this.avtBorder.forEach((element, index) => {
                         element.style.borderColor = 'white'
-                        if((!state.playerStatus[index]) && (!state.allin[index])) {
+                        if((!betTableState.playerStatus[index]) && (!betTableState.allin[index])) {
                             element.style.borderColor = 'gray'
                         }
                     });
                 }
             } else {
-                if (state.actionPos !== null) {
+                if (betTableState.actionPos !== null) {
                     this.avtBorder.forEach((element, index) => {
                         element.style.borderColor = 'white'
-                        if(!state.playerStatus[index]) {
+                        if(!betTableState.playerStatus[index]) {
                             element.style.borderColor = 'gray'
                         }
                     });
-                    this.avtBorder[state.actionPos].style.borderColor = 'green'
+                    this.avtBorder[betTableState.actionPos].style.borderColor = 'green'
                 } else {
                     this.avtBorder.forEach((element, index) => {
                         element.style.borderColor = 'white'
-                        if(!state.playerStatus[index]) {
+                        if(!betTableState.playerStatus[index]) {
                             element.style.borderColor = 'gray'
                         }
                     });

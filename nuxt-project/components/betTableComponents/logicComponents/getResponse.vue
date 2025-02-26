@@ -6,7 +6,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
     export default {
         setup() {
@@ -14,7 +14,7 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
             const { getPrompt } = useMyBettbFunc()
             const { closestToTheLeft } = useMyBettbFunc()
             return {
-                state,
+                betTableState,
                 sendReq,
                 getPrompt,
                 closestToTheLeft,
@@ -35,24 +35,24 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
             this.check = document.querySelector('.check')
             this.call = document.querySelector('.call')
             this.raise = document.querySelector('.raise')
-            watch(() => state.actionPos, (newval, oldval) => {
-                if ((state.actionPos !== null) && (!state.stopBetting)) {
-                    if (state.actionPos !== 0) {
+            watch(() => betTableState.actionPos, (newval, oldval) => {
+                if ((betTableState.actionPos !== null) && (!betTableState.stopBetting)) {
+                    if (betTableState.actionPos !== 0) {
                         this.getResponse().then(response => {
-                            state.playerAct = response
-                            state.numberOfAction ++
+                            betTableState.playerAct = response
+                            betTableState.numberOfAction ++
                         })
                     } else {
-                        state.buttonDisplay = true
+                        betTableState.buttonDisplay = true
                     }
                 }
             })
-            state.actionPos = this.closestToTheLeft(state.blindPos)
+            betTableState.actionPos = this.closestToTheLeft(betTableState.blindPos)
         },
         methods: {
 
             async getResponse() {
-                return await this.sendReq(this.getPrompt(state.actionPos))
+                return await this.sendReq(this.getPrompt(betTableState.actionPos))
             },
         }
     }

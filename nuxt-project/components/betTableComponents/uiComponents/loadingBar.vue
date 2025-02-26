@@ -9,7 +9,7 @@
 
 <script>
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 export default {
     setup() {
         const { convertCards } = useMyBettbFunc()
@@ -17,7 +17,7 @@ export default {
         return {
             convertCards,
             replaceAt,
-            state
+            betTableState
         }
     },
     data() {
@@ -43,7 +43,7 @@ export default {
         })
         Promise.all(this.imgToLoad.map(this.loadingImg))
         .then(() => {
-            state.loadingDone = true
+            betTableState.loadingDone = true
         })
         .catch((error) => {
             console.error('Lỗi khi tải ảnh:', error);

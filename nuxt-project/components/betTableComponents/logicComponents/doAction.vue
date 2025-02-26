@@ -5,7 +5,7 @@
 
 <script>
 import { watch } from 'vue';
-import { state } from '~/store/data/betTableState';
+import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
 import { useSounds } from '~/store/functions/soundControl'
 import MoveToNextRound from './moveToNextRound.vue';
@@ -23,7 +23,7 @@ export default {
         const { playCheckSound } = useSounds()
         const { playCoinDrop } = useSounds()
         return {
-            state,
+            betTableState,
             closestToTheLeft,
             disPlayCard,
             addGameHistory,
@@ -43,10 +43,10 @@ export default {
     mounted() {
         this.playerAvatar = document.querySelectorAll('.avatar')
         this.playerCards = document.querySelectorAll('.playerCard')
-        watch(() => state.numberOfAction, (newval, oldval) => {
-            if ((!state.isGameOver) && (!state.canMoveToNextRound)) {
-                if ((state.numberOfAction !== 0) && (!state.stopBetting)) {
-                    this.doAction(state.playerAct, state.actionPos)
+        watch(() => betTableState.numberOfAction, (newval, oldval) => {
+            if ((!betTableState.isGameOver) && (!betTableState.canMoveToNextRound)) {
+                if ((betTableState.numberOfAction !== 0) && (!betTableState.stopBetting)) {
+                    this.doAction(betTableState.playerAct, betTableState.actionPos)
                     
                 }
             }
@@ -54,34 +54,34 @@ export default {
     },
     methods: {
         doAction(act, pos) {
-            state.botTitle[pos] = act
+            betTableState.botTitle[pos] = act
             if (act === 'Fold') {
-                this.addGameHistory(state.round, 'Fold', state.actionPos)
-                this.playerCards[state.actionPos * 2].style.display = 'none'
-                this.playerCards[state.actionPos * 2 + 1].style.display = 'none'
-                state.numberOfPlayer -= 1
-                state.playerStatus[pos] = false
+                this.addGameHistory(betTableState.round, 'Fold', betTableState.actionPos)
+                this.playerCards[betTableState.actionPos * 2].style.display = 'none'
+                this.playerCards[betTableState.actionPos * 2 + 1].style.display = 'none'
+                betTableState.numberOfPlayer -= 1
+                betTableState.playerStatus[pos] = false
             } else if (act === 'Check') {
-                this.addGameHistory(state.round, 'Check', state.actionPos)
+                this.addGameHistory(betTableState.round, 'Check', betTableState.actionPos)
             } else if (act === 'Call') {
                 if (!this.isOverBet('Call', pos)) {
-                    state.stackList[pos] -= (Math.max(...state.betTotalList) - state.betTotalList[pos])
-                    state.betTotalList[pos] = Math.max(...state.betTotalList)
+                    betTableState.stackList[pos] -= (Math.max(...betTableState.betTotalList) - betTableState.betTotalList[pos])
+                    betTableState.betTotalList[pos] = Math.max(...betTableState.betTotalList)
                 }
             } else if (!isNaN(act)) {
                 if (!this.isOverBet(act, pos)) {
-                    state.botTitle[pos] = `Raise:${act}`
-                    state.stackList[pos] -= (Math.max(...state.betTotalList) + act - state.betTotalList[pos])
-                    state.betTotalList[pos] = Math.max(...state.betTotalList) + act
+                    betTableState.botTitle[pos] = `Raise:${act}`
+                    betTableState.stackList[pos] -= (Math.max(...betTableState.betTotalList) + act - betTableState.betTotalList[pos])
+                    betTableState.betTotalList[pos] = Math.max(...betTableState.betTotalList) + act
                 }
             } else if (act === 'All in') {
                 this.isOverBet('All in', pos)
             }
-            state.pot = this.countPot()
+            betTableState.pot = this.countPot()
         },
         countPot() {
             let t = 0
-            for (let i of state.betTotalList) {
+            for (let i of betTableState.betTotalList) {
                 t += i
             }
             return t

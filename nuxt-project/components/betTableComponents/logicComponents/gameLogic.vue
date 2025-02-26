@@ -4,20 +4,20 @@
     <BetTableComponentsLogicComponentsStartGame/>
     <BetTableComponentsLogicComponentsDoAction/>
     <BetTableComponentsLogicComponentsClaculateHandLevel/>
-    <BetTableComponentsLogicComponentsSplitPot v-if="!state.haveAllinCase"/>
+    <BetTableComponentsLogicComponentsSplitPot v-if="!betTableState.haveAllinCase"/>
     <BetTableComponentsLogicComponentsGameOverCheck/>
-    <BetTableComponentsLogicComponentsHandleAllinCase v-if="state.haveAllinCase"/>
+    <BetTableComponentsLogicComponentsHandleAllinCase v-if="betTableState.haveAllinCase"/>
     <BetTableComponentsLogicComponentsPlayAudio/>
     <BetTableComponentsLogicComponentsDisplayPlayerTurn/>
 </template>
 
 
 <script>
-import { state } from '~/store/data/betTableState'
+import { betTableState } from '~/store/data/betTableState';
     export default {
         setup() {            
             return {
-                state,
+                betTableState,
             }
         }
     }

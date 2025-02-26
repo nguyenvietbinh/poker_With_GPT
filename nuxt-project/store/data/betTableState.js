@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-export const state = reactive({
+export const betTableState = reactive({
   startGame: false,
   loadingDone: false,
   numberOfPlayer: 6,
