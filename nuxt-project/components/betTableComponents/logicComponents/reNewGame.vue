@@ -1,5 +1,5 @@
 <template>
-    <StartGame v-if="newGame"/>
+    <StartGame v-if="betTableState.newGame"/>
 </template>
 
 
@@ -24,7 +24,6 @@ export default {
     data() {
         return {
             playerCards: null,
-            newGame: false,
             communityCards: null,
             playerAvatar: null,
         }
@@ -35,7 +34,7 @@ export default {
         this.communityCards = document.querySelectorAll('.communityCards')
         this.reSetData()
         setTimeout(() => {
-            this.newGame = true
+            betTableState.newGame = true
             betTableState.botTitle = ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5']
             for (let i = 0; i < 6; i ++) {
                 if (betTableState.stackList[i] <= 0) {
@@ -50,7 +49,7 @@ export default {
             this.reNewGame()
         }, 10000);
 
-        this.newGame = false
+        betTableState.newGame = false
     },
     methods: {
         reNewGame() {

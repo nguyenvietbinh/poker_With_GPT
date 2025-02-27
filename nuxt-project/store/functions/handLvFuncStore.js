@@ -1,16 +1,10 @@
 import { betTableState } from "../data/betTableState";
 export function useMyHandLvFunc() {
-    const getAllInWinRate = (hands, communityCards) => {
-        let win = 0
-        for (let i = 0; i < 1000; i ++) {
-            let winner = handRanking(genRandomAllInCase(hands, communityCards))
-            for (let j = 0; j < winner.length; j ++) {
-                if (winner[j].includes(hands[0][0])) {
-                    win ++
-                }
-            }
-        }
-        return Math.round(win/10)
+    const getAllInWinRate = async (req) => {
+        return await $fetch('/api/allinwinrate', {
+            method: 'post',
+            body: JSON.stringify({ message: req })
+        })
     }
     const genRandomAllInCase = (hands, communityCards) => {
         let copyCards = [...betTableState.cards]
@@ -37,11 +31,10 @@ export function useMyHandLvFunc() {
         return Hands
     }
     const getPlayerWinRate = async (req) => {
-        const res = await $fetch('/api/winrate', {
+        return await $fetch('/api/winrate', {
             method: 'post',
             body: JSON.stringify({ message: req })
-          })
-          return res
+        })
     }
     const genRandomCase = (hand, communityCards, n) => {
         let copyHand = [...hand]

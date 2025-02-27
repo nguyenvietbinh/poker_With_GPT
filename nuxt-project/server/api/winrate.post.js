@@ -4,8 +4,9 @@ export default defineEventHandler(async (event) => {
     const betTableState = req.message
     try {
         const { getPlayerWinRate } = funcStore(betTableState)
-        const winRate = getPlayerWinRate([betTableState.cards[0], betTableState.cards[1]], betTableState.communityCards, betTableState.numberOfPlayer)
-        
+        const hand = [betTableState.cards[0], betTableState.cards[1]]
+        const n = betTableState.numberOfPlayer + betTableState.numberOfAllinPlayer
+        const winRate = getPlayerWinRate(hand , betTableState.communityCards, n)
         return winRate
     } catch (error) {
         console.error(error);
