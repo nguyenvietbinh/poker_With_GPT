@@ -1,6 +1,4 @@
-import { svBetTbState } from "./utils/betTableState"
-
-export function useMyServerFunc() {
+export function funcStore(betTableState) {
     const getAllInWinRate = (hands, communityCards) => {
         let win = 0
         for (let i = 0; i < 1000; i ++) {
@@ -14,11 +12,11 @@ export function useMyServerFunc() {
         return Math.round(win/10)
     }
     const genRandomAllInCase = (hands, communityCards) => {
-        let copyCards = [...svBetTbState.cards]
+        let copyCards = [...betTableState.cards]
         let copyCommunityCards = [...communityCards]
         let allInCards = [...hands]
         let Hands = []
-        if ((!svBetTbState.playerStatus[0]) && (!svBetTbState.allin[0])) {
+        if ((!betTableState.playerStatus[0]) && (!betTableState.allin[0])) {
             return 0
         }
         for (let i = 0; i < allInCards.length; i ++) {
@@ -37,17 +35,28 @@ export function useMyServerFunc() {
         }
         return Hands
     }
-    const getPlayerWinRate = async (req) => {
-        const res = await $fetch('/api/winrate', {
-            method: 'post',
-            body: JSON.stringify({ message: JSON.stringify(req) })
-          })
-          return res
+    const getPlayerWinRate = (hand, communityCards, n) => {
+        let win = 0
+        if ((!betTableState.playerStatus[0]) && (!betTableState.allin[0])) {
+            return 0
+        }
+        for (let i = 0; i < 1000; i ++) {
+            let hands = genRandomCase(hand, communityCards, n)
+            if (hands.length === 1) {
+                return 100
+            } else {
+                let winner = handRanking(hands)
+                if (winner.includes(hands[0])) {
+                    win ++
+                }
+            }
+        }
+        return Math.round(win/10)
     }
     const genRandomCase = (hand, communityCards, n) => {
         let copyHand = [...hand]
         let copyCommunityCards = [...communityCards]
-        let copyCards = [...svBetTbState.cards]
+        let copyCards = [...betTableState.cards]
         copyCards = copyCards.filter(card => card !== copyHand[0])
         copyCards = copyCards.filter(card => card !== copyHand[1])
         let ans = []
@@ -84,7 +93,7 @@ export function useMyServerFunc() {
         let winners = []
         for (let i = 0; i < winnerHands.length; i ++) {
             for (let j = 0; j < 6; j ++) {
-                if (winnerHands[i][0] === svBetTbState.cards[2 * j]) {
+                if (winnerHands[i][0] === betTableState.cards[2 * j]) {
                     winners.push(j)
                 }
             }
@@ -117,17 +126,6 @@ export function useMyServerFunc() {
             }
         }
         return copyHands
-    }
-    const isAllHandEqual = (hands) => {
-        let copyHands = [...hands]
-        for(let i = 0; i < copyHands.length - 1; i ++) {
-            for (let j = i + 1; j < copyHands.length; j ++) {
-                if (isHand1GreaterHand2([copyHands[i], copyHands[j]]) !== '=') {
-                    return false
-                }
-            }
-        }
-        return true
     }
     const isHand1GreaterHand2 = (hands) => {
         let copyHand1 = [...hands[0]]
@@ -385,15 +383,8 @@ export function useMyServerFunc() {
         }
         return lst
     }
-    const blabla = () => {
-        return 'blabla'
-    }
     return {
-        blabla,
-        searchWinner,
-        handRanking,
-        getPlayerWinRate,
         getAllInWinRate,
-        genRandomCase,
+        getPlayerWinRate,
     }
 }

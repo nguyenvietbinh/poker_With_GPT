@@ -44,10 +44,8 @@ export default {
                         if (betTableState.numberOfAllinPlayer === 1) {
                             betTableState.winRate = 100
                         } else {
-                            console.log('1')
                             this.GetPlayerWinRate().then(response => {
-                                console.log('2')
-                                console.log(response)
+                                betTableState.winRate = response
                             })
                         }
                     }
@@ -68,7 +66,7 @@ export default {
     },
     methods: {
         async GetPlayerWinRate() {
-            return await this.getPlayerWinRate([[betTableState.cards[0], betTableState.cards[1]], betTableState.communityCards, betTableState.numberOfPlayer, betTableState])
+            return await this.getPlayerWinRate(betTableState)
         }
     }
 }

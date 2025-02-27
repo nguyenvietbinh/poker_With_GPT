@@ -20,8 +20,8 @@
                 <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
             </div>
         </div>
-        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="betTableState.betTotalList[n-1] !== 0">{{ betTableState.betTotalList[n-1] }}</div>
-        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ betTableState.stackList[n-1] }}</div>
+        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="betTotalList[n-1] !== 0">{{ betTotalList[n-1] }}</div>
+        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ stackList[n-1] }}</div>
     </div>
 </template>
 

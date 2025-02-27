@@ -42,7 +42,6 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
                     if (betTableState.actionPos !== 0) {
                         this.getResponse().then(response => {
                             betTableState.playerAct = response
-                            this.updateSvBetTbState()
                             betTableState.numberOfAction ++
                         })
                     } else {

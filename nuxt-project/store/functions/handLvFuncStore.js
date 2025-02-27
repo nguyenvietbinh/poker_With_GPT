@@ -39,7 +39,7 @@ export function useMyHandLvFunc() {
     const getPlayerWinRate = async (req) => {
         const res = await $fetch('/api/winrate', {
             method: 'post',
-            body: JSON.stringify({ message: JSON.stringify(req) })
+            body: JSON.stringify({ message: req })
           })
           return res
     }
