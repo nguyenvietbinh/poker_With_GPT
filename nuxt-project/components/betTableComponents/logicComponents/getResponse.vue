@@ -13,13 +13,11 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
             const { sendReq } = useMyBettbFunc()
             const { getPrompt } = useMyBettbFunc()
             const { closestToTheLeft } = useMyBettbFunc()
-            const { updateSvBetTbState } = useMyBettbFunc()
             return {
                 betTableState,
                 sendReq,
                 getPrompt,
                 closestToTheLeft,
-                updateSvBetTbState
             }
         },
         data() {
@@ -41,6 +39,7 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
                 if ((betTableState.actionPos !== null) && (!betTableState.stopBetting)) {
                     if (betTableState.actionPos !== 0) {
                         this.getResponse().then(response => {
+                            betTableState.playerLoading[betTableState.actionPos] = false
                             betTableState.playerAct = response
                             betTableState.numberOfAction ++
                         })
@@ -54,6 +53,7 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
         methods: {
 
             async getResponse() {
+                betTableState.playerLoading[betTableState.actionPos] = true
                 return await this.sendReq(this.getPrompt(betTableState.actionPos))
             },
         }

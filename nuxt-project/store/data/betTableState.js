@@ -34,5 +34,7 @@ export const betTableState = reactive({
   stopBetting: false,
   mute: false,
   newGame: false,
+  calculatingWinrate: false,
+  playerLoading: [false, false, false, false, false, false]
 })
 

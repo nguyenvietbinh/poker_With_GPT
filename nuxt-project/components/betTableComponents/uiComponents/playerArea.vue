@@ -2,6 +2,7 @@
     <div v-for="n in 6" :key="n" :class="`h-[25%] w-[50%] absolute ${style.playerAreaDirection[n-1]} ${style.playerAreaXPosition[n-1]} ${style.playerAreaYPosition[n-1]}`">
         <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
             <img src="~/public/img/avt4.png" alt="" class="avatar rounded-full border-[0.3vh] border-white">
+            <span v-if="betTableState.playerLoading[n-1]" class="loading loading-ring loading-lg absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"></span>
         </div>
         <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[6%]`">
             <img class="playerCard" src="~/public/img/cards/back.png" alt="card">

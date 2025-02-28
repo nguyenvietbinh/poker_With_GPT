@@ -117,17 +117,16 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       return prompt
     }
     const sendReq = async (req) => {
+      try {
         const res = await $fetch('/api/chatgpt', {
           method: 'post',
           body: JSON.stringify({ message: req })
         })
         return convertChatGPTRespone(res, betTableState.actionPos)
-    }
-    const updateSvBetTbState = () => {
-      $fetch('/api/updateBetTableState', {
-        method: 'post',
-        body: JSON.stringify({ message: betTableState })
-      })
+      } catch {
+        return convertChatGPTRespone('Fold', betTableState.actionPos)
+      }
+        
     }
     const closestToTheLeft = (a) => {
       if (a === null) {
@@ -369,6 +368,5 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         sendReq,
         convertCards,
         replaceAt,
-        updateSvBetTbState,
     };
 }
