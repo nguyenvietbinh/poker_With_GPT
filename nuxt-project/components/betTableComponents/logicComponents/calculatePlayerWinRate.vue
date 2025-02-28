@@ -32,8 +32,10 @@ export default {
                         betTableState.winRate = 100
                     } else {
                         if ((oldval[1] + oldval[2]) !== (newval[1] + newval[2])) {
+                            betTableState.calculatingWinrate = true
                             this.getPlayerWinRate(betTableState).then(response => {
                                 betTableState.winRate = response
+                                betTableState.calculatingWinrate = false
                             })
                         } 
                     }
@@ -42,8 +44,10 @@ export default {
                         if (betTableState.numberOfAllinPlayer === 1) {
                             betTableState.winRate = 100
                         } else {
+                            betTableState.calculatingWinrate = true
                             this.getPlayerWinRate(betTableState).then(response => {
                                 betTableState.winRate = response
+                                betTableState.calculatingWinrate = false
                             })
                         }
                     }
@@ -58,8 +62,10 @@ export default {
                         this.allInPlayer.push([betTableState.cards[i * 2], betTableState.cards[i * 2 + 1]])
                     }
                 }
+                betTableState.calculatingWinrate = true
                 this.getAllInWinRate([this.allInPlayer, betTableState]).then(response => {
                     betTableState.winRate = response
+                    betTableState.calculatingWinrate = false
                 })
             }
         }, { deep: true })
