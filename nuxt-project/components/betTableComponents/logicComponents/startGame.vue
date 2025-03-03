@@ -1,5 +1,5 @@
 <template>
-
+    <BetTableComponentsUiComponentsSplitCard/>
 </template>
 
 
@@ -34,20 +34,25 @@ export default {
         this.dealerDots = document.querySelectorAll('.dealer')
         this.smblindDots = document.querySelectorAll('.smallBlind')
         this.bigblinhDots = document.querySelectorAll('.bigBlind')
-        if (betTableState.blindPos === null) {
-            betTableState.blindPos = Math.floor(Math.random() * 6)
-            betTableState.smBlind = this.closestToTheRight(betTableState.blindPos)
-            betTableState.dealer = this.closestToTheRight(betTableState.smBlind)
-        }
-        betTableState.pause = false
-        this.displayPos()
-        betTableState.cards = this.mixCards()
-        this.disPlayCard(betTableState.cards[0], this.playerCards[0])
-        this.disPlayCard(betTableState.cards[1], this.playerCards[1])
-        this.countBlind(betTableState.blindPos)
-        this.calculateStackList()
-        betTableState.actionPos = this.closestToTheLeft(betTableState.blindPos)
-        betTableState.isGameOver = false
+        watch(() => betTableState.splitCards, (newval, oldval) => {
+            if (!betTableState.splitCards) {
+                if (betTableState.blindPos === null) {
+                    betTableState.blindPos = Math.floor(Math.random() * 6)
+                    betTableState.smBlind = this.closestToTheRight(betTableState.blindPos)
+                    betTableState.dealer = this.closestToTheRight(betTableState.smBlind)
+                }
+                betTableState.pause = false
+                this.displayPos()
+                betTableState.cards = this.mixCards()
+                this.disPlayCard(betTableState.cards[0], this.playerCards[0])
+                this.disPlayCard(betTableState.cards[1], this.playerCards[1])
+                this.countBlind(betTableState.blindPos)
+                this.calculateStackList()
+                betTableState.actionPos = this.closestToTheLeft(betTableState.blindPos)
+                betTableState.isGameOver = false
+            } 
+        })
+
     },
     methods: {
         displayPos() {

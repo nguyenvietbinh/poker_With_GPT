@@ -1,7 +1,6 @@
 <template>
     <BetTableComponentsLogicComponentsCalculatePlayerWinRate/>
     <BetTableComponentsLogicComponentsGetResponse/>
-    <BetTableComponentsLogicComponentsStartGame/>
     <BetTableComponentsLogicComponentsDoAction/>
     <BetTableComponentsLogicComponentsClaculateHandLevel/>
     <BetTableComponentsLogicComponentsSplitPot v-if="!betTableState.haveAllinCase"/>

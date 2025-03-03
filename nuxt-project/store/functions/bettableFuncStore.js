@@ -353,6 +353,29 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
             }
         }
     }
+    const move = (element, x2, y2, duration, rot) => {
+      element.style.transition = `${duration}ms`;
+      element.style.transform = `rotate(${rot}deg)`
+      element.style.left = `${x2}px`;
+      element.style.top = `${y2}px`;
+    }
+    const takeBackCard = () => {
+      
+    }
+    const splitPlayerCard = (playerCards, playerCardsPos, onePercentOfH, playerCardsRotage) => {
+      if (betTableState.splitCount === 6) {
+        betTableState.splitCards = false
+      } else {
+        move(playerCards[betTableState.splitCount * 2], playerCardsPos[betTableState.splitCount][0] * onePercentOfH, playerCardsPos[betTableState.splitCount][1] * onePercentOfH, 500, playerCardsRotage[betTableState.splitCount])
+        setTimeout(() => {
+          move(playerCards[betTableState.splitCount * 2 + 1], playerCardsPos[betTableState.splitCount][2] * onePercentOfH, playerCardsPos[betTableState.splitCount][3] * onePercentOfH, 500, playerCardsRotage[betTableState.splitCount])
+          betTableState.splitCount += 1
+        }, 200)
+        setTimeout(() => {
+          splitPlayerCard(playerCards, playerCardsPos, onePercentOfH, playerCardsRotage)
+        }, 1000)
+      }
+    }
     return {
         sendReq,
         closestToTheLeft,
@@ -368,5 +391,6 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         sendReq,
         convertCards,
         replaceAt,
+        splitPlayerCard
     };
 }

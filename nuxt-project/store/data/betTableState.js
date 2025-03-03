@@ -3,6 +3,8 @@ import { reactive } from 'vue'
 export const betTableState = reactive({
   startGame: false,
   loadingDone: false,
+  splitCards: false,
+  splitCount: 0,
   numberOfPlayer: 6,
   playerStatus: [true, true, true, true, true, true],
   botTitle: ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5'],

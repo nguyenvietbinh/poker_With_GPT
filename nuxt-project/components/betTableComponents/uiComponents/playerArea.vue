@@ -4,12 +4,7 @@
             <img src="~/public/img/avt4.png" alt="" class="avatar rounded-full border-[0.3vh] border-white">
             <span v-if="betTableState.playerLoading[n-1]" class="loading loading-ring loading-lg absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"></span>
         </div>
-        <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[6%]`">
-            <img class="playerCard" src="~/public/img/cards/back.png" alt="card">
-        </div>
-        <div :class="`${style.card} h-auto w-[7.5vw] md:w-[6vh] bottom-[12%] left-[22%]`">
-            <img class="playerCard" src="~/public/img/cards/back.png" alt="card">
-        </div>
+
         <div>
             <div :class="`dealer ${style.blindDiv} bg-gray-200`">
                 <p :class="`${style.blindText}`">D</p>
@@ -46,6 +41,7 @@ export default {
         }
     },
     mounted() {
+        this.stackList = betTableState.stackList
         watch(() => betTableState.betTotalList, (newval, oldval) => {
             for (let i = 0; i < 6; i ++) {
                 if (betTableState.betTotalList[i] !== this.betTotalList[i]) {

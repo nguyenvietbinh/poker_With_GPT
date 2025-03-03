@@ -4,11 +4,7 @@
         <p v-if="!betTableState.loadingDone" class="text-black text-[3vw] md:text-[2.5vh] font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">loading...</p>
         <div v-if="counting && !betTableState.startGame" class="text-black text-[20vw] md:text-[20vh] absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">{{ count }}</div>
         <div v-if="betTableState.startGame" :class="`absolute bottom-[30%] left-[50%] ${style.chipDisplay}`">Pot: {{ pot }}</div>
-        <div v-if="betTableState.startGame" class="inline-block relative left-[50%] translate-x-[-50%] top-[30%]">
-            <div  v-for="n in 5" :key="n" :class="`h-auto w-[7.5vw] mx-[1px] inline-block md:w-[6.5vh] bottom-[50%] ${blabla[n - 1]}`">
-                <img class="communityCards" src="~/public/img/cards/back.png" loading="lazy" alt="card">
-            </div>
-        </div>
+
 
     </div>
 </template>
@@ -70,8 +66,8 @@ export default {
     },
     methods: {
         startCounting() {
-            this.counting = true
-            this.count -= 1
+            betTableState.startGame = true
+            betTableState.splitCards = true
             event.target.style.display = 'none'
             this.createAudio()
         },
