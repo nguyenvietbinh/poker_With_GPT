@@ -14,24 +14,24 @@ import SplitAllinPot from './SplitAllinPot.vue';
 export default {
     setup() {
         const { disPlayCard } = useMyBettbFunc() 
+        const { splitFlop } = useMyBettbFunc() 
+        const { splitCommunityCards } = useMyBettbFunc() 
         const { getAllInWinRate } = useMyHandLvFunc() 
         return {
             disPlayCard,
             getAllInWinRate,
+            splitCommunityCards,
+            splitFlop,
             betTableState
         }
     },
     data() {
         return {
-            playerCards: null,
-            communityCards: null,
             allInCards: [],
             startSplitPot: false
         }
     },
     mounted() {
-        this.communityCards = document.querySelectorAll('.communityCards')
-        this.playerCards = document.querySelectorAll('.playerCard')
         if (betTableState.numberOfAllinPlayer + betTableState.numberOfPlayer > 1) {
             this.openCards()
         } else {
@@ -39,18 +39,11 @@ export default {
         }   
         watch(() => betTableState.round, (newval, oldval) => {
                 if (betTableState.round === 1) {
-                    this.disPlayCard(betTableState.cards[51], this.communityCards[0])
-                    betTableState.communityCards[0] = betTableState.cards[51]
-                    this.disPlayCard(betTableState.cards[50], this.communityCards[1])
-                    betTableState.communityCards[1] = betTableState.cards[50]
-                    this.disPlayCard(betTableState.cards[49], this.communityCards[2])
-                    betTableState.communityCards[2] = betTableState.cards[49]
+                    this.splitFlop()
                 } else if (betTableState.round === 2) {
-                    this.disPlayCard(betTableState.cards[48], this.communityCards[3])
-                    betTableState.communityCards[3] = betTableState.cards[48]
+                    this.splitCommunityCards()
                 } else if (betTableState.round === 3) {
-                    this.disPlayCard(betTableState.cards[47], this.communityCards[4])
-                    betTableState.communityCards[4] = betTableState.cards[47]
+                    this.splitCommunityCards()
                 } else if (betTableState.round === 4) {
                     this.startSplitPot = true
                 }
@@ -75,8 +68,8 @@ export default {
             for (let i = 0; i < 6; i ++) {
                 if ((betTableState.playerStatus[i]) || (betTableState.allin[i])) {
                     this.allInCards.push([betTableState.cards[i * 2], betTableState.cards[i * 2 + 1]])
-                    this.disPlayCard(betTableState.cards[i * 2], this.playerCards[i * 2])
-                    this.disPlayCard(betTableState.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
+                    this.disPlayCard(betTableState.cards[i * 2], betTableState.playerCardsImg[i * 2])
+                    this.disPlayCard(betTableState.cards[i * 2 + 1], betTableState.playerCardsImg[i * 2 + 1])
                 }
             }
         }

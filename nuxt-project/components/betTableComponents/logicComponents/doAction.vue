@@ -36,13 +36,10 @@ export default {
     },
     data() {
         return {
-            playerCards: null,
-            playerAvatar: null,
+
         }
     },
     mounted() {
-        this.playerAvatar = document.querySelectorAll('.avatar')
-        this.playerCards = document.querySelectorAll('.playerCard')
         watch(() => betTableState.numberOfAction, (newval, oldval) => {
             if ((!betTableState.isGameOver) && (!betTableState.canMoveToNextRound)) {
                 if ((betTableState.numberOfAction !== 0) && (!betTableState.stopBetting)) {
@@ -57,8 +54,8 @@ export default {
             betTableState.botTitle[pos] = act
             if (act === 'Fold') {
                 this.addGameHistory(betTableState.round, 'Fold', betTableState.actionPos)
-                this.playerCards[betTableState.actionPos * 2].style.display = 'none'
-                this.playerCards[betTableState.actionPos * 2 + 1].style.display = 'none'
+                betTableState.playerCardsElement[betTableState.actionPos * 2].style.display = 'none'
+                betTableState.playerCardsElement[betTableState.actionPos * 2 + 1].style.display = 'none'
                 betTableState.numberOfPlayer -= 1
                 betTableState.playerStatus[pos] = false
             } else if (act === 'Check') {

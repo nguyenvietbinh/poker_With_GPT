@@ -23,14 +23,12 @@ export default {
     },
     data() {
         return {
-            playerCards: null,
             dealerDots: null,
             smblindDots: null,
             bigblinhDots: null
         }
     },
     mounted() {
-        this.playerCards = document.querySelectorAll('.playerCard')
         this.dealerDots = document.querySelectorAll('.dealer')
         this.smblindDots = document.querySelectorAll('.smallBlind')
         this.bigblinhDots = document.querySelectorAll('.bigBlind')
@@ -44,8 +42,8 @@ export default {
                 betTableState.pause = false
                 this.displayPos()
                 betTableState.cards = this.mixCards()
-                this.disPlayCard(betTableState.cards[0], this.playerCards[0])
-                this.disPlayCard(betTableState.cards[1], this.playerCards[1])
+                this.disPlayCard(betTableState.cards[0], betTableState.playerCardsImg[0])
+                this.disPlayCard(betTableState.cards[1], betTableState.playerCardsImg[1])
                 this.countBlind(betTableState.blindPos)
                 this.calculateStackList()
                 betTableState.actionPos = this.closestToTheLeft(betTableState.blindPos)

@@ -1,4 +1,5 @@
 import { betTableState } from "../data/betTableState";
+import { style } from "../data/taildwindStyle";
 export function useMyBettbFunc() {
   const convertChatGPTRespone = (res, playerPos) => {
     let ans
@@ -50,7 +51,7 @@ export function useMyBettbFunc() {
 
     Nhiệm vụ của bạn:
 
-- Play as a tight player, if your hand is stronge play as a aggressive player, fold if your hand is not good.
+- Play as a tight player.
 
 - Phân tích tình huống hiện tại dựa trên các thông tin trên.
 
@@ -356,24 +357,59 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
     const move = (element, x2, y2, duration, rot) => {
       element.style.transition = `${duration}ms`;
       element.style.transform = `rotate(${rot}deg)`
-      element.style.left = `${x2}px`;
-      element.style.top = `${y2}px`;
+      element.style.left = `${x2}%`;
+      element.style.top = `${y2}%`;
     }
     const takeBackCard = () => {
       
     }
-    const splitPlayerCard = (playerCards, playerCardsPos, onePercentOfH, playerCardsRotage) => {
+    const splitCommunityCards = () => {
+      for (let i = 0; i < 5; i ++) {
+        if (betTableState.communityCards[i] === null) {
+          (function (index) {
+            setTimeout(() => {
+              move(betTableState.communityCardsELement[index], style.communityCardsXPos[index], style.communityCardsYPos, 500, 0)
+              disPlayCard(betTableState.cards[51 - index], betTableState.communityCardsImg[index])
+              betTableState.communityCards[index] = betTableState.cards[51 - index]
+              if (!betTableState.haveAllinCase) {
+                betTableState.actionPos = closestToTheLeft(betTableState.dealer)
+              }
+            }, 1000);
+          })(i);
+          return
+        }
+      }
+    }
+    const splitFlop = () => {
+        move(betTableState.communityCardsELement[0], style.communityCardsXPos[0], style.communityCardsYPos, 500, 0)
+        disPlayCard(betTableState.cards[51], betTableState.communityCardsImg[0])
+        betTableState.communityCards[0] = betTableState.cards[51]
+        setTimeout(() => {
+          move(betTableState.communityCardsELement[1], style.communityCardsXPos[1], style.communityCardsYPos, 500, 0)
+          disPlayCard(betTableState.cards[50], betTableState.communityCardsImg[1])
+          betTableState.communityCards[1] = betTableState.cards[50]
+          setTimeout(() => {
+            move(betTableState.communityCardsELement[2], style.communityCardsXPos[2], style.communityCardsYPos, 500, 0)
+            disPlayCard(betTableState.cards[49], betTableState.communityCardsImg[2])
+            betTableState.communityCards[2] = betTableState.cards[49]
+            if (!betTableState.haveAllinCase) {
+              betTableState.actionPos = closestToTheLeft(betTableState.dealer)
+            }
+          }, 1000)
+        }, 1000)
+    }
+    const splitPlayerCard = (playerCards, playerCardsPos, playerCardsRotage) => {
       if (betTableState.splitCount === 6) {
         betTableState.splitCards = false
       } else {
-        move(playerCards[betTableState.splitCount * 2], playerCardsPos[betTableState.splitCount][0] * onePercentOfH, playerCardsPos[betTableState.splitCount][1] * onePercentOfH, 500, playerCardsRotage[betTableState.splitCount])
+        move(playerCards[betTableState.splitCount * 2], playerCardsPos[betTableState.splitCount][0], playerCardsPos[betTableState.splitCount][1], 500, playerCardsRotage[betTableState.splitCount])
         setTimeout(() => {
-          move(playerCards[betTableState.splitCount * 2 + 1], playerCardsPos[betTableState.splitCount][2] * onePercentOfH, playerCardsPos[betTableState.splitCount][3] * onePercentOfH, 500, playerCardsRotage[betTableState.splitCount])
+          move(playerCards[betTableState.splitCount * 2 + 1], playerCardsPos[betTableState.splitCount][2], playerCardsPos[betTableState.splitCount][3], 500, playerCardsRotage[betTableState.splitCount])
           betTableState.splitCount += 1
         }, 200)
         setTimeout(() => {
-          splitPlayerCard(playerCards, playerCardsPos, onePercentOfH, playerCardsRotage)
-        }, 1000)
+          splitPlayerCard(playerCards, playerCardsPos, playerCardsRotage)
+        }, 600)
       }
     }
     return {
@@ -391,6 +427,8 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         sendReq,
         convertCards,
         replaceAt,
-        splitPlayerCard
+        splitPlayerCard,
+        splitFlop,
+        splitCommunityCards,
     };
 }

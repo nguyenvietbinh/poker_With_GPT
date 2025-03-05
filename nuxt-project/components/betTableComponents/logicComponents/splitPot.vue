@@ -19,17 +19,15 @@ export default {
     },
     data() {
         return {
-            playerCards: null
         }
     },
     mounted() {
-        this.playerCards = document.querySelectorAll('.playerCard')
         watch(() => betTableState.isGameOver, (newval, oldval) => {
             if (betTableState.isGameOver) {
                 for (let i = 0; i < 6; i ++) {
                     if (betTableState.playerStatus[i]) {
-                        this.disPlayCard(betTableState.cards[i * 2], this.playerCards[i * 2])
-                        this.disPlayCard(betTableState.cards[i * 2 + 1], this.playerCards[i * 2 + 1])
+                        this.disPlayCard(betTableState.cards[i * 2], betTableState.playerCardsImg[i * 2])
+                        this.disPlayCard(betTableState.cards[i * 2 + 1], betTableState.playerCardsImg[i * 2 + 1])
                     }
                 }
                 if (betTableState.numberOfPlayer === 1) {

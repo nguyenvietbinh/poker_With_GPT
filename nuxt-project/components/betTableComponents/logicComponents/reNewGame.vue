@@ -23,16 +23,12 @@ export default {
     },
     data() {
         return {
-            playerCards: null,
             newGame: false,
-            communityCards: null,
             playerAvatar: null,
         }
     },
     mounted() {
         this.playerAvatar = document.querySelectorAll('.avatar')
-        this.playerCards = document.querySelectorAll('.playerCard')
-        this.communityCards = document.querySelectorAll('.communityCards')
         this.reSetData()
         setTimeout(() => {
             this.newGame = true
@@ -54,21 +50,20 @@ export default {
     },
     methods: {
         reNewGame() {
-            this.communityCards.forEach(element => {
+            betTableState.communityCardsImg.forEach(element => {
                 element.src = '/img/cards/back.png'
             });
-            this.playerCards.forEach(element => {
+            betTableState.playerCardsImg.forEach(element => {
                 element.src = '/img/cards/back.png'
             });
             for (let i = 0; i < 6; i ++) {
                 if (betTableState.playerStatus[i]) {
-                    this.playerCards[i * 2].style.display = 'block'
-                    this.playerCards[i * 2 + 1].style.display = 'block'
+                    betTableState.playerCardsElement[i * 2].style.display = 'block'
+                    betTableState.playerCardsElement[i * 2 + 1].style.display = 'block'
                     this.playerAvatar[i].style.backgroundColor = 'white'
                 } else {
-                    this.playerAvatar[i].style.borderColor = 'gray' 
-                    this.playerCards[i * 2].style.display = 'none'
-                    this.playerCards[i * 2 + 1].style.display = 'none'
+                    betTableState.playerCardsElement[i * 2].style.display = 'none'
+                    betTableState.playerCardsElement[i * 2 + 1].style.display = 'none'
                 }
             }
         },
