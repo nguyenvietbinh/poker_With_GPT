@@ -47,10 +47,6 @@ export default {
             element.style.left = `${46}%`
             element.style.top = `${30}%`
         });
-        setTimeout(() => {
-            this.splitPlayerCard(betTableState.playerCardsElement, style.playerCardsPos, style.playerCardsRotage)
-        }, 100);
-
     },
     methods: {
 

@@ -194,6 +194,8 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       betTableState.buttonDisplay = false
     }
     const reSetData = () => {
+      betTableState.splitCount = 0
+      betTableState.splitCards = true
       betTableState.cards = mixCards()
       betTableState.round = 0
       betTableState.numberOfPlayer = 6
@@ -201,6 +203,7 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       betTableState.pot = 0
       betTableState.playerStatus = [true, true, true, true, true, true]
       betTableState.communityCards = [null, null, null, null, null]
+      betTableState.playerLoading = [false, false, false, false, false, false]
       betTableState.actionPos = null
       betTableState.numberOfAction = 0
       betTableState.winner = []
@@ -361,7 +364,12 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       element.style.top = `${y2}%`;
     }
     const takeBackCard = () => {
-      
+      betTableState.playerCardsElement.forEach((element, index) => {
+        move(element, 46, 30, 500, 0)
+      });
+      betTableState.communityCardsELement.forEach((element, index) => {
+        move(element, 46, 30, 500, 0)
+      })
     }
     const splitCommunityCards = () => {
       for (let i = 0; i < 5; i ++) {
@@ -430,5 +438,6 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         splitPlayerCard,
         splitFlop,
         splitCommunityCards,
+        takeBackCard,
     };
 }

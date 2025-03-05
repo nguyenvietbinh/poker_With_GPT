@@ -67,7 +67,6 @@ export default {
     methods: {
         startCounting() {
             betTableState.startGame = true
-            betTableState.splitCards = true
             event.target.style.display = 'none'
             this.createAudio()
         },

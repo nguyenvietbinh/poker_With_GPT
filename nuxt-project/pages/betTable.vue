@@ -7,6 +7,7 @@
                 <BetTableComponentsUiComponentsPlayerArea v-if="betTableState.startGame"/>
                 <BetTableComponentsUiComponentsCenterOfTable/>
                 <BetTableComponentsLogicComponentsStartGame v-if="betTableState.startGame"/>
+                <BetTableComponentsUiComponentsSplitCard v-if="betTableState.startGame"/>
             </div>
             <BetTableComponentsUiComponentsWinRate v-if="betTableState.startGame"/>
             <BetTableComponentsUiComponentsLoadingBar v-if="!betTableState.startGame"/>

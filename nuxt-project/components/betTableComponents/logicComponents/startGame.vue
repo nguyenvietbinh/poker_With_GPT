@@ -1,24 +1,28 @@
 <template>
-    <BetTableComponentsUiComponentsSplitCard/>
 </template>
 
 
 <script>
 import { betTableState } from '~/store/data/betTableState';
 import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
-import { useMyHandLvFunc } from '~/store/functions/handLvFuncStore';
+import { style } from '~/store/data/taildwindStyle';
 export default {
     setup() {
         const { mixCards } = useMyBettbFunc()
         const { closestToTheLeft } = useMyBettbFunc()
         const { closestToTheRight } = useMyBettbFunc()
         const { disPlayCard } = useMyBettbFunc()
+        const { splitPlayerCard } = useMyBettbFunc()
+        const { takeBackCard } = useMyBettbFunc()
         return {
             betTableState,
             mixCards,
             closestToTheLeft,
             closestToTheRight,
             disPlayCard,
+            style,
+            splitPlayerCard,
+            takeBackCard
         }
     },
     data() {
@@ -32,6 +36,12 @@ export default {
         this.dealerDots = document.querySelectorAll('.dealer')
         this.smblindDots = document.querySelectorAll('.smallBlind')
         this.bigblinhDots = document.querySelectorAll('.bigBlind')
+        setTimeout(() => {
+            this.takeBackCard()
+            setTimeout(() => {
+                this.splitPlayerCard(betTableState.playerCardsElement, style.playerCardsPos, style.playerCardsRotage)
+            }, 800)
+        }, 100)
         watch(() => betTableState.splitCards, (newval, oldval) => {
             if (!betTableState.splitCards) {
                 if (betTableState.blindPos === null) {
