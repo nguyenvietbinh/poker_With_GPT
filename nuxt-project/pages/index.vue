@@ -9,6 +9,17 @@
 </template>
 
 <script>
+    export default {
+        data() {
+            return {
+                img: null
+            }
+        },
+        mounted() {
+            this.img = new Image()
+            this.img = '/img/pokerTable.png'
+        }
+    }
 </script>
 
 <style>

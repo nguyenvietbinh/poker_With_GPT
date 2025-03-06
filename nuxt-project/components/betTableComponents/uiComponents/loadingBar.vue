@@ -82,16 +82,15 @@ export default {
         },
         loadingImg(url) {
             return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.src = url;
-            img.onload = () => {
-                this.count++;
-                this.process = Math.floor((this.count / this.imgToLoad.length) * 100)
-                resolve();
-            };
-            img.onerror = reject;
-        });
-
+                const img = new Image();
+                img.src = url;
+                img.onload = () => {
+                    this.count++;
+                    this.process = Math.floor((this.count / this.imgToLoad.length) * 100)
+                    resolve();
+                };
+                img.onerror = reject;
+            });
         }
     }
 }
