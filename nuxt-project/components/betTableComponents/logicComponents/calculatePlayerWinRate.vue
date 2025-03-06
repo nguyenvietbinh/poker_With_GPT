@@ -33,8 +33,14 @@ export default {
                     } else {
                         if ((oldval[1] + oldval[2]) !== (newval[1] + newval[2])) {
                             betTableState.calculatingWinrate = true
-                            this.getPlayerWinRate(betTableState).then(response => {
+                            this.getPlayerWinRate(betTableState)
+                            .then(response => {
                                 betTableState.winRate = response
+                                betTableState.calculatingWinrate = false
+                            })
+                            .catch(Error => {
+                                console.error(Error)
+                                betTableState.winRate = 0
                                 betTableState.calculatingWinrate = false
                             })
                         } 
@@ -45,8 +51,14 @@ export default {
                             betTableState.winRate = 100
                         } else {
                             betTableState.calculatingWinrate = true
-                            this.getPlayerWinRate(betTableState).then(response => {
+                            this.getPlayerWinRate(betTableState)
+                            .then(response => {
                                 betTableState.winRate = response
+                                betTableState.calculatingWinrate = false
+                            })
+                            .catch(Error => {
+                                console.error(Error)
+                                betTableState.winRate = 0
                                 betTableState.calculatingWinrate = false
                             })
                         }

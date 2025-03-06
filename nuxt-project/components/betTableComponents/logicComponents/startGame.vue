@@ -40,6 +40,23 @@ export default {
             this.takeBackCard()
             setTimeout(() => {
                 this.splitPlayerCard(betTableState.playerCardsElement, style.playerCardsPos, style.playerCardsRotage)
+                betTableState.communityCardsImg.forEach(element => {
+                    element.src = '/img/cards/back.png'
+                });
+                betTableState.playerCardsImg.forEach(element => {
+                    element.src = '/img/cards/back.png'
+                });
+                setTimeout(() => {
+                    for (let i = 0; i < 6; i ++) {
+                        if (betTableState.playerStatus[i]) {
+                            betTableState.playerCardsElement[i * 2].style.display = 'block'
+                            betTableState.playerCardsElement[i * 2 + 1].style.display = 'block'
+                        } else {
+                            betTableState.playerCardsElement[i * 2].style.display = 'none'
+                            betTableState.playerCardsElement[i * 2 + 1].style.display = 'none'
+                        }
+                    }
+                }, 500)
             }, 800)
         }, 100)
         watch(() => betTableState.splitCards, (newval, oldval) => {

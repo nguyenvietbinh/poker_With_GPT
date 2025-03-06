@@ -43,30 +43,11 @@ export default {
             betTableState.dealer = this.closestToTheLeft(betTableState.dealer)
             betTableState.smBlind = this.closestToTheLeft(betTableState.dealer)
             betTableState.blindPos = this.closestToTheLeft(betTableState.smBlind)
-            this.reNewGame()
         }, 10000);
 
         this.newGame = false
     },
     methods: {
-        reNewGame() {
-            betTableState.communityCardsImg.forEach(element => {
-                element.src = '/img/cards/back.png'
-            });
-            betTableState.playerCardsImg.forEach(element => {
-                element.src = '/img/cards/back.png'
-            });
-            for (let i = 0; i < 6; i ++) {
-                if (betTableState.playerStatus[i]) {
-                    betTableState.playerCardsElement[i * 2].style.display = 'block'
-                    betTableState.playerCardsElement[i * 2 + 1].style.display = 'block'
-                    this.playerAvatar[i].style.backgroundColor = 'white'
-                } else {
-                    betTableState.playerCardsElement[i * 2].style.display = 'none'
-                    betTableState.playerCardsElement[i * 2 + 1].style.display = 'none'
-                }
-            }
-        },
         count() {
             let c = 0
             for (let i = 0; i < 6; i ++) {

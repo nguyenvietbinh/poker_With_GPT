@@ -38,10 +38,15 @@ import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
             watch(() => betTableState.actionPos, (newval, oldval) => {
                 if ((betTableState.actionPos !== null) && (!betTableState.stopBetting)) {
                     if (betTableState.actionPos !== 0) {
-                        this.getResponse().then(response => {
+                        this.getResponse()
+                        .then(response => {
                             betTableState.playerLoading[betTableState.actionPos] = false
                             betTableState.playerAct = response
                             betTableState.numberOfAction ++
+                        })
+                        .catch(error => {
+                            console.error(error)
+                            betTableState.playerLoading[betTableState.actionPos] = false
                         })
                     } else {
                         betTableState.buttonDisplay = true
