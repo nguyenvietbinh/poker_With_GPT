@@ -78,13 +78,11 @@ export default {
                             if (currentValue >= targetValue) {
                                 currentValue = targetValue;
                                 clearInterval(interval);
-                                audio.coinDrop.stop()
                             }
                         } else {
                             if (currentValue <= targetValue) {
                                 currentValue = targetValue;
                                 clearInterval(interval);
-                                audio.coinDrop.stop()
                             }
                         }
                         this.stackList[i] = currentValue;
