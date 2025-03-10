@@ -67,7 +67,6 @@ export default {
                     betTableState.dealer = this.closestToTheRight(betTableState.smBlind)
                 }
                 betTableState.pause = false
-                this.displayPos()
                 betTableState.cards = this.mixCards()
                 this.disPlayCard(betTableState.cards[0], betTableState.playerCardsImg[0])
                 this.disPlayCard(betTableState.cards[1], betTableState.playerCardsImg[1])

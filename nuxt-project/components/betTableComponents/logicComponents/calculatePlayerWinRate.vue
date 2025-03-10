@@ -75,7 +75,8 @@ export default {
                     }
                 }
                 betTableState.calculatingWinrate = true
-                this.getAllInWinRate([this.allInPlayer, betTableState]).then(response => {
+                this.getAllInWinRate([this.allInPlayer, betTableState])
+                .then(response => {
                     betTableState.winRate = response
                     betTableState.calculatingWinrate = false
                 })
