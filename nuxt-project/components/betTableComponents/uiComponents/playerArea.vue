@@ -1,23 +1,15 @@
 <template>
     <div v-for="n in 6" :key="n" :class="`h-[25%] w-[50%] absolute ${style.playerAreaDirection[n-1]} ${style.playerAreaXPosition[n-1]} ${style.playerAreaYPosition[n-1]}`">
-        <div class="w-[10vw] md:w-[7.5vh] absolute left-[50%] translate-x-[-50%] md:bottom-[2.5vh] bottom-[2.5vw]">
-            <img src="~/public/img/avt4.png" alt="" class="avatar rounded-full border-[0.3vh] border-white">
-            <span v-if="betTableState.playerLoading[n-1]" class="loading loading-ring loading-lg absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]"></span>
-        </div>
 
-        <div>
-            <div :class="`dealer ${style.blindDiv} bg-gray-200`">
-                <p :class="`${style.blindText}`">D</p>
-            </div>
-            <div :class="`smallBlind ${style.blindDiv} bg-blue-600`">
-                <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">S</p>
-            </div>
-            <div :class="`bigBlind ${style.blindDiv} bg-blue-600`">
-                <p class="absolute left-[50%] translate-x-[-50%] text-black text-[4vw] md:text-[2vh] top-[50%] translate-y-[-50%]">B</p>
-            </div>
+        <div v-if="betTotalList[n-1] !== 0" class="absolute bottom-[60%] left-[70%] translate-x-[-50%] text-white inline-flex rounded-sm">
+            <div>{{ betTotalList[n-1] }}</div>
+            <img src="/img/whiteCoin.png" class="mx-1 size-3 self-center" alt="">
         </div>
-        <div :class="`absolute bottom-[50%] left-[50%] px-[2vw] ${style.chipDisplay}`" v-if="betTotalList[n-1] !== 0">{{ betTotalList[n-1] }}</div>
-        <div :class="`absolute bottom-[12%] md:bottom-[10%] left-[75%] md:left-[50%] ${style.chipDisplay}`" >{{ stackList[n-1] }}</div>
+        <div v-if="stackList[n-1] !== 0" class="absolute bottom-[12%] text-white left-[70%] translate-x-[-50%] inline-flex rounded-sm">
+            <div>{{ stackList[n-1] }}</div>
+            <img src="/img/whiteCoin.png" class="mx-1 size-3 self-center" alt="">
+        </div>
+        <span v-if="betTableState.playerLoading[n-1]" class="loading loading-bars loading-lg left-[50%] translate-x-[-50%] top-[50%] absolute"></span>
     </div>
 </template>
 
