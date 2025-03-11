@@ -410,14 +410,19 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
       if (betTableState.splitCount === 6) {
         betTableState.splitCards = false
       } else {
-        move(playerCards[betTableState.splitCount * 2], playerCardsPos[betTableState.splitCount][0], playerCardsPos[betTableState.splitCount][1], 500, playerCardsRotage[betTableState.splitCount])
-        setTimeout(() => {
-          move(playerCards[betTableState.splitCount * 2 + 1], playerCardsPos[betTableState.splitCount][2], playerCardsPos[betTableState.splitCount][3], 500, playerCardsRotage[betTableState.splitCount])
+        if (betTableState.playerStatus[betTableState.splitCount]) {
+          move(playerCards[betTableState.splitCount * 2], playerCardsPos[betTableState.splitCount][0], playerCardsPos[betTableState.splitCount][1], 500, playerCardsRotage[betTableState.splitCount])
+          setTimeout(() => {
+            move(playerCards[betTableState.splitCount * 2 + 1], playerCardsPos[betTableState.splitCount][2], playerCardsPos[betTableState.splitCount][3], 500, playerCardsRotage[betTableState.splitCount])
+            betTableState.splitCount += 1
+          }, 200)
+          setTimeout(() => {
+            splitPlayerCard(playerCards, playerCardsPos, playerCardsRotage)
+          }, 600)
+        } else {
           betTableState.splitCount += 1
-        }, 200)
-        setTimeout(() => {
           splitPlayerCard(playerCards, playerCardsPos, playerCardsRotage)
-        }, 600)
+        }
       }
     }
     return {
@@ -439,5 +444,6 @@ Lưu ý: Bạn cần liên tục cập nhật thông tin và điều chỉnh chi
         splitFlop,
         splitCommunityCards,
         takeBackCard,
+        move,
     };
 }

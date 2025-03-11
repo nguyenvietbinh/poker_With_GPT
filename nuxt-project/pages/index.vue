@@ -9,17 +9,23 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                img: null
-            }
-        },
-        mounted() {
-            this.img = new Image()
-            this.img = '/img/pokerTable.png'
+import { useMyBettbFunc } from '~/store/functions/bettableFuncStore';
+export default {
+    setup () {
+        const { reSetAllData } = useMyBettbFunc()
+        return {
+            reSetAllData
         }
+    },
+    data() {
+        return {
+
+        }
+    },
+    mounted() {
+        this.reSetAllData()
     }
+}
 </script>
 
 <style>

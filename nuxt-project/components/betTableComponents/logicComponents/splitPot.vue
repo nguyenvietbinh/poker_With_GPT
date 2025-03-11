@@ -57,11 +57,8 @@ export default {
                     } else {
                         betTableState.winRate = 0
                     }
+                    console.log(betTableState.winner)
                     betTableState.stackList[betTableState.winner[i]] += Math.floor(betTableState.pot/betTableState.winner.length)
-                    betTableState.everyGameHistory.unshift({
-                        stt: 'end',
-                        winner: betTableState.winner,
-                    })
                 }
             }
         }, { deep: true })

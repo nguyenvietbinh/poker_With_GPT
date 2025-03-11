@@ -3,11 +3,12 @@
         <p v-if="betTableState.loadingDone" @click="startCounting" class="text-black text-[3vw] md:text-[2.5vh] hover:underline cursor-pointer font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">Click here to play.</p>
         <p v-if="!betTableState.loadingDone" class="text-black text-[3vw] md:text-[2.5vh] font-bold text-center whitespace-nowrap absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">loading...</p>
         <div v-if="counting && !betTableState.startGame" class="text-black text-[20vw] md:text-[20vh] absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]">{{ count }}</div>
-        <div v-if="betTableState.startGame" class="absolute bottom-[30%] left-[50%] translate-x-[-50%] text-white inline-flex rounded-sm">
-            <div :class="``">{{ pot }}</div>
+        <div v-if="betTableState.startGame" class="absolute top-[74%] left-[50%] rotate-0 translate-x-[-50%] translate-y-[-50%] rotage text-white inline-flex rounded-sm">
+            <div>{{ pot }}</div>
             <img src="/img/whiteCoin.png" class="mx-1 size-3 self-center" alt="">
         </div>
     </div>
+
 </template>
 
 

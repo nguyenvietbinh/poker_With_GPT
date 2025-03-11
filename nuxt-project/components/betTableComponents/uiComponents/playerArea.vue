@@ -1,16 +1,19 @@
 <template>
     <div v-for="n in 6" :key="n" :class="`h-[25%] w-[50%] absolute ${style.playerAreaDirection[n-1]} ${style.playerAreaXPosition[n-1]} ${style.playerAreaYPosition[n-1]}`">
-
-        <div v-if="betTotalList[n-1] !== 0" class="absolute bottom-[60%] left-[70%] translate-x-[-50%] text-white inline-flex rounded-sm">
-            <div>{{ betTotalList[n-1] }}</div>
-            <img src="/img/whiteCoin.png" class="mx-1 size-3 self-center" alt="">
-        </div>
-        <div v-if="stackList[n-1] !== 0" class="absolute bottom-[12%] text-white left-[70%] translate-x-[-50%] inline-flex rounded-sm">
+        <div v-if="stackList[n-1] !== 0" class="absolute top-[85%] text-white left-[75%] translate-x-[-50%] translate-y-[-50%] inline-flex rounded-sm">
             <div>{{ stackList[n-1] }}</div>
             <img src="/img/whiteCoin.png" class="mx-1 size-3 self-center" alt="">
         </div>
-        <span v-if="betTableState.playerLoading[n-1]" class="loading loading-bars loading-lg left-[50%] translate-x-[-50%] top-[50%] absolute"></span>
+        <span v-if="betTableState.playerLoading[n-1]" class="loading loading-bars md:loading-lg loading-md left-[50%] translate-x-[-50%] top-[60%] absolute"></span>
     </div>
+    <div v-for="n in 6" :key="n" :class="`h-[25%] w-[50%] stackContainer border-solid border-white border-[2px] absolute ${style.playerAreaDirection[n-1]} ${style.playerAreaXPosition[n-1]} ${style.playerAreaYPosition[n-1]}`">
+        <div v-if="true" class="absolute stacks top-[25%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-white inline-flex rounded-sm">
+            <div>100</div>
+            <img src="/img/whiteCoin.png" class="mx-1 size-3 self-center" alt="">
+        </div>
+    </div>
+    <BetTableComponentsLogicComponentsMoveStacks/>
+
 </template>
 
 
