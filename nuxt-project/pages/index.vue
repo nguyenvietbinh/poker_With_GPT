@@ -23,6 +23,7 @@ export default {
         }
     },
     mounted() {
+        document.title = 'pokerwithGPT'
         this.reSetAllData()
     }
 }

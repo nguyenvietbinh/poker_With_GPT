@@ -8,6 +8,8 @@
     <BetTableComponentsLogicComponentsHandleAllinCase v-if="betTableState.haveAllinCase"/>
     <BetTableComponentsLogicComponentsPlayAudio/>
     <BetTableComponentsLogicComponentsDisplayPlayerTurn/>
+    <BetTableComponentsLogicComponentsMoveStacks/>
+
 </template>
 
 

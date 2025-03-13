@@ -1,5 +1,4 @@
 <template>
-<div @click="moveStack" class="absolute top-[82.5%] left-[62.5%] bg-black h-[5%] w-[5%] -rotate-90">bla</div>
 </template>
 
 
@@ -10,9 +9,11 @@ import { style } from '~/store/data/taildwindStyle'
 export default {
     setup() {
         const { move } = useMyBettbFunc()
+        const { reSetData } = useMyBettbFunc()
         return {
             move,
             betTableState,
+            reSetData
         }
     },
     data() {
@@ -25,14 +26,31 @@ export default {
        }
     },
     mounted() {
-        this.stackContainer = document.querySelectorAll('.stackContainer')
-        this.stacks = document.querySelectorAll('.stacks')
-
+        watch(() => betTableState.stackList.map(item => item), (newval, oldval) => {
+            for (let i = 0; i < 6; i ++) {
+                if (newval[i] > oldval[i]) {
+                    this.stacks = document.querySelectorAll('.stacks')
+                    this.stackContainer = document.querySelectorAll('.stackContainer')
+                    this.stacks.forEach((element, index) => {
+                        this.moveStack(index, i)
+                    });
+                    setTimeout(() => {
+                        this.reSetData()
+                        for (let j = 0; j < 6; j ++) {
+                            this.move(this.stackContainer[j], this.playerAreaXPosition[j], this.playerAreaYPosition[j], 2000, this.playerAreaDirection[j])
+                        }
+                    }, 2000)
+                }
+            }
+        }, { deep: true });
     },
     methods: {
-        moveStack() {
-            this.move(this.stackContainer[0], 0, 0, 5000, 0)
-        }
+        moveStack(obj, tar) {
+            this.move(this.stackContainer[obj], this.playerAreaXPosition[tar], this.playerAreaYPosition[tar], 2000, this.playerAreaDirection[tar])
+            this.move(this.stacks[obj], 75, 75, 2000, 0)
+            this.stacks[obj].style.transform = 'translateX(-50%) translateY(-50%)';
+        },
+
     }
 }
 </script>

@@ -29,7 +29,6 @@ export default {
     },
     mounted() {
         this.playerAvatar = document.querySelectorAll('.avatar')
-        this.reSetData()
         setTimeout(() => {
             this.newGame = true
             betTableState.botTitle = ['You', 'Bot 1', 'Bot 2', 'Bot 3', 'Bot 4', 'Bot 5']
