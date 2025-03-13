@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
+    const apiKey = typeof process !== "undefined" ? process.env.OPENAI_API_KEY : "";
     const result = await axios.post(
       'https://api.openai.com/v1/chat/completions',
       {
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          Authorization: `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
       }
