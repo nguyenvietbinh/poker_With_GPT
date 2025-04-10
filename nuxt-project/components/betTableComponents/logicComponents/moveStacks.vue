@@ -37,9 +37,11 @@ export default {
                     setTimeout(() => {
                         this.reSetData()
                         for (let j = 0; j < 6; j ++) {
-                            this.move(this.stackContainer[j], this.playerAreaXPosition[j], this.playerAreaYPosition[j], 2000, this.playerAreaDirection[j])
+                            if (this.stackContainer[j]) {
+                                this.move(this.stackContainer[j], this.playerAreaXPosition[j], this.playerAreaYPosition[j], 2000, this.playerAreaDirection[j])
+                            }
                         }
-                    }, 2000)
+                    }, 1900)
                 }
             }
         }, { deep: true });

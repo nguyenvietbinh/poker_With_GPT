@@ -31,10 +31,12 @@ export default {
             if (newval) {
                 setTimeout(() => {
                     this.callCheck = document.querySelector('.callCheck')
-                    if (betTableState.betTotalList[0] === Math.max(...betTableState.betTotalList)) {
-                        this.callCheck.innerHTML = 'Check'
-                    } else {
-                        this.callCheck.innerHTML = 'Call'
+                    if (this.callCheck) {
+                        if (betTableState.betTotalList[0] === Math.max(...betTableState.betTotalList)) {
+                            this.callCheck.innerHTML = 'Check'
+                        } else {
+                            this.callCheck.innerHTML = 'Call'
+                        }
                     }
                 }, 10)
             }
